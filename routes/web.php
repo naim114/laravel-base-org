@@ -32,9 +32,9 @@ Route::get('/ban', function () {
 /**
  *  home - route to homepage
  */
-Route::get('/home', function () {
-    return view('errors.ban');
-})->name('home');
+Route::get('/homepage', function () {
+    return view('homepage.index');
+})->name('homepage');
 
 // ======================================================================================== //
 // Auth Routes

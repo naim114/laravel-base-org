@@ -29,7 +29,6 @@
             --warning-color-rgb: {{ trans('app.color.warning.rgb') }};
             --danger-color-rgb: {{ trans('app.color.danger.rgb') }};
         }
-
     </style>
 
     @yield('custom-head')

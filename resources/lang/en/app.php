@@ -7,10 +7,10 @@ return [
     'wallpaper.auth' => Settings::where('name', 'wallpaper.auth')->pluck('value')[0],
     'favicon' => Settings::where('name', 'favicon')->pluck('value')[0],
     'logo' => Settings::where('name', 'logo')->pluck('value')[0],
-    'app-name' => Settings::where('name', 'app-name')->pluck('value')[0],
-    'copyright' => Settings::where('name', 'copyright')->pluck('value')[0],
-    'privacy-policy' => Settings::where('name', 'privacy-policy')->pluck('value')[0],
-    'terms-conditions' => Settings::where('name', 'terms-conditions')->pluck('value')[0],
+    'app-name' => Settings::where('name', 'app-name')->pluck('value')[0] ?? '',
+    'copyright' => Settings::where('name', 'copyright')->pluck('value')[0] ?? '',
+    'privacy-policy' => Settings::where('name', 'privacy-policy')->pluck('value')[0] ?? '',
+    'terms-conditions' => Settings::where('name', 'terms-conditions')->pluck('value')[0] ?? '',
 
     // colors
     'color.primary.hex' => Settings::where('name', 'color.primary.hex')->pluck('value')[0],

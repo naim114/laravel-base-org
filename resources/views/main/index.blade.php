@@ -2,40 +2,47 @@
 
 @section('custom-head')
     <style>
-        .carousel-control-prev,
-        .carousel-control-next {
-            background-color: #8b8b8b;
-            padding: 10px;
-            width: 5vh;
-            height: 5vh;
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
+        .card-title {
+            line-height: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            /* number of lines to show */
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            transition: 0.3s all ease-in-out;
         }
 
-        .cards-wrapper {
-            display: flex;
-            justify-content: center;
+        .card-text {
+            line-height: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            /* number of lines to show */
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
         }
 
-        .card {
-            margin: 0 1em;
-            /* box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18); */
-            border: none;
-            background-color: transparent;
-            border-radius: 0;
+        .card-time {
+            color: #808791;
+            font-size: 12.5px;
         }
 
         .card-img-top {
-            border-radius: 0;
+            height: 150px;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: 0.3s all ease-in-out;
         }
 
-        .card-title {
-            color: #212529;
+        .card:hover .card-title {
+            color: #3b8af2;
         }
 
-        .card-title:hover {
-            color: #545454;
+        .card:hover .card-img-top {
+            opacity: 1;
         }
     </style>
 @stop
@@ -54,6 +61,57 @@
         </div>
     </section><!-- End Hero -->
 
+    <!-- ======= Featured Services Section ======= -->
+    <section id="featured-services" class="featured-services">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <a href="#">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                            <div class="icon"><i class="bx bx-world"></i></div>
+                            <h4 class="title"><a href="">About Us</a></h4>
+                            <p class="description">Get to know more about our organization, history and committee.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <a href="#">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+                            <div class="icon"><i class="bx bx-news"></i></div>
+                            <h4 class="title"><a href="">News</a></h4>
+                            <p class="description">Read the latest news, statements and events.</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <a href="#">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+                            <div class="icon"><i class="bx bx-certification"></i></div>
+                            <h4 class="title"><a href="">Join Us</a></h4>
+                            <p class="description">Register online membership, download application forms or donate to us.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <a href="#">
+                        <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+                            <div class="icon"><i class="bx bx-phone"></i></div>
+                            <h4 class="title"><a href="">Contact</a></h4>
+                            <p class="description">Get our contact information.</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Featured Services Section -->
+
     <!-- ======= News Preview Section ======= -->
     <section id="news" class="about section-bg">
         <div class="container" data-aos="fade-up">
@@ -61,122 +119,187 @@
                 <h3>Read Our <span>Latest News</span></h3>
                 <p>Get the latest news, events, announcement, public statements directly from us.</p>
             </div>
-            <div id="carouselNews" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="cards-wrapper p-4">
-                            <div class="card">
-                                <img src="https://on-desktop.com/wps/2020Food___Cakes_and_Sweet_Pie_with_cottage_cheese_and_berries_on_the_table_144346_.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p style="font-size: 12px;"><i class="bi bi-clock"></i> 11/2/2022</p>
-                                    <a href="#">
-                                        <h5 class="card-title">Card title</h5>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card d-none d-md-block">
-                                <img src="https://on-desktop.com/wps/2020Food___Cakes_and_Sweet_Pie_with_cottage_cheese_and_berries_on_the_table_144346_.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p style="font-size: 12px;"><i class="bi bi-clock"></i> 11/2/2022</p>
-                                    <a href="#">
-                                        <h5 class="card-title">Card title</h5>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card d-none d-md-block">
-                                <img src="https://on-desktop.com/wps/2020Food___Cakes_and_Sweet_Pie_with_cottage_cheese_and_berries_on_the_table_144346_.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p style="font-size: 12px;"><i class="bi bi-clock"></i> 11/2/2022</p>
-                                    <a href="#">
-                                        <h5 class="card-title">Card title</h5>
-                                    </a>
-                                </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="#" class="text-body">
+                        <div class="card d-block w-100 shadow h-100">
+                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur venenatis
+                                    blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu facilisis lectus,
+                                    sed
+                                    feugiat tellus nulla eu dolor. Nulla porta bibendum lectus quis euismod. Aliquam
+                                    volutpat
+                                    ultricies porttitor. Cras risus nisi, accumsan vel cursus ut, sollicitudin vitae dolor.
+                                    Fusce scelerisque eleifend lectus in bibendum. Suspendisse lacinia egestas felis a
+                                    volutpat.
+                                </h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur venenatis
+                                    blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu facilisis lectus,
+                                    sed
+                                    feugiat tellus nulla eu dolor. Nulla porta bibendum lectus quis euismod. Aliquam
+                                    volutpat
+                                    ultricies porttitor. Cras risus nisi, accumsan vel cursus ut, sollicitudin vitae dolor.
+                                    Fusce scelerisque eleifend lectus in bibendum. Suspendisse lacinia egestas felis a
+                                    volutpat.
+                                </p>
+                                <p class="card-time"><i class="bi bi-clock"></i> 4 August 2020</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="cards-wrapper p-4">
-                            <div class="card">
-                                <img src="https://on-desktop.com/wps/2020Food___Cakes_and_Sweet_Pie_with_cottage_cheese_and_berries_on_the_table_144346_.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p style="font-size: 12px;"><i class="bi bi-clock"></i> 11/2/2022</p>
-                                    <a href="#">
-                                        <h5 class="card-title">Card title</h5>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card d-none d-md-block">
-                                <img src="https://on-desktop.com/wps/2020Food___Cakes_and_Sweet_Pie_with_cottage_cheese_and_berries_on_the_table_144346_.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p style="font-size: 12px;"><i class="bi bi-clock"></i> 11/2/2022</p>
-                                    <a href="#">
-                                        <h5 class="card-title">Card title</h5>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card d-none d-md-block">
-                                <img src="https://on-desktop.com/wps/2020Food___Cakes_and_Sweet_Pie_with_cottage_cheese_and_berries_on_the_table_144346_.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p style="font-size: 12px;"><i class="bi bi-clock"></i> 11/2/2022</p>
-                                    <a href="#">
-                                        <h5 class="card-title">Card title</h5>
-                                    </a>
-                                </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#" class="text-body">
+                        <div class="card d-block w-100 shadow h-100">
+                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Thriving in an AI-enabled Digital Economy
+                                </h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </p>
+                                <p class="card-time"><i class="bi bi-clock"></i> 4 August 2020</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="cards-wrapper p-4">
-                            <div class="card">
-                                <img src="https://on-desktop.com/wps/2020Food___Cakes_and_Sweet_Pie_with_cottage_cheese_and_berries_on_the_table_144346_.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p style="font-size: 12px;"><i class="bi bi-clock"></i> 11/2/2022</p>
-                                    <a href="#">
-                                        <h5 class="card-title">Card title</h5>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card d-none d-md-block">
-                                <img src="https://on-desktop.com/wps/2020Food___Cakes_and_Sweet_Pie_with_cottage_cheese_and_berries_on_the_table_144346_.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p style="font-size: 12px;"><i class="bi bi-clock"></i> 11/2/2022</p>
-                                    <a href="#">
-                                        <h5 class="card-title">Card title</h5>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card d-none d-md-block">
-                                <img src="https://on-desktop.com/wps/2020Food___Cakes_and_Sweet_Pie_with_cottage_cheese_and_berries_on_the_table_144346_.jpg"
-                                    class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <p style="font-size: 12px;"><i class="bi bi-clock"></i> 11/2/2022</p>
-                                    <a href="#">
-                                        <h5 class="card-title">Card title</h5>
-                                    </a>
-                                </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#" class="text-body">
+                        <div class="card d-block w-100 shadow h-100">
+                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Thriving in an AI-enabled Digital Economy
+                                </h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </p>
+                                <p class="card-time"><i class="bi bi-clock"></i> 4 August 2020</p>
                             </div>
                         </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselNews"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselNews"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="#" class="text-body">
+                        <div class="card d-block w-100 shadow h-100">
+                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Thriving in an AI-enabled Digital Economy
+                                </h5>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </p>
+                                <p class="card-time"><i class="bi bi-clock"></i> 4 August 2020</p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
+            <div class="float-end mt-3">
+                <a href="#">View More <i class="bi bi-arrow-right-square-fill"></i></a>
+            </div>
+    </section><!-- End News Preview Section -->
 
-    </section><!-- End About Section -->
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+        <div class="container" data-aos="zoom-in">
+
+            <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <h3>Saul Goodman</h3>
+                            <h4>Ceo &amp; Founder</h4>
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
+                                rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
+                                risus at semper.
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <h3>Sara Wilsson</h3>
+                            <h4>Designer</h4>
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
+                                cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
+                                legam anim culpa.
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <h3>Jena Karlis</h3>
+                            <h4>Store Owner</h4>
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
+                                veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint
+                                minim.
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <h3>Matt Brandon</h3>
+                            <h4>Freelancer</h4>
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
+                                fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem
+                                dolore labore illum veniam.
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                    <div class="swiper-slide">
+                        <div class="testimonial-item">
+                            <h3>John Larson</h3>
+                            <h4>Entrepreneur</h4>
+                            <p>
+                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster
+                                veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam
+                                culpa fore nisi cillum quid.
+                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                            </p>
+                        </div>
+                    </div><!-- End testimonial item -->
+
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+        </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Donate Section ======= -->
+    <footer id="footer">
+        <div class="footer-newsletter">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h4>Support Us By Donating</h4>
+                        <p>Besides buying our products you can straight away support us by donating.</p>
+                        <button class="btn btn-primary btn-lg">Donate Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer><!-- End Donate Section -->
 @stop

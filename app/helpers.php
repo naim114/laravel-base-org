@@ -4,6 +4,7 @@ use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 
 // if (!function_exists('user_email')) {
 //     function user_email()
@@ -71,5 +72,14 @@ if (!function_exists('rgb2hex')) {
     {
         $rgbarr = explode(",", $rgb, 3);
         echo sprintf("#%02x%02x%02x", $rgbarr[0], $rgbarr[1], $rgbarr[2]);
+    }
+}
+
+if (!function_exists('current_route')) {
+    function current_route($route_name)
+    {
+        $current_route_name = Route::currentRouteName();
+
+        return $route_name  == $current_route_name;
     }
 }

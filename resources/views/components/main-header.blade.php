@@ -6,12 +6,15 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="{{ route('home') }}">Home</a></li>
-                <li class="dropdown"><a href="#"><span>About Us</span> <i class="bi bi-chevron-down"></i></a>
+                <li><a class="nav-link scrollto {{ current_route('home') ? 'active' : '' }}"
+                        href="{{ route('home') }}">Home</a></li>
+                <li class="dropdown"><a
+                        class="{{ current_route('about.organization') || current_route('about.history') || current_route('about.committee') ? 'active' : '' }}"
+                        href="#"><span>About Us</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('about.organization') }}">Organization</a></li>
-                        <li><a href="#">History</a></li>
-                        <li><a href="#">Committee</a></li>
+                        <li><a href="{{ route('about.history') }}">History</a></li>
+                        <li><a href="{{ route('about.committee') }}">Committee</a></li>
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto" href="#">News</a></li>

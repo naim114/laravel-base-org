@@ -40,6 +40,14 @@ Route::get('/en/about/organization', function () {
     return view('main.about.organization');
 })->name('about.organization');
 
+Route::get('/en/about/history', function () {
+    return view('main.about.history');
+})->name('about.history');
+
+Route::get('/en/about/committee', function () {
+    return view('main.about.committee');
+})->name('about.committee');
+
 // ======================================================================================== //
 // Auth Routes
 // generated from laravel/ui package

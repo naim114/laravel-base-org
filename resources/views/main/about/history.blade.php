@@ -1,13 +1,13 @@
 @extends('layouts.main-master')
 
-@section('page-title', trans('app.about.org'))
+@section('page-title', trans('app.about.history'))
 
 @section('content')
     <section id="content">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
-                <h1>Organization</h1>
-                <p>Get to know our organization aims and objectives.</p>
+                <h1>History</h1>
+                <p>Read the history of our organization.</p>
             </div>
             <p>
                 Republican Party, by name Grand Old Party (GOP), in the United States, one of the two major political

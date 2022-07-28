@@ -207,7 +207,7 @@
     </section><!-- End News Preview Section -->
 
     <!-- ======= Gallery Section ======= -->
-    <section>
+    <section id="gallery">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
                 <h3><span>Gallery</span></h3>

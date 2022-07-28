@@ -1,5 +1,7 @@
 @extends('layouts.main-master')
 
+@section('page-title', trans('app.home'))
+
 @section('custom-head')
     <style>
         .card-title {
@@ -61,8 +63,8 @@
         </div>
     </section><!-- End Hero -->
 
-    <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
+    <!-- ======= Featured Section ======= -->
+    <section id="about" class="featured-services">
         <div class="container" data-aos="fade-up">
 
             <div class="row">
@@ -110,7 +112,7 @@
             </div>
 
         </div>
-    </section><!-- End Featured Services Section -->
+    </section><!-- End Featured Section -->
 
     <!-- ======= News Preview Section ======= -->
     <section id="news" class="about section-bg">
@@ -204,8 +206,61 @@
             </div>
     </section><!-- End News Preview Section -->
 
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials">
+    <!-- ======= Gallery Section ======= -->
+    <section>
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h3><span>Gallery</span></h3>
+                <p>Check out what we have been up to.</p>
+            </div>
+            <div id="carouselGalleryCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>First slide label</h5>
+                            <p>Some representative placeholder content for the first slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Second slide label</h5>
+                            <p>Some representative placeholder content for the second slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="caption-title">Third slide label</h5>
+                            <p class="caption-subtitle">Some representative placeholder content for the third slide.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselGalleryCaptions"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselGalleryCaptions"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section><!-- End Gallery Section -->
+
+    <!-- ======= Quotes Section ======= -->
+    <section id="quotes" class="testimonials">
         <div class="container" data-aos="zoom-in">
 
             <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -286,10 +341,10 @@
             </div>
 
         </div>
-    </section><!-- End Testimonials Section -->
+    </section><!-- End Quptes Section -->
 
     <!-- ======= Donate Section ======= -->
-    <footer id="footer">
+    <footer id="footer" data-aos="fade-up">
         <div class="footer-newsletter">
             <div class="container">
                 <div class="row justify-content-center">

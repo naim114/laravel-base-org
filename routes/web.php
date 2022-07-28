@@ -34,7 +34,11 @@ Route::get('/ban', function () {
  */
 Route::get('/en/home', function () {
     return view('main.index');
-})->name('main');
+})->name('home');
+
+Route::get('/en/about/organization', function () {
+    return view('main.about.organization');
+})->name('about.organization');
 
 // ======================================================================================== //
 // Auth Routes

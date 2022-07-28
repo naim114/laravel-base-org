@@ -68,4 +68,20 @@ return [
     'permissions' => 'Permissions',
     'settings' => 'Settings',
     'general' => 'General Settings',
+
+    'home' => 'Home',
+
+    'about.org' => 'Organization',
+    'about.history' => 'History',
+    'about.committee' => 'Committee',
+
+    'news' => 'News',
+
+    'join.forms' => 'Forms',
+    'join.membership' => 'Online Membership',
+    'join.donate' => 'Donate',
+
+    'shop' => 'Shop',
+
+    'contact' => 'Contact',
 ];

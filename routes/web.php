@@ -34,19 +34,39 @@ Route::get('/ban', function () {
  */
 Route::get('/en/home', function () {
     return view('main.index');
-})->name('home');
+})->name('main.home');
 
 Route::get('/en/about/organization', function () {
     return view('main.about.organization');
-})->name('about.organization');
+})->name('main.about.organization');
 
 Route::get('/en/about/history', function () {
     return view('main.about.history');
-})->name('about.history');
+})->name('main.about.history');
 
 Route::get('/en/about/committee', function () {
     return view('main.about.committee');
-})->name('about.committee');
+})->name('main.about.committee');
+
+Route::get('/en/news', function () {
+    return view('main.news');
+})->name('main.news');
+
+Route::get('/en/join/form', function () {
+    return view('main.join.form');
+})->name('main.join.form');
+
+Route::get('/en/join/membership', function () {
+    return view('main.join.membership');
+})->name('main.join.membership');
+
+Route::get('/en/join/donate', function () {
+    return view('main.join.donate');
+})->name('main.join.donate');
+
+Route::get('/en/contact', function () {
+    return view('main.contact');
+})->name('main.contact');
 
 // ======================================================================================== //
 // Auth Routes

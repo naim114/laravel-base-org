@@ -63,56 +63,7 @@
         </div>
     </section><!-- End Hero -->
 
-    <!-- ======= Featured Section ======= -->
-    <section id="about" class="featured-services">
-        <div class="container" data-aos="fade-up">
 
-            <div class="row">
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <a href="#">
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                            <div class="icon"><i class="bx bx-world"></i></div>
-                            <h4 class="title"><a href="">About Us</a></h4>
-                            <p class="description">Get to know more about our organization, history and committee.</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <a href="#">
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                            <div class="icon"><i class="bx bx-news"></i></div>
-                            <h4 class="title"><a href="">News</a></h4>
-                            <p class="description">Read the latest news, statements and events.</p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <a href="#">
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                            <div class="icon"><i class="bx bx-certification"></i></div>
-                            <h4 class="title"><a href="">Join Us</a></h4>
-                            <p class="description">Register online membership, download application forms or donate to us.
-                            </p>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-                    <a href="#">
-                        <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-                            <div class="icon"><i class="bx bx-phone"></i></div>
-                            <h4 class="title"><a href="">Contact</a></h4>
-                            <p class="description">Get our contact information.</p>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-
-        </div>
-    </section><!-- End Featured Section -->
 
     <!-- ======= News Preview Section ======= -->
     <section id="news" class="about section-bg">
@@ -122,7 +73,7 @@
                 <p>Get the latest news, events, announcement, public statements directly from us.</p>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
                             <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
@@ -152,7 +103,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
                             <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
@@ -168,7 +119,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
                             <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
@@ -184,7 +135,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
                             <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
@@ -204,6 +155,7 @@
             <div class="float-end mt-3">
                 <a href="#">View More <i class="bi bi-arrow-right-square-fill"></i></a>
             </div>
+        </div>
     </section><!-- End News Preview Section -->
 
     <!-- ======= Gallery Section ======= -->
@@ -221,6 +173,10 @@
                         aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="2"
                         aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="4"
+                        aria-label="Slide 5"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -241,6 +197,20 @@
                         <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5 class="caption-title">Third slide label</h5>
+                            <p class="caption-subtitle">Some representative placeholder content for the third slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="caption-title">Fourth slide label</h5>
+                            <p class="caption-subtitle">Some representative placeholder content for the third slide.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5 class="caption-title">Fifth slide label</h5>
                             <p class="caption-subtitle">Some representative placeholder content for the third slide.</p>
                         </div>
                     </div>
@@ -351,7 +321,7 @@
                     <div class="col-lg-6">
                         <h4>Support Us By Donating</h4>
                         <p>Besides buying our products you can straight away support us by donating.</p>
-                        <button class="btn btn-primary btn-lg">Donate Now</button>
+                        <a href="{{ route('main.join.donate') }}" class="btn btn-primary btn-lg">Donate Now</a>
                     </div>
                 </div>
             </div>

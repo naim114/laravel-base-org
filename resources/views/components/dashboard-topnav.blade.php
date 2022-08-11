@@ -18,9 +18,10 @@
     {{-- <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4"> --}}
     <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{ route('main.home') }}">Back to Home</a></li>
                 <li><a class="dropdown-item" href="{{ route('profile') }}">Profile Settings</a></li>
                 <li><a class="dropdown-item" href="{{ route('activity') }}">Activity Log</a></li>
                 <li>

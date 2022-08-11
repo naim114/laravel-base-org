@@ -47,12 +47,8 @@
                             {{ old('remember') ? 'checked' : '' }} />
                         <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                     </div>
-
-                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                        {{-- @if (Route::has('password.request'))
-                            <a class="small" href="password.html">Forgot Password?</a>
-                        @endif --}}
-                        <div></div>
+                    <div class="float-end">
+                        <a href="{{ route('main.home') }}" type="submit" class="btn btn-warning">Back to Home</a>
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
                 </form>

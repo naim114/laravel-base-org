@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivityLogController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -272,4 +273,52 @@ Route::group(['middleware' => ['auth', 'status']], function () {
         '/settings/favicon',
         [SettingsController::class, 'favicon']
     )->name('settings.favicon')->middleware('permissions:settings.general');
+
+    /**
+     *  main - manage main/home settings
+     */
+    Route::get(
+        '/main/home',
+        [HomeController::class, 'home']
+    )->name('main.settings.home')->middleware('permissions:main.manage');
+
+    Route::get(
+        '/main/about/organization',
+        [HomeController::class, 'home']
+    )->name('main.settings.organization')->middleware('permissions:main.manage');
+
+    Route::get(
+        '/main/about/history',
+        [HomeController::class, 'home']
+    )->name('main.settings.history')->middleware('permissions:main.manage');
+
+    Route::get(
+        '/main/about/committee',
+        [HomeController::class, 'home']
+    )->name('main.settings.comittee')->middleware('permissions:main.manage');
+
+    Route::get(
+        '/main/news',
+        [HomeController::class, 'home']
+    )->name('main.settings.news')->middleware('permissions:main.manage');
+
+    Route::get(
+        '/main/join/form',
+        [HomeController::class, 'home']
+    )->name('main.settings.form')->middleware('permissions:main.manage');
+
+    Route::get(
+        '/main/join/membership',
+        [HomeController::class, 'home']
+    )->name('main.settings.membership')->middleware('permissions:main.manage');
+
+    Route::get(
+        '/main/join/donate',
+        [HomeController::class, 'home']
+    )->name('main.settings.donate')->middleware('permissions:main.manage');
+
+    Route::get(
+        '/main/contact',
+        [HomeController::class, 'home']
+    )->name('main.settings.contact')->middleware('permissions:main.manage');
 });

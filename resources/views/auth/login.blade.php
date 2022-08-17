@@ -48,7 +48,7 @@
                         <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                     </div>
                     <div class="float-end">
-                        <a href="{{ route('main.home') }}" type="submit" class="btn btn-warning">Back to Home</a>
+                        <a href="{{ route('main.home') }}" type="submit" class="btn btn-secondary">Back to Home</a>
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
                 </form>

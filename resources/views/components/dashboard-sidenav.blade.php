@@ -26,8 +26,63 @@
                         {{ trans('app.activity') }}
                     </a>
 
+                    {{-- Main/Home Pages --}}
+                    @if (has_permission('main.manage'))
+                        <div class="sb-sidenav-menu-heading">Main/Home Pages</div>
+
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                            {{ trans('app.home') }}
+                        </a>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseAbout" aria-expanded="false" aria-controls="collapseAbout">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            About Us
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseAbout" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ route('roles') }}">{{ trans('app.about.org') }}</a>
+                                <a class="nav-link"
+                                    href="{{ route('permissions') }}">{{ trans('app.about.history') }}</a>
+                                <a class="nav-link" href="{{ route('roles') }}">{{ trans('app.about.committee') }}</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
+                            {{ trans('app.news') }}
+                        </a>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseJoin" aria-expanded="false" aria-controls="collapseJoin">
+                            <div class="sb-nav-link-icon"><i class="fas fa-sign-in-alt"></i></div>
+                            Join Us
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseJoin" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{{ route('roles') }}">{{ trans('app.join.forms') }}</a>
+                                <a class="nav-link"
+                                    href="{{ route('permissions') }}">{{ trans('app.join.membership') }}</a>
+                                <a class="nav-link" href="{{ route('roles') }}">{{ trans('app.join.donate') }}</a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link" href="{{ route('dashboard') }}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-address-book"></i></div>
+                            {{ trans('app.contact') }}
+                        </a>
+                    @endif
+
                     {{-- Administrations --}}
-                    @if (has_permission('users.manage') || has_permission('users.activity') || has_permission('roles.manage') || has_permission('permissions.manage'))
+                    @if (has_permission('users.manage') ||
+                        has_permission('users.activity') ||
+                        has_permission('roles.manage') ||
+                        has_permission('permissions.manage'))
                         <div class="sb-sidenav-menu-heading">{{ trans('app.administration') }}</div>
                     @endif
 
@@ -46,8 +101,8 @@
                     @endif
 
                     @if (has_permission('roles.manage') || has_permission('permissions.manage'))
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseRole"
-                            aria-expanded="false" aria-controls="collapseRole">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseRole" aria-expanded="false" aria-controls="collapseRole">
                             <div class="sb-nav-link-icon"><i class="fas fa-lock"></i></div>
                             {{ trans('app.roles-permissions') }}
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -57,8 +112,7 @@
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 @if (has_permission('roles.manage'))
-                                    <a class="nav-link"
-                                        href="{{ route('roles') }}">{{ trans('app.roles') }}</a>
+                                    <a class="nav-link" href="{{ route('roles') }}">{{ trans('app.roles') }}</a>
                                 @endif
                                 @if (has_permission('permissions.manage'))
                                     <a class="nav-link"

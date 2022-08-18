@@ -284,41 +284,41 @@ Route::group(['middleware' => ['auth', 'status']], function () {
 
     Route::get(
         '/main/about/organization',
-        [HomeController::class, 'home']
+        [HomeController::class, 'organization']
     )->name('main.settings.organization')->middleware('permissions:main.manage');
 
     Route::get(
         '/main/about/history',
-        [HomeController::class, 'home']
+        [HomeController::class, 'history']
     )->name('main.settings.history')->middleware('permissions:main.manage');
 
     Route::get(
         '/main/about/committee',
-        [HomeController::class, 'home']
+        [HomeController::class, 'committee']
     )->name('main.settings.comittee')->middleware('permissions:main.manage');
 
     Route::get(
         '/main/news',
-        [HomeController::class, 'home']
+        [HomeController::class, 'news']
     )->name('main.settings.news')->middleware('permissions:main.manage');
 
     Route::get(
         '/main/join/form',
-        [HomeController::class, 'home']
+        [HomeController::class, 'form']
     )->name('main.settings.form')->middleware('permissions:main.manage');
 
     Route::get(
         '/main/join/membership',
-        [HomeController::class, 'home']
+        [HomeController::class, 'membership']
     )->name('main.settings.membership')->middleware('permissions:main.manage');
 
     Route::get(
         '/main/join/donate',
-        [HomeController::class, 'home']
+        [HomeController::class, 'donate']
     )->name('main.settings.donate')->middleware('permissions:main.manage');
 
     Route::get(
         '/main/contact',
-        [HomeController::class, 'home']
+        [HomeController::class, 'contact']
     )->name('main.settings.contact')->middleware('permissions:main.manage');
 });

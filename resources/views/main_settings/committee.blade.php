@@ -1,12 +1,13 @@
 @extends('layouts.dashboard-master')
 
-@section('page-title', trans('app.home'))
+@section('page-title', trans('app.about.committee'))
 
 @section('user-name', Auth::user()->username)
 
 @section('breadcrumb')
-    <a href="{{ route('main.settings.home') }}">Main/Home Pages</a> /
-    <a>{{ trans('app.home') }}</a>
+    <a href="{{ route('main.settings.home') }}">Main Pages</a> /
+    <a href="{{ route('main.settings.organization') }}">About Us</a> /
+    <a>{{ trans('app.about.committee') }}</a>
 @stop
 
 @section('content')

@@ -9,9 +9,9 @@
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
             /* number of lines to show */
-            line-clamp: 3;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
             -webkit-box-orient: vertical;
             transition: 0.3s all ease-in-out;
         }
@@ -21,9 +21,9 @@
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 4;
             /* number of lines to show */
-            line-clamp: 4;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
             -webkit-box-orient: vertical;
         }
 
@@ -62,8 +62,6 @@
             </div>
         </div>
     </section><!-- End Hero -->
-
-
 
     <!-- ======= News Preview Section ======= -->
     <section id="news" class="about section-bg">

@@ -13,41 +13,41 @@ class HomeController extends Controller
 
     public function organization()
     {
-        return view('main.about.organization');
+        return view('main_settings.org');
     }
 
     public function history()
     {
-        return view('main.about.history');
+        return view('main_settings.history');
     }
 
     public function committee()
     {
-        return view('main.about.committee');
+        return view('main_settings.committee');
     }
 
     public function news()
     {
-        return view('main.news');
+        return view('main_settings.news');
     }
 
     public function form()
     {
-        return view('main.join.form');
+        return view('main_settings.form');
     }
 
     public function membership()
     {
-        return view('main.join.membership');
+        return view('main_settings.membership');
     }
 
     public function donate()
     {
-        return view('main.join.donate');
+        return view('main_settings.donate');
     }
 
     public function contact()
     {
-        return view('main.contact');
+        return view('main_settings.contact');
     }
 }

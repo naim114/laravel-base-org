@@ -26,11 +26,11 @@
                         {{ trans('app.activity') }}
                     </a>
 
-                    {{-- Main/Home Pages --}}
+                    {{-- Main Pages --}}
                     @if (has_permission('main.manage'))
-                        <div class="sb-sidenav-menu-heading">Main/Home Pages</div>
+                        <div class="sb-sidenav-menu-heading">Main Pages</div>
 
-                        <a class="nav-link" href="{{ route('dashboard') }}">
+                        <a class="nav-link" href="{{ route('main.settings.home') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                             {{ trans('app.home') }}
                         </a>
@@ -44,14 +44,16 @@
                         <div class="collapse" id="collapseAbout" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('roles') }}">{{ trans('app.about.org') }}</a>
                                 <a class="nav-link"
-                                    href="{{ route('permissions') }}">{{ trans('app.about.history') }}</a>
-                                <a class="nav-link" href="{{ route('roles') }}">{{ trans('app.about.committee') }}</a>
+                                    href="{{ route('main.settings.organization') }}">{{ trans('app.about.org') }}</a>
+                                <a class="nav-link"
+                                    href="{{ route('main.settings.history') }}">{{ trans('app.about.history') }}</a>
+                                <a class="nav-link"
+                                    href="{{ route('main.settings.comittee') }}">{{ trans('app.about.committee') }}</a>
                             </nav>
                         </div>
 
-                        <a class="nav-link" href="{{ route('dashboard') }}">
+                        <a class="nav-link" href="{{ route('main.settings.news') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-newspaper"></i></div>
                             {{ trans('app.news') }}
                         </a>
@@ -65,14 +67,16 @@
                         <div class="collapse" id="collapseJoin" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="{{ route('roles') }}">{{ trans('app.join.forms') }}</a>
                                 <a class="nav-link"
-                                    href="{{ route('permissions') }}">{{ trans('app.join.membership') }}</a>
-                                <a class="nav-link" href="{{ route('roles') }}">{{ trans('app.join.donate') }}</a>
+                                    href="{{ route('main.settings.form') }}">{{ trans('app.join.forms') }}</a>
+                                <a class="nav-link"
+                                    href="{{ route('main.settings.membership') }}">{{ trans('app.join.membership') }}</a>
+                                <a class="nav-link"
+                                    href="{{ route('main.settings.donate') }}">{{ trans('app.join.donate') }}</a>
                             </nav>
                         </div>
 
-                        <a class="nav-link" href="{{ route('dashboard') }}">
+                        <a class="nav-link" href="{{ route('main.settings.contact') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-address-book"></i></div>
                             {{ trans('app.contact') }}
                         </a>

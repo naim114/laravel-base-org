@@ -1,12 +1,12 @@
 @extends('layouts.dashboard-master')
 
-@section('page-title', trans('app.home'))
+@section('page-title', trans('app.news'))
 
 @section('user-name', Auth::user()->username)
 
 @section('breadcrumb')
-    <a href="{{ route('main.settings.home') }}">Main/Home Pages</a> /
-    <a>{{ trans('app.home') }}</a>
+    <a href="{{ route('main.settings.home') }}">Main Pages</a> /
+    <a>{{ trans('app.news') }}</a>
 @stop
 
 @section('content')

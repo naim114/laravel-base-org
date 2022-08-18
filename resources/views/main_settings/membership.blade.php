@@ -5,7 +5,7 @@
 @section('user-name', Auth::user()->username)
 
 @section('breadcrumb')
-    <a href="{{ route('main.settings.home') }}">Main/Home Pages</a> /
+    <a href="{{ route('main.settings.home') }}">Main Pages</a> /
     <a>{{ trans('app.home') }}</a>
 @stop
 

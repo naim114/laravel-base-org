@@ -53,6 +53,10 @@ Route::get('/en/news', function () {
     return view('main.news');
 })->name('main.news');
 
+Route::get('/en/article', function () {
+    return view('main.article');
+})->name('main.article');
+
 Route::get('/en/join/form', function () {
     return view('main.join.form');
 })->name('main.join.form');

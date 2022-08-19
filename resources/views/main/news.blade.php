@@ -74,7 +74,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <a href="#" class="text-body">
+                    <a href="{{ route('main.article') }}" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
                             <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
                             <div class="card-body">

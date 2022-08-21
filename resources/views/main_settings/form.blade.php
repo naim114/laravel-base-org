@@ -1,13 +1,13 @@
 @extends('layouts.dashboard-master')
 
-@section('page-title', trans('app.join.membership'))
+@section('page-title', trans('app.join.forms'))
 
 @section('user-name', Auth::user()->username)
 
 @section('breadcrumb')
     <a href="{{ route('main.settings.home') }}">Main Pages</a> /
     <a href="{{ route('main.settings.form') }}">Join Us</a> /
-    <a>{{ trans('app.join.membership') }}</a>
+    <a>{{ trans('app.join.forms') }}</a>
 @stop
 
 @section('content')

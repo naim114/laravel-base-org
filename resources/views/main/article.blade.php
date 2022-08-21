@@ -51,7 +51,7 @@
                     <h6 class="text-muted">Author: Saul Goodman<br>Published: Aug 16, 2022 | Updated: Aug
                         16, 2022
                     </h6>
-                    <p class="text-justify">
+                    <p class="mt-4">
                         Republican Party, by name Grand Old Party (GOP), in the United States, one of the two major
                         political
                         parties,
@@ -98,6 +98,28 @@
                             <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
                         </video>
                     </div>
+
+                    {{-- <div id="comment ">
+                        <h4 class="mt-4 mb-3">9 Comments</h4>
+                        <div>
+                            <p><span class="fw-bold">Fernando Tatis Jr. </span><span class="fst-italic text-muted">01 Jan
+                                    2020</span>
+                            </p>
+                            <p> Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente
+                                quis molestiae est qui cum soluta. Vero aut rerum vel. Rerum quos laboriosam placeat ex qui.
+                                Sint qui facilis et. </p>
+                            <hr>
+                        </div>
+                        <div>
+                            <p><span class="fw-bold">Kay Duggan </span><span class="fst-italic text-muted">01 Jan
+                                    2020</span>
+                            </p>
+                            <p> Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente
+                                quis molestiae est qui cum soluta. Vero aut rerum vel. Rerum quos laboriosam placeat ex qui.
+                                Sint qui facilis et. </p>
+                            <hr>
+                        </div>
+                    </div> --}}
                 </div>
                 <div class="col-md-3">
                     <h6>Read more like this</h6>

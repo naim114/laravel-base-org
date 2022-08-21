@@ -81,16 +81,18 @@
                 established
                 at the political convention in Jackson.
             </p>
-            <div id="image-gallery">
-                <img src="https://naim114.github.io/portfolio/demo/Company/assets/img/portfolio/portfolio-3.jpg"
-                    class="img-fluid mb-2" alt="..." />
-                <img src="https://naim114.github.io/portfolio/demo/Company/assets/img/portfolio/portfolio-2.jpg"
-                    class="img-fluid mb-2" alt="..." />
-            </div>
-            <div id="video-gallery">
-                <video controls>
-                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                </video>
+            <div class="text-center mt-4">
+                <div id="image-gallery">
+                    <img src="https://naim114.github.io/portfolio/demo/Company/assets/img/portfolio/portfolio-3.jpg"
+                        class="img-fluid mb-2" alt="..." />
+                    <img src="https://naim114.github.io/portfolio/demo/Company/assets/img/portfolio/portfolio-2.jpg"
+                        class="img-fluid mb-2" alt="..." />
+                </div>
+                <div id="video-gallery">
+                    <video controls>
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    </video>
+                </div>
             </div>
         </div>
     </section>

@@ -70,8 +70,6 @@
                                 <a class="nav-link"
                                     href="{{ route('main.settings.form') }}">{{ trans('app.join.forms') }}</a>
                                 <a class="nav-link"
-                                    href="{{ route('main.settings.membership') }}">{{ trans('app.join.membership') }}</a>
-                                <a class="nav-link"
                                     href="{{ route('main.settings.donate') }}">{{ trans('app.join.donate') }}</a>
                             </nav>
                         </div>

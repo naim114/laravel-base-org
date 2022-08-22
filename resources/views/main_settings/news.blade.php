@@ -17,5 +17,92 @@
             </div>
         @enderror
 
+        <button class="btn btn-primary mb-2 addButton">
+            + Add Article
+        </button>
+        <table id="rolesTable" class="table table-striped table-hover table-responsive">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Published at</th>
+                    <th scope="col">Updated at</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Title #1</td>
+                    <td>Name #1</td>
+                    <td>Aug 16, 2022</td>
+                    <td>Aug 16, 2022</td>
+                    <td>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"><i class="fas fa-ellipsis-h fa-fw"></i></a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <button data-item="" class="dropdown-item editButton">
+                                    Edit Article
+                                </button>
+                            </li>
+                            <li>
+                                <button data-item="" class="dropdown-item text-danger deleteButton">
+                                    Delete Article
+                                </button>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
+@stop
+
+@section('scripts')
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable();
+        });
+
+        // add modal
+        $(".addButton").click(function() {
+            $('#addModal').modal('show');
+        });
+
+        $(".closeAddModal").click(function() {
+            $('#addModal').modal('hide');
+        });
+
+        // edit modal
+        $(".editButton").click(function() {
+            $('#editModal').modal('show');
+
+            var role = $(this).data('role');
+
+            $('#editModalName').val(role.name);
+            $('#editModalId').val(role.id);
+            $('#editModalDisplayName').val(role.display_name);
+            $('#editModalDescription').val(role.description);
+        });
+
+        $(".closeEditModal").click(function() {
+            $('#editModal').modal('hide');
+        });
+
+        // delete modal
+        $(".deleteButton").click(function() {
+            $('#deleteModal').modal('show');
+
+            var role = $(this).data('role');
+
+            $('#deleteModalId').val(role.id);
+            $('#textBanModal').text('Are you sure you want to delete role ' + role.name +
+                ' ?');
+        });
+
+        $(".closeDeleteModal").click(function() {
+            $('#deleteModal').modal('hide');
+        });
+    </script>
 @stop

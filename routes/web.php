@@ -312,11 +312,6 @@ Route::group(['middleware' => ['auth', 'status']], function () {
     )->name('main.settings.form')->middleware('permissions:main.manage');
 
     Route::get(
-        '/main/join/membership',
-        [HomeController::class, 'membership']
-    )->name('main.settings.membership')->middleware('permissions:main.manage');
-
-    Route::get(
         '/main/join/donate',
         [HomeController::class, 'donate']
     )->name('main.settings.donate')->middleware('permissions:main.manage');

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    // View Main/Home
+
+    // Main/Home Settings Functions
     public function home()
     {
         return view('main_settings.home');
@@ -34,11 +37,6 @@ class HomeController extends Controller
     public function form()
     {
         return view('main_settings.form');
-    }
-
-    public function membership()
-    {
-        return view('main_settings.membership');
     }
 
     public function donate()

@@ -69,43 +69,82 @@
     <script>
         // onready function
         $(document).ready(function() {
-            $('#fileInputWallpaper').val(null);
+            $('#fileInputHeroBg').val(null);
         });
 
-        // front-end for auth wallpaper button
-        $(document).on("click", "#changeWallpaperButton", function() {
-            $("#inputFileButtonWallpaper").removeClass('hide');
-            $("#cancelChangeWallpaperButton").removeClass('hide');
-            $("#submitWallpaperButton").removeClass('hide');
-            $("#guideMsgWallpaper").removeClass('hide');
+        // front-end for hero bg button
+        $(document).on("click", "#changeHeroBgButton", function() {
+            $("#inputFileButtonHeroBg").removeClass('hide');
+            $("#cancelChangeHeroBgButton").removeClass('hide');
+            $("#submitHeroBgButton").removeClass('hide');
+            $("#guideMsgHeroBg").removeClass('hide');
 
-            $("#changeWallpaperButton").addClass('hide');
+            $("#changeHeroBgButton").addClass('hide');
         });
 
-        $(document).on("click", "#cancelChangeWallpaperButton", function() {
-            $("#inputFileButtonWallpaper").addClass('hide');
-            $("#cancelChangeWallpaperButton").addClass('hide');
-            $("#submitWallpaperButton").addClass('hide');
-            $("#guideMsgWallpaper").addClass('hide');
+        $(document).on("click", "#cancelChangeHeroBgButton", function() {
+            $("#inputFileButtonHeroBg").addClass('hide');
+            $("#cancelChangeHeroBgButton").addClass('hide');
+            $("#submitHeroBgButton").addClass('hide');
+            $("#guideMsgHeroBg").addClass('hide');
 
-            $("#changeWallpaperButton").removeClass('hide');
-            $('#fileInputWallpaper').val(null);
+            $("#changeHeroBgButton").removeClass('hide');
+            $('#fileInputHeroBg').val(null);
         });
 
-        $(document).on("click", ".browseWallpaper", function() {
-            var fileWallpaper = $(this).parents().find(".fileWallpaper");
-            fileWallpaper.trigger("click");
+        $(document).on("click", ".browseHeroBg", function() {
+            var fileHeroBg = $(this).parents().find(".fileHeroBg");
+            fileHeroBg.trigger("click");
         });
 
-        $('#fileInputWallpaper').change(function(e) {
+        $('#fileInputHeroBg').change(function(e) {
             var fileName = e.target.files[0].name;
             console.log(fileName);
-            $("#fileWallpaper").val(fileName);
+            $("#fileHeroBg").val(fileName);
 
             var reader = new FileReader();
             reader.onload = function(e) {
                 // get loaded data and render thumbnail.
-                document.getElementById("previewWallpaper").src = e.target.result;
+                document.getElementById("previewHeroBg").src = e.target.result;
+            };
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+        });
+
+        // front-end for quote bg button
+        $(document).on("click", "#changeQuoteBgButton", function() {
+            $("#inputFileButtonQuoteBg").removeClass('hide');
+            $("#cancelChangeQuoteBgButton").removeClass('hide');
+            $("#submitQuoteBgButton").removeClass('hide');
+            $("#guideMsgQuoteBg").removeClass('hide');
+
+            $("#changeQuoteBgButton").addClass('hide');
+        });
+
+        $(document).on("click", "#cancelChangeQuoteBgButton", function() {
+            $("#inputFileButtonQuoteBg").addClass('hide');
+            $("#cancelChangeQuoteBgButton").addClass('hide');
+            $("#submitQuoteBgButton").addClass('hide');
+            $("#guideMsgQuoteBg").addClass('hide');
+
+            $("#changeQuoteBgButton").removeClass('hide');
+            $('#fileInputQuoteBg').val(null);
+        });
+
+        $(document).on("click", ".browseQuoteBg", function() {
+            var fileQuoteBg = $(this).parents().find(".fileQuoteBg");
+            fileQuoteBg.trigger("click");
+        });
+
+        $('#fileInputQuoteBg').change(function(e) {
+            var fileName = e.target.files[0].name;
+            console.log(fileName);
+            $("#fileQuoteBg").val(fileName);
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                // get loaded data and render thumbnail.
+                document.getElementById("previewQuoteBg").src = e.target.result;
             };
             // read the image file as a data URL.
             reader.readAsDataURL(this.files[0]);

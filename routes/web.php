@@ -33,9 +33,15 @@ Route::get('/ban', function () {
 /**
  *  home - route to homepage
  */
-Route::get('/en/home', function () {
-    return view('main.index');
-})->name('main.home');
+Route::get(
+    '/',
+    [HomeController::class, 'view_home']
+)->name('index');
+
+Route::get(
+    '/en/home',
+    [HomeController::class, 'view_home']
+)->name('main.home');
 
 Route::get('/en/about/organization', function () {
     return view('main.about.organization');
@@ -96,10 +102,10 @@ Route::group(['middleware' => ['auth', 'status']], function () {
     )->name('test')->middleware('permissions:users.activity');
 
     /**
-     *  dashboard - index route
+     *  dashboard - view apps data/stats
      */
     Route::get(
-        '/',
+        '/dashboard',
         [DashboardController::class, 'index']
     )->name('dashboard')->middleware('auth');;
 

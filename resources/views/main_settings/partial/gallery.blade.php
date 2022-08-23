@@ -13,7 +13,7 @@
 
 <hr>
 
-<h5>Images (Max 5 Images)</h5>
+<h5>Images (Min 1, Max 5)</h5>
 <input type="file" name="images" class="form-control mt-3 mb-3" accept="image/*" multiple>
 
 <div class="d-flex flex-row-reverse mt-3">

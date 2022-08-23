@@ -21,8 +21,8 @@ if (!function_exists('has_permission')) {
     function has_permission($permission)
     {
         $role_id = Auth::user()->role_id;
-        $permission = Permission::where('name', $permission)->first();
-        $permission_id = $permission->id;
+        $fetch_permission = Permission::where('name', $permission)->first();
+        $permission_id = $fetch_permission->id;
 
         $query = DB::table('permission_role')
             ->where('role_id', $role_id)

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\Settings;
+use Illuminate\Support\Facades\DB;
 
 class RolesSeeder extends Seeder
 {
@@ -149,5 +150,126 @@ class RolesSeeder extends Seeder
             'display_name' => 'Danger Color',
             'value' => '220,53,69',
         ]);
+
+        Settings::create([
+            'name' => 'home.hero.title',
+            'display_name' => 'Hero Title',
+            'value' => 'Welcome to Laravel Base Org',
+        ]);
+
+        Settings::create([
+            'name' => 'home.hero.subtitle',
+            'display_name' => 'Hero Subtitle',
+            'value' => 'We are team of talented designers making websites with Bootstrap',
+        ]);
+
+        Settings::create([
+            'name' => 'home.hero.vid',
+            'display_name' => 'Hero Video URL',
+            'value' => 'https://www.youtube.com/watch?v=rPHPfyJEW8s',
+        ]);
+
+        Settings::create([
+            'name' => 'home.hero.bg',
+            'display_name' => 'Hero Background Wallpaper',
+            'value' => 'upload/home_bg/hero.jpg',
+        ]);
+
+        Settings::create([
+            'name' => 'home.news.title',
+            'display_name' => 'Home News Title',
+            'value' => 'Read Our Latest News',
+        ]);
+
+        Settings::create([
+            'name' => 'home.news.subtitle',
+            'display_name' => 'Home News Subtitle',
+            'value' => 'Get the latest news, events, announcement, public statements directly from us.',
+        ]);
+
+        Settings::create([
+            'name' => 'home.gallery.title',
+            'display_name' => 'Home Gallery Title',
+            'value' => 'Gallery',
+        ]);
+
+        Settings::create([
+            'name' => 'home.gallery.subtitle',
+            'display_name' => 'Home Gallery Subtitle',
+            'value' => 'Check out what we have been up to.',
+        ]);
+
+        DB::table('upload')->insert(array(
+            'name' => 'home.gallery',
+            'url' => 'upload/home_gallery/1.jpg',
+        ));
+
+        DB::table('upload')->insert(array(
+            'name' => 'home.gallery',
+            'url' => 'upload/home_gallery/2.jpg',
+        ));
+
+        DB::table('upload')->insert(array(
+            'name' => 'home.gallery',
+            'url' => 'upload/home_gallery/3.jpg',
+        ));
+
+        DB::table('upload')->insert(array(
+            'name' => 'home.gallery',
+            'url' => 'upload/home_gallery/4.jpg',
+        ));
+
+        DB::table('upload')->insert(array(
+            'name' => 'home.gallery',
+            'url' => 'upload/home_gallery/5.jpg',
+        ));
+
+        Settings::create([
+            'name' => 'home.donate.title',
+            'display_name' => 'Home Donate Title',
+            'value' => 'Support Us By Donating',
+        ]);
+
+        Settings::create([
+            'name' => 'home.donate.subtitle',
+            'display_name' => 'Home Donate Subtitle',
+            'value' => 'Besides buying our products you can straight away support us by donating.',
+        ]);
+
+        Settings::create([
+            'name' => 'home.quote.bg',
+            'display_name' => 'Quote Background Wallpaper',
+            'value' => 'upload/home_bg/quote.jpg',
+        ]);
+
+        DB::table('quote')->insert(array(
+            'name' => 'Saul Goodman',
+            'title' => 'CEO & Founder',
+            'quote' => 'Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.',
+        ));
+
+        DB::table('quote')->insert(array(
+            'name' => 'Zach Wilson',
+            'title' => 'QB at Jets',
+            'quote' => 'Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.',
+        ));
+
+        DB::table('quote')->insert(array(
+            'name' => 'Aaron Donald',
+            'title' => 'Rams Edge',
+            'quote' => 'Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.',
+        ));
+
+        DB::table('quote')->insert(array(
+            'name' => 'Trevon Diggs',
+            'title' => 'Cowboys Corner',
+            'quote' => 'Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.',
+        ));
+
+        DB::table('quote')->insert(array(
+            'name' => 'Alvin Kamara',
+            'title' => 'Saints Running Back',
+            'quote' => 'Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.',
+        ));
     }
 }

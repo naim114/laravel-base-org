@@ -46,6 +46,14 @@
         .card:hover .card-img-top {
             opacity: 1;
         }
+
+        #hero {
+            background: url({{ $hero_bg }}) top left;
+        }
+
+        .testimonials {
+            background: url({{ $quote_bg }}) no-repeat;
+        }
     </style>
 @stop
 
@@ -53,12 +61,12 @@
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex align-items-center">
         <div class="container" data-aos="zoom-out" data-aos-delay="100">
-            <h1>Welcome to <span>{{ trans('app.app-name') }}</span></h1>
-            <h2>We are team of talented designers making websites with Bootstrap</h2>
+            <h1>{{ $hero_title }}</h1>
+            <h2>{{ $hero_subtitle }}</h2>
             <div class="d-flex">
                 <a href="#news" class="btn-get-started scrollto">Get Started</a>
-                <a href="https://www.youtube.com/watch?v=jXXMKBwzHuc" class="glightbox btn-watch-video"><i
-                        class="bi bi-play-circle"></i><span>Watch Video</span></a>
+                <a href="{{ $hero_vid }}" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch
+                        Video</span></a>
             </div>
         </div>
     </section><!-- End Hero -->
@@ -67,14 +75,14 @@
     <section id="news" class="about section-bg">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
-                <h3>Read Our <span>Latest News</span></h3>
-                <p>Get the latest news, events, announcement, public statements directly from us.</p>
+                <h3><span>{{ $news_title }}</span></h3>
+                <p>{{ $news_subtitle }}</p>
             </div>
             <div class="row">
                 <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
-                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
+                            <img src="{{ $gallery_images[0]->url }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur venenatis
@@ -104,7 +112,7 @@
                 <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
-                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
+                            <img src="{{ $gallery_images[0]->url }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     Thriving in an AI-enabled Digital Economy
@@ -120,7 +128,7 @@
                 <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
-                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
+                            <img src="{{ $gallery_images[0]->url }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     Thriving in an AI-enabled Digital Economy
@@ -136,7 +144,7 @@
                 <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
-                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
+                            <img src="{{ $gallery_images[0]->url }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     Thriving in an AI-enabled Digital Economy
@@ -151,7 +159,7 @@
                 </div>
             </div>
             <div class="float-end mt-3">
-                <a href="#">View More <i class="bi bi-arrow-right-square-fill"></i></a>
+                <a href="{{ route('main.news') }}">View More <i class="bi bi-arrow-right-square-fill"></i></a>
             </div>
         </div>
     </section><!-- End News Preview Section -->
@@ -160,58 +168,59 @@
     <section id="gallery">
         <div class="container" data-aos="fade-up">
             <div class="section-title">
-                <h3><span>Gallery</span></h3>
-                <p>Check out what we have been up to.</p>
+                <h3><span>{{ $gallery_title }}</span></h3>
+                <p>{{ $gallery_subtitle }}</p>
             </div>
+
             <div id="carouselGalleryCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="3"
-                        aria-label="Slide 4"></button>
-                    <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="4"
-                        aria-label="Slide 5"></button>
+                    @isset($gallery_images[0])
+                        <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                    @endisset
+                    @isset($gallery_images[1])
+                        <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                    @endisset
+                    @isset($gallery_images[2])
+                        <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    @endisset
+                    @isset($gallery_images[3])
+                        <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                    @endisset
+                    @isset($gallery_images[4])
+                        <button type="button" data-bs-target="#carouselGalleryCaptions" data-bs-slide-to="4"
+                            aria-label="Slide 5"></button>
+                    @endisset
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                    @isset($gallery_images[0])
+                        <div class="carousel-item active">
+                            <img src="{{ $gallery_images[0]->url }}" class="d-block w-100" alt="...">
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
+                    @endisset
+                    @isset($gallery_images[1])
+                        <div class="carousel-item">
+                            <img src="{{ $gallery_images[1]->url }}" class="d-block w-100" alt="...">
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5 class="caption-title">Third slide label</h5>
-                            <p class="caption-subtitle">Some representative placeholder content for the third slide.</p>
+                    @endisset
+                    @isset($gallery_images[2])
+                        <div class="carousel-item">
+                            <img src="{{ $gallery_images[2]->url }}" class="d-block w-100" alt="...">
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5 class="caption-title">Fourth slide label</h5>
-                            <p class="caption-subtitle">Some representative placeholder content for the third slide.</p>
+                    @endisset
+                    @isset($gallery_images[3])
+                        <div class="carousel-item">
+                            <img src="{{ $gallery_images[3]->url }}" class="d-block w-100" alt="...">
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="http://localhost:8000/home/img/hero-bg.jpg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5 class="caption-title">Fifth slide label</h5>
-                            <p class="caption-subtitle">Some representative placeholder content for the third slide.</p>
+                    @endisset
+                    @isset($gallery_images[4])
+                        <div class="carousel-item">
+                            <img src="{{ $gallery_images[4]->url }}" class="d-block w-100" alt="...">
                         </div>
-                    </div>
+                    @endisset
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselGalleryCaptions"
                     data-bs-slide="prev">
@@ -230,84 +239,24 @@
     <!-- ======= Quotes Section ======= -->
     <section id="quotes" class="testimonials">
         <div class="container" data-aos="zoom-in">
-
             <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
                 <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <h3>Saul Goodman</h3>
-                            <h4>Ceo &amp; Founder</h4>
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-                                rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                                risus at semper.
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <h3>Sara Wilsson</h3>
-                            <h4>Designer</h4>
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
-                                cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                legam anim culpa.
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <h3>Jena Karlis</h3>
-                            <h4>Store Owner</h4>
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
-                                veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint
-                                minim.
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <h3>Matt Brandon</h3>
-                            <h4>Freelancer</h4>
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem
-                                dolore labore illum veniam.
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <h3>John Larson</h3>
-                            <h4>Entrepreneur</h4>
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster
-                                veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam
-                                culpa fore nisi cillum quid.
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
+                    @foreach ($quotes as $quote)
+                        <div class="swiper-slide">
+                            <div class="testimonial-item">
+                                <h3>{{ $quote->name }}</h3>
+                                <h4>{{ $quote->title }}</h4>
+                                <p>
+                                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                                    {{ $quote->quote }}
+                                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div><!-- End testimonial item -->
+                    @endforeach
                 </div>
                 <div class="swiper-pagination"></div>
             </div>
-
         </div>
     </section><!-- End Quptes Section -->
 
@@ -317,8 +266,8 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <h4>Support Us By Donating</h4>
-                        <p>Besides buying our products you can straight away support us by donating.</p>
+                        <h4>{{ $donate_title }}</h4>
+                        <p>{{ $donate_subtitle }}</p>
                         <a href="{{ route('main.join.donate') }}" class="btn btn-primary btn-lg">Donate Now</a>
                     </div>
                 </div>

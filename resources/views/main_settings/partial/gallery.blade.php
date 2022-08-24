@@ -18,11 +18,14 @@
 
 <hr>
 
-<h5>Images (Min 1, Max 5)</h5>
-<input type="file" name="images" class="form-control mt-3 mb-3" accept="image/*" multiple>
+<form method="POST" enctype="multipart/form-data" action="{{ route('main.settings.gallery.images') }}">
+    @csrf
+    <h5>Images (Min 1, Max 5)</h5>
+    <input type="file" name="images[]" class="form-control mt-3 mb-3" accept="image/*" multiple required>
 
-<div class="d-flex flex-row-reverse mt-3">
-    <button type="submit" class="btn btn-primary float-right">
-        Save Changes
-    </button>
-</div>
+    <div class="d-flex flex-row-reverse mt-3">
+        <button type="submit" class="btn btn-primary float-right">
+            Save Changes
+        </button>
+    </div>
+</form>

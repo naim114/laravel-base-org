@@ -313,6 +313,11 @@ Route::group(['middleware' => ['auth', 'status']], function () {
     )->name('main.settings.gallery.update')->middleware('permissions:main.manage');
 
     Route::post(
+        '/main/home/gallery/images',
+        [HomeController::class, 'update_gallery_img']
+    )->name('main.settings.gallery.images')->middleware('permissions:main.manage');
+
+    Route::post(
         '/main/home/quote/add',
         [HomeController::class, 'quote_add']
     )->name('main.settings.quote.add')->middleware('permissions:main.manage');

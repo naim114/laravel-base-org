@@ -193,6 +193,57 @@ class HomeController extends Controller
         return back()->with('success', 'Gallery title and subtitle successfully updated!');
     }
 
+    public function update_gallery_img(Request $request)
+    {
+        $request->validate([
+            'images.*' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+        ]);
+
+        // if images more than 5 return error
+        if (count($request->file('images')) < 1 || count($request->file('images')) > 5) {
+            return back()->with('error', 'Please upload not more than 5 images');
+        }
+
+        // clear gallery in db and public folder
+        $images = Uploads::where('name', 'home.gallery')->get();
+
+        foreach ($images as $image) {
+            if (File::exists(public_path($image->url))) {
+                File::delete(public_path($image->url));
+            }
+
+            Uploads::where('name', 'home.gallery')
+                ->delete();
+        }
+
+        // store images
+        $images = $request->file('images');
+
+        foreach ($images as $image) {
+            // creating name and path for the file
+            // time() is current unix timestamp
+            $fileName = time() .
+                '_gallery_' . $image->getClientOriginalName();
+
+            try {
+                $image->move(public_path('upload/home_gallery'), $fileName);
+
+                // updating details in db
+                Uploads::create([
+                    'name' => 'home.gallery',
+                    'url' => 'upload/home_gallery/' . $fileName,
+                ]);
+            } catch (\Throwable $th) {
+                return back()->with('error', $th);
+            }
+        }
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Add images to home gallery'));
+
+        return back()->with('success', 'Home gallery successfully added!');
+    }
+
     public function quote_add(Request $request)
     {
         $add = $request->all();
@@ -208,6 +259,13 @@ class HomeController extends Controller
 
     public function quote_delete(Request $request)
     {
+        // Check if there is only one quote
+        $count = Quote::all()->count();
+
+        if ($count <= 1) {
+            return back()->with('error', 'There should be at least one quote');
+        }
+
         Quote::where('id', $request->id)
             ->delete();
 

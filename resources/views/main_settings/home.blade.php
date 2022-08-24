@@ -163,11 +163,15 @@
         $(".deleteButton").click(function() {
             $('#deleteModal').modal('show');
 
-            var quotes = $(this).data('quotes');
+            var quote = $(this).data('item');
 
-            $('#deleteModalId').val(quotes.id);
+            $('#deleteModalId').val(quote.id);
             $('#textBanModal').text('Are you sure you want to delete this quote "' + quote.quote +
-                '" ?');
+                '" ' + ' from ' + quote.name);
+        });
+
+        $(".closeDeleteModal").click(function() {
+            $('#deleteModal').modal('hide');
         });
     </script>
 @stop

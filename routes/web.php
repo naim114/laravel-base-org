@@ -36,12 +36,12 @@ Route::get('/ban', function () {
 Route::get(
     '/',
     [HomeController::class, 'view_home']
-)->name('index');
-
-Route::get(
-    '/en/home',
-    [HomeController::class, 'view_home']
 )->name('main.home');
+
+// Route::get(
+//     '/en/home',
+//     [HomeController::class, 'view_home']
+// )->name('main.home');
 
 Route::get('/en/about/organization', function () {
     return view('main.about.organization');
@@ -291,6 +291,46 @@ Route::group(['middleware' => ['auth', 'status']], function () {
         '/main/home',
         [HomeController::class, 'home']
     )->name('main.settings.home')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/home/hero/update',
+        [HomeController::class, 'update_hero']
+    )->name('main.settings.home.update')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/home/hero/bg',
+        [HomeController::class, 'update_hero_bg']
+    )->name('main.settings.home.bg')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/home/news/update',
+        [HomeController::class, 'update_news']
+    )->name('main.settings.news.update')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/home/gallery/update',
+        [HomeController::class, 'update_gallery']
+    )->name('main.settings.gallery.update')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/home/quote/add',
+        [HomeController::class, 'quote_add']
+    )->name('main.settings.quote.add')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/home/quote/delete',
+        [HomeController::class, 'quote_delete']
+    )->name('main.settings.quote.delete')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/home/quote/bg',
+        [HomeController::class, 'update_quote_bg']
+    )->name('main.settings.quote.bg')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/home/donate/update',
+        [HomeController::class, 'update_donate']
+    )->name('main.settings.donate.update')->middleware('permissions:main.manage');
 
     Route::get(
         '/main/about/organization',

@@ -52,7 +52,7 @@
         }
 
         .testimonials {
-            background: url({{ $quote_bg }}) no-repeat;
+            background: url({{ $quote_bg }});
         }
     </style>
 @stop

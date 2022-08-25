@@ -75,9 +75,10 @@ Route::get('/en/join/donate', function () {
     return view('main.join.donate');
 })->name('main.join.donate');
 
-Route::get('/en/contact', function () {
-    return view('main.contact');
-})->name('main.contact');
+Route::get(
+    '/en/contact',
+    [HomeController::class, 'view_contact']
+)->name('main.contact');
 
 // ======================================================================================== //
 // Auth Routes
@@ -371,4 +372,9 @@ Route::group(['middleware' => ['auth', 'status']], function () {
         '/main/contact',
         [HomeController::class, 'contact']
     )->name('main.settings.contact')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/contact/update',
+        [HomeController::class, 'update_contact']
+    )->name('main.settings.contact.update')->middleware('permissions:main.manage');
 });

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\Settings;
+use App\Models\UsefulLink;
 use Illuminate\Support\Facades\DB;
 
 class RolesSeeder extends Seeder
@@ -87,31 +88,31 @@ class RolesSeeder extends Seeder
 
         Settings::create([
             'name' => 'color.secondary.hex',
-            'display_name' => 'secondary Color Hex',
+            'display_name' => 'Secondary Color Hex',
             'value' => '#6c757d',
         ]);
 
         Settings::create([
             'name' => 'color.success.hex',
-            'display_name' => 'success Color Hex',
+            'display_name' => 'Success Color Hex',
             'value' => '#198754',
         ]);
 
         Settings::create([
             'name' => 'color.info.hex',
-            'display_name' => 'info Color Hex',
+            'display_name' => 'Info Color Hex',
             'value' => '#0dcaf0',
         ]);
 
         Settings::create([
             'name' => 'color.warning.hex',
-            'display_name' => 'warning Color Hex',
+            'display_name' => 'Warning Color Hex',
             'value' => '#ffc107',
         ]);
 
         Settings::create([
             'name' => 'color.danger.hex',
-            'display_name' => 'danger Color Hex',
+            'display_name' => 'Danger Color Hex',
             'value' => '#dc3545',
         ]);
 
@@ -271,5 +272,57 @@ class RolesSeeder extends Seeder
             'title' => 'Saints Running Back',
             'quote' => 'Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.',
         ));
+
+        Settings::create([
+            'name' => 'contact.address',
+            'display_name' => 'Address',
+            'value' => 'A108 Adam Street, New York, NY 535022',
+        ]);
+
+        Settings::create([
+            'name' => 'contact.email',
+            'display_name' => 'Email',
+            'value' => 'contact@example.com',
+        ]);
+
+        Settings::create([
+            'name' => 'contact.phone',
+            'display_name' => 'Phone Number',
+            'value' => '+1 5589 55488 55',
+        ]);
+
+        Settings::create([
+            'name' => 'contact.twitter',
+            'display_name' => 'Twitter',
+            'value' => 'exampletwt',
+        ]);
+
+        Settings::create([
+            'name' => 'contact.facebook',
+            'display_name' => 'Facebook',
+            'value' => 'examplefb',
+        ]);
+
+        Settings::create([
+            'name' => 'contact.instagram',
+            'display_name' => 'Instagram',
+            'value' => 'exampleig',
+        ]);
+
+        Settings::create([
+            'name' => 'contact.linkedin',
+            'display_name' => 'LinkedIn',
+            'value' => 'exampleli',
+        ]);
+
+        UsefulLink::create([
+            'display_name' => 'Privacy & Policy',
+            'url' => 'https://github.com/naim114',
+        ]);
+
+        UsefulLink::create([
+            'display_name' => 'Terms & Condition',
+            'url' => 'https://github.com/naim114',
+        ]);
     }
 }

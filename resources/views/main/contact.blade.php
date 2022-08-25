@@ -16,7 +16,7 @@
                     <div class="info-box mb-4">
                         <i class="bx bx-map"></i>
                         <h3>Our Address</h3>
-                        <p>A108 Adam Street, New York, NY 535022</p>
+                        <p>{{ $address }} </p>
                     </div>
                 </div>
 
@@ -24,7 +24,7 @@
                     <div class="info-box  mb-4">
                         <i class="bx bx-envelope"></i>
                         <h3>Email Us</h3>
-                        <p>contact@example.com</p>
+                        <p>{{ $email }}</p>
                     </div>
                 </div>
 
@@ -32,20 +32,13 @@
                     <div class="info-box  mb-4">
                         <i class="bx bx-phone-call"></i>
                         <h3>Call Us</h3>
-                        <p>+1 5589 55488 55</p>
+                        <p>{{ $phone }}</p>
                     </div>
                 </div>
 
             </div>
 
             <div class="row" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="col-lg-6 ">
-                    <iframe class="mb-4 mb-lg-0"
-                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
-                        frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
-                </div>
-
                 <div class="col-lg-6">
                     <form action="forms/contact.php" method="post" role="form" class="php-email-form">
                         <div class="row">
@@ -72,6 +65,52 @@
                         </div>
                         <div class="text-center"><button type="submit">Send Message</button></div>
                     </form>
+                </div>
+                <div class="col-lg-6">
+                    <div class="info-box mb-2">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="bx bxl-twitter"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <h6>Twitter</h6>
+                                <p>{{ $twitter }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box mb-2">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="bx bxl-facebook"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <h6>Facebook</h6>
+                                <p>{{ $facebook }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box mb-2">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="bx bxl-instagram"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <h6>Instagram</h6>
+                                <p>{{ $instagram }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box mb-2">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <i class="bx bxl-linkedin"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <h6>LinkedIn</h6>
+                                <p>{{ $linkedin }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

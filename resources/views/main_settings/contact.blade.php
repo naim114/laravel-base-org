@@ -16,40 +16,45 @@
                 {{ $message }}
             </div>
         @enderror
+
         <div class="card p-4 mb-3">
             <div class="form-group">
-                <h5>Address</h5>
-                <input type="text" name="address" class="form-control mt-3 mb-3" placeholder="Enter Address" value="">
+                <form method="POST" action="{{ route('main.settings.contact.update') }}">
+                    @csrf
+                    <h5>Address</h5>
+                    <input type="text" name="address" class="form-control mt-3 mb-3" placeholder="Enter Address"
+                        value="{{ $address }}">
 
-                <h5>Email</h5>
-                <input type="text" name="email" class="form-control mt-3 mb-3" placeholder="Enter Email"
-                    value="">
+                    <h5>Email</h5>
+                    <input type="email" name="email" class="form-control mt-3 mb-3" placeholder="Enter Email"
+                        value="{{ $email }}">
 
-                <h5>Phone No.</h5>
-                <input type="text" name="phone" class="form-control mt-3 mb-3" placeholder="Enter Phone Number"
-                    value="">
+                    <h5>Phone No.</h5>
+                    <input type="text" name="phone" class="form-control mt-3 mb-3" placeholder="Enter Phone Number"
+                        value="{{ $phone }}">
 
-                <h5>Twitter</h5>
-                <input type="text" name="twitter" class="form-control mt-3 mb-3" placeholder="Enter Twitter Username"
-                    value="">
+                    <h5>Twitter</h5>
+                    <input type="text" name="twitter" class="form-control mt-3 mb-3" placeholder="Enter Twitter Username"
+                        value="{{ $twitter }}">
 
-                <h5>Facebook</h5>
-                <input type="text" name="facebook" class="form-control mt-3 mb-3" placeholder="Enter Facebook Username"
-                    value="">
+                    <h5>Facebook</h5>
+                    <input type="text" name="facebook" class="form-control mt-3 mb-3"
+                        placeholder="Enter Facebook Username" value="{{ $facebook }}">
 
-                <h5>Instagram</h5>
-                <input type="text" name="instagram" class="form-control mt-3 mb-3" placeholder="Enter Instagram Username"
-                    value="">
+                    <h5>Instagram</h5>
+                    <input type="text" name="instagram" class="form-control mt-3 mb-3"
+                        placeholder="Enter Instagram Username" value="{{ $instagram }}">
 
-                <h5>LinkedIn</h5>
-                <input type="text" name="linkedin" class="form-control mt-3 mb-3" placeholder="Enter LinkedIn Username"
-                    value="">
+                    <h5>LinkedIn</h5>
+                    <input type="text" name="linkedin" class="form-control mt-3 mb-3"
+                        placeholder="Enter LinkedIn Username" value="{{ $linkedin }}">
 
-                <div class="d-flex flex-row-reverse mt-3">
-                    <button type="submit" class="btn btn-primary float-right">
-                        Save Changes
-                    </button>
-                </div>
+                    <div class="d-flex flex-row-reverse mt-3">
+                        <button type="submit" class="btn btn-primary float-right">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
 

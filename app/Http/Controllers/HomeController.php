@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
-    // View Main/Home
+    /**
+     * Main/Home View
+     */
+    // Home
     public function view_home()
     {
         $hero_title = Settings::where('name', 'home.hero.title')->pluck('value')[0];
@@ -51,8 +54,31 @@ class HomeController extends Controller
         ));
     }
 
-    // Main/Home Settings Functions
+    // Contact
+    public function view_contact()
+    {
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
+        return view('main.contact', compact(
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
+        ));
+    }
+
+    /**
+     * Main/Home Settings Functions
+     */
     // Home
     public function home()
     {
@@ -362,6 +388,70 @@ class HomeController extends Controller
 
     public function contact()
     {
-        return view('main_settings.contact');
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
+
+        return view('main_settings.contact', compact(
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
+        ));
+    }
+
+    public function update_contact(Request $request)
+    {
+        // update address
+        Settings::where('name', 'contact.address')
+            ->update([
+                'value' => $request->address,
+            ]);
+
+        // update email
+        Settings::where('name', 'contact.email')
+            ->update([
+                'value' => $request->email,
+            ]);
+
+        // update phone
+        Settings::where('name', 'contact.phone')
+            ->update([
+                'value' => $request->phone,
+            ]);
+
+        // update twitter
+        Settings::where('name', 'contact.twitter')
+            ->update([
+                'value' => $request->twitter,
+            ]);
+
+        // update facebook
+        Settings::where('name', 'contact.facebook')
+            ->update([
+                'value' => $request->facebook,
+            ]);
+        // update instagram
+        Settings::where('name', 'contact.instagram')
+            ->update([
+                'value' => $request->instagram,
+            ]);
+        // update linkedin
+        Settings::where('name', 'contact.linkedin')
+            ->update([
+                'value' => $request->linkedin,
+            ]);
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Updating contact information'));
+
+        return back()->with('success', 'Contact informations successfully updated!');
     }
 }

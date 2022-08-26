@@ -162,7 +162,7 @@ class UsersController extends Controller
         // user activity log
         event(new UserActivityEvent(Auth::user(), $request, 'Update user ' . $user->email . '(id: ' . $user->id . ')' . ' to ' . $request->status));
 
-        return back()->with('success', 'User status has been changed to ' . $request->status);
+        return back()->with('success', 'User status changed to ' . $request->status);
     }
 
     public function delete(Request $request)
@@ -177,6 +177,6 @@ class UsersController extends Controller
         // user activity log
         event(new UserActivityEvent(Auth::user(), $request, 'Delete user ' . $user->email . '(id: ' . $user->id . ')'));
 
-        return back()->with('success', 'User ' .  $user->username . ' has been successfully deleted');
+        return back()->with('success', 'User ' .  $user->username . ' successfully deleted');
     }
 }

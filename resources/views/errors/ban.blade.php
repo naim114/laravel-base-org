@@ -21,7 +21,7 @@
                         <div class="col-lg-6">
                             <div class="text-center mt-4">
                                 <h1 class="display-1">Banned! :(</h1>
-                                <p class="lead">Your account has been banned. Please contact your admin to
+                                <p class="lead">Your account banned. Please contact your admin to
                                     change your status.</p>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST">

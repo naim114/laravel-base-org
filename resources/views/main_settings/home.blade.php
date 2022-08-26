@@ -167,7 +167,7 @@
 
             $('#deleteModalId').val(quote.id);
             $('#textBanModal').text('Are you sure you want to delete this quote "' + quote.quote +
-                '" ' + ' from ' + quote.name);
+                '" ' + ' from ' + quote.name + '?');
         });
 
         $(".closeDeleteModal").click(function() {

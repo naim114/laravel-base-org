@@ -69,29 +69,120 @@
                         <tr>
                             <th scope="col">Name</th>
                             <th scope="col">URL</th>
+                            <th scope="col">Created at</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Title #1</td>
-                            <td>www.google.com</td>
-                            <td>
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false"><i
-                                        class="fas fa-ellipsis-h fa-fw"></i></a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li>
-                                        <button data-item="" class="dropdown-item text-danger deleteButton">
-                                            Delete Form
-                                        </button>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
+                        @foreach ($useful_links as $link)
+                            <tr>
+                                <td>{{ $link->display_name }}</td>
+                                <td>{{ $link->url }}</td>
+                                <td>{{ $link->created_at }}</td>
+                                <td>
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false"><i
+                                            class="fas fa-ellipsis-h fa-fw"></i></a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <button data-item="{{ $link }}"
+                                                class="dropdown-item text-danger deleteButton">
+                                                Delete Link
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+
+    {{-- Modal --}}
+    {{-- Add Modal --}}
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="POST" action="{{ route('main.settings.link.add') }}">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">
+                            Add Link
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group mb-2">
+                            <label>Name</label>
+                            <input name="display_name" type="text" class="form-control" placeholder="Enter name"
+                                required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>URL</label>
+                            <input name="url" type="url" class="form-control" placeholder="Enter url" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary closeAddModal" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {{-- Delete Modal --}}
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="POST" action="{{ route('main.settings.link.delete') }}">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">
+                            Delete Link
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <p id="textBanModal"></p>
+                        <input name="id" type="text" id="deleteModalId" hidden>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary closeDeleteModal"
+                            data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @stop
+
+@section('scripts')
+    <script>
+        // add modal
+        $(".addButton").click(function() {
+            $('#addModal').modal('show');
+        });
+
+        $(".closeAddModal").click(function() {
+            $('#addModal').modal('hide');
+        });
+
+        // delete modal
+        $(".deleteButton").click(function() {
+            $('#deleteModal').modal('show');
+
+            var link = $(this).data('item');
+
+            $('#deleteModalId').val(link.id);
+            $('#textBanModal').text('Are you sure you want to delete this useful link "' + link.display_name +
+                ' (' + link.url + ')"?');
+        });
+
+        $(".closeDeleteModal").click(function() {
+            $('#deleteModal').modal('hide');
+        });
+    </script>
+@endsection

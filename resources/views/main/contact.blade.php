@@ -16,7 +16,7 @@
                     <div class="info-box mb-4">
                         <i class="bx bx-map"></i>
                         <h3>Our Address</h3>
-                        <p>{{ $address }} </p>
+                        <p>{{ $address ?? 'None' }} </p>
                     </div>
                 </div>
 
@@ -24,7 +24,7 @@
                     <div class="info-box  mb-4">
                         <i class="bx bx-envelope"></i>
                         <h3>Email Us</h3>
-                        <p>{{ $email }}</p>
+                        <p>{{ $email ?? 'None' }}</p>
                     </div>
                 </div>
 
@@ -32,7 +32,7 @@
                     <div class="info-box  mb-4">
                         <i class="bx bx-phone-call"></i>
                         <h3>Call Us</h3>
-                        <p>{{ $phone }}</p>
+                        <p>{{ $phone ?? 'None' }}</p>
                     </div>
                 </div>
 
@@ -61,56 +61,64 @@
                         <div class="my-3">
                             <div class="loading">Loading</div>
                             <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                            <div class="sent-message">Your message sent. Thank you!</div>
                         </div>
                         <div class="text-center"><button type="submit">Send Message</button></div>
                     </form>
                 </div>
                 <div class="col-lg-6">
-                    <div class="info-box mb-2">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <i class="bx bxl-twitter"></i>
-                            </div>
-                            <div class="col-sm-8">
-                                <h6>Twitter</h6>
-                                <p>{{ $twitter }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-box mb-2">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <i class="bx bxl-facebook"></i>
-                            </div>
-                            <div class="col-sm-8">
-                                <h6>Facebook</h6>
-                                <p>{{ $facebook }}</p>
+                    @isset($twitter)
+                        <div class="info-box mb-2">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="bx bxl-twitter"></i>
+                                </div>
+                                <div class="col-sm-8">
+                                    <h6>Twitter</h6>
+                                    <p>{{ $twitter ?? 'None' }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="info-box mb-2">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <i class="bx bxl-instagram"></i>
-                            </div>
-                            <div class="col-sm-8">
-                                <h6>Instagram</h6>
-                                <p>{{ $instagram }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="info-box mb-2">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <i class="bx bxl-linkedin"></i>
-                            </div>
-                            <div class="col-sm-8">
-                                <h6>LinkedIn</h6>
-                                <p>{{ $linkedin }}</p>
+                    @endisset
+                    @isset($facebook)
+                        <div class="info-box mb-2">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="bx bxl-facebook"></i>
+                                </div>
+                                <div class="col-sm-8">
+                                    <h6>Facebook</h6>
+                                    <p>{{ $facebookv ?? 'None' }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endisset
+                    @isset($instagram)
+                        <div class="info-box mb-2">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="bx bxl-instagram"></i>
+                                </div>
+                                <div class="col-sm-8">
+                                    <h6>Instagram</h6>
+                                    <p>{{ $instagram ?? 'None' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endisset
+                    @isset($linkedin)
+                        <div class="info-box mb-2">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="bx bxl-linkedin"></i>
+                                </div>
+                                <div class="col-sm-8">
+                                    <h6>LinkedIn</h6>
+                                    <p>{{ $linkedin ?? 'None' }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endisset
                 </div>
             </div>
         </div>

@@ -44,17 +44,13 @@ class ProfileController extends Controller
         $fileName = $user->id . '_' . time() . '_' . $request->file('avatar')->getClientOriginalName();
 
         // storing file in public/upload/avatar
-        try {
-            $request->avatar->move(public_path('upload/avatar'), $fileName);
+        $request->avatar->move(public_path('upload/avatar'), $fileName);
 
-            // updating user details in db
-            User::where('id', $user->id)
-                ->update([
-                    'avatar' => 'upload/avatar/' . $fileName,
-                ]);
-        } catch (\Throwable $th) {
-            return back()->with('error', $th);
-        }
+        // updating user details in db
+        User::where('id', $user->id)
+            ->update([
+                'avatar' => 'upload/avatar/' . $fileName,
+            ]);
 
         // user activity log
         event(new UserActivityEvent($user, $request, 'Update avatar'));
@@ -96,15 +92,11 @@ class ProfileController extends Controller
         if ($user->email == $update['email'] && Hash::check($update['password'], $user->password)) {
             // updating username and password
 
-            try {
-                User::where('id', $user->id)
-                    ->update([
-                        'username' => $update['username'],
-                        'password' => Hash::make($update['new_password']),
-                    ]);
-            } catch (\Throwable $th) {
-                return back()->with('error', $th);
-            }
+            User::where('id', $user->id)
+                ->update([
+                    'username' => $update['username'],
+                    'password' => Hash::make($update['new_password']),
+                ]);
 
             // user activity log
             event(new UserActivityEvent(Auth::user(), $request, 'Update login details'));

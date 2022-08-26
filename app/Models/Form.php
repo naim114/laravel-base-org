@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Uploads extends Model
+class Form extends Model
 {
     use HasFactory;
 
-    protected $table = 'upload';
+    protected $table = 'forms';
 
-    protected $fillable = ['name', 'path', 'updated_at'];
+    protected $fillable = ['name', 'path'];
 }

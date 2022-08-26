@@ -63,6 +63,6 @@ class RoleController extends Controller
         // user activity log
         event(new UserActivityEvent(Auth::user(), $request, 'Delete role ' . $role->name . '(id: ' . $role->id . ')'));
 
-        return back()->with('success', 'Role ' .  $role->name . ' has been successfully deleted');
+        return back()->with('success', 'Role ' .  $role->name . ' successfully deleted');
     }
 }

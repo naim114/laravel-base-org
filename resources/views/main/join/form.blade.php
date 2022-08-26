@@ -21,14 +21,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>
-                            <a href="#">
-                                Click Here To Download <i class="bi bi-download"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($forms as $form)
+                        <tr>
+                            <td>{{ $form->name }}</td>
+                            <td>
+                                <a target="_blank" href="{{ asset($form->path) }}">
+                                    Click Here To Download <i class="bi bi-download"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

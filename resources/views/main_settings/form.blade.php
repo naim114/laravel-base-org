@@ -31,31 +31,85 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Title #1</td>
-                    <td>
-                        <a href="#"><i class="fa fa-download fa-fw"></i></a>
-                    </td>
-                    <td>Aug 16, 2022</td>
-                    <td>
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="fas fa-ellipsis-h fa-fw"></i></a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <button data-item="" class="dropdown-item editButton">
-                                    Edit Form
-                                </button>
-                            </li>
-                            <li>
-                                <button data-item="" class="dropdown-item text-danger deleteButton">
-                                    Delete Form
-                                </button>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
+                @foreach ($forms as $form)
+                    <tr>
+                        <td>{{ $form->name }}</td>
+                        <td>
+                            <a target="_blank" href="{{ asset($form->path) }}"><i class="fa fa-download fa-fw"></i></a>
+                        </td>
+                        <td>{{ date_format($form->created_at, 'd/m/Y') }}</td>
+                        <td>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"><i class="fas fa-ellipsis-h fa-fw"></i></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <button data-item="{{ $form }}" class="dropdown-item text-danger deleteButton">
+                                        Delete Form
+                                    </button>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
+    </div>
+
+    {{-- Modal --}}
+    {{-- Add Modal --}}
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="POST" enctype="multipart/form-data" action="{{ route('main.settings.form.add') }}">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addModalLabel">
+                            Add Form
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group mb-2">
+                            <label>Name</label>
+                            <input name="name" type="text" class="form-control" placeholder="Enter name" required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>File</label>
+                            <input name="file" type="file" class="form-control" placeholder="Upload file" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary closeAddModal" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {{-- Delete Modal --}}
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="POST" action="{{ route('main.settings.form.delete') }}">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">
+                            Delete Form
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <p id="textBanModal"></p>
+                        <input name="id" type="text" id="deleteModalId" hidden>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary closeDeleteModal"
+                            data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 @stop
 
@@ -76,31 +130,15 @@
             $('#addModal').modal('hide');
         });
 
-        // edit modal
-        $(".editButton").click(function() {
-            $('#editModal').modal('show');
-
-            var role = $(this).data('role');
-
-            $('#editModalName').val(role.name);
-            $('#editModalId').val(role.id);
-            $('#editModalDisplayName').val(role.display_name);
-            $('#editModalDescription').val(role.description);
-        });
-
-        $(".closeEditModal").click(function() {
-            $('#editModal').modal('hide');
-        });
-
         // delete modal
         $(".deleteButton").click(function() {
             $('#deleteModal').modal('show');
 
-            var role = $(this).data('role');
+            var form = $(this).data('item');
 
-            $('#deleteModalId').val(role.id);
-            $('#textBanModal').text('Are you sure you want to delete role ' + role.name +
-                ' ?');
+            $('#deleteModalId').val(form.id);
+            $('#textBanModal').text('Are you sure you want to delete form "' + form.name +
+                '"" ?');
         });
 
         $(".closeDeleteModal").click(function() {

@@ -37,6 +37,11 @@
                             <li><i class="bx bx-chevron-right"></i> <a href="{{ trans('app.terms-conditions') }}">Terms
                                     & Conditions</a></li>
                         @endif
+
+                        @foreach ($useful_links as $link)
+                            <li><i class="bx bx-chevron-right"></i> <a
+                                    href="{{ $link->url }}">{{ $link->display_name }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
 

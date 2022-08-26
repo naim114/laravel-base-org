@@ -202,27 +202,27 @@ class RolesSeeder extends Seeder
 
         DB::table('upload')->insert(array(
             'name' => 'home.gallery',
-            'url' => 'upload/home_gallery/1.jpg',
+            'path' => 'upload/home_gallery/1.jpg',
         ));
 
         DB::table('upload')->insert(array(
             'name' => 'home.gallery',
-            'url' => 'upload/home_gallery/2.jpg',
+            'path' => 'upload/home_gallery/2.jpg',
         ));
 
         DB::table('upload')->insert(array(
             'name' => 'home.gallery',
-            'url' => 'upload/home_gallery/3.jpg',
+            'path' => 'upload/home_gallery/3.jpg',
         ));
 
         DB::table('upload')->insert(array(
             'name' => 'home.gallery',
-            'url' => 'upload/home_gallery/4.jpg',
+            'path' => 'upload/home_gallery/4.jpg',
         ));
 
         DB::table('upload')->insert(array(
             'name' => 'home.gallery',
-            'url' => 'upload/home_gallery/5.jpg',
+            'path' => 'upload/home_gallery/5.jpg',
         ));
 
         Settings::create([
@@ -316,12 +316,7 @@ class RolesSeeder extends Seeder
         ]);
 
         UsefulLink::create([
-            'display_name' => 'Privacy & Policy',
-            'url' => 'https://github.com/naim114',
-        ]);
-
-        UsefulLink::create([
-            'display_name' => 'Terms & Condition',
+            'display_name' => 'Main Portal',
             'url' => 'https://github.com/naim114',
         ]);
     }

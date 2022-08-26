@@ -198,27 +198,27 @@
                 <div class="carousel-inner">
                     @isset($gallery_images[0])
                         <div class="carousel-item active">
-                            <img src="{{ $gallery_images[0]->url }}" class="d-block w-100" alt="...">
+                            <img src="{{ $gallery_images[0]->path }}" class="d-block w-100" alt="...">
                         </div>
                     @endisset
                     @isset($gallery_images[1])
                         <div class="carousel-item">
-                            <img src="{{ $gallery_images[1]->url }}" class="d-block w-100" alt="...">
+                            <img src="{{ $gallery_images[1]->path }}" class="d-block w-100" alt="...">
                         </div>
                     @endisset
                     @isset($gallery_images[2])
                         <div class="carousel-item">
-                            <img src="{{ $gallery_images[2]->url }}" class="d-block w-100" alt="...">
+                            <img src="{{ $gallery_images[2]->path }}" class="d-block w-100" alt="...">
                         </div>
                     @endisset
                     @isset($gallery_images[3])
                         <div class="carousel-item">
-                            <img src="{{ $gallery_images[3]->url }}" class="d-block w-100" alt="...">
+                            <img src="{{ $gallery_images[3]->path }}" class="d-block w-100" alt="...">
                         </div>
                     @endisset
                     @isset($gallery_images[4])
                         <div class="carousel-item">
-                            <img src="{{ $gallery_images[4]->url }}" class="d-block w-100" alt="...">
+                            <img src="{{ $gallery_images[4]->path }}" class="d-block w-100" alt="...">
                         </div>
                     @endisset
                 </div>

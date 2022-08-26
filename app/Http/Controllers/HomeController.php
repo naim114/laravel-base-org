@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form;
 use App\Models\Quote;
 use Illuminate\Http\Request;
 use App\Models\Settings;
 use App\Models\Uploads;
+use App\Models\UsefulLink;
 use App\Providers\UserActivityEvent;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -37,7 +39,10 @@ class HomeController extends Controller
         $donate_title = Settings::where('name', 'home.donate.title')->pluck('value')[0];
         $donate_subtitle = Settings::where('name', 'home.donate.subtitle')->pluck('value')[0];
 
+        $useful_links = UsefulLink::all();
+
         return view('main.index', compact(
+            'useful_links',
             'hero_title',
             'hero_subtitle',
             'hero_vid',
@@ -54,6 +59,88 @@ class HomeController extends Controller
         ));
     }
 
+    // Organization
+    public function view_org()
+    {
+        $useful_links = UsefulLink::all();
+
+        return view('main.about.organization', compact(
+            'useful_links',
+        ));
+    }
+
+    // History
+    public function view_history()
+    {
+        $useful_links = UsefulLink::all();
+
+        return view('main.about.history', compact(
+            'useful_links',
+        ));
+    }
+
+    // Committee
+    public function view_committee()
+    {
+        $useful_links = UsefulLink::all();
+
+        return view('main.about.committee', compact(
+            'useful_links',
+        ));
+    }
+
+    // News
+    public function view_news()
+    {
+        $useful_links = UsefulLink::all();
+
+        return view('main.news', compact(
+            'useful_links',
+        ));
+    }
+
+    // Article
+    public function view_article()
+    {
+        $useful_links = UsefulLink::all();
+
+        return view('main.article', compact(
+            'useful_links',
+        ));
+    }
+
+    // Form
+    public function view_form()
+    {
+        $useful_links = UsefulLink::all();
+        $forms = Form::all();
+
+        return view('main.join.form', compact(
+            'useful_links',
+            'forms',
+        ));
+    }
+
+    // Membership
+    public function view_membership()
+    {
+        $useful_links = UsefulLink::all();
+
+        return view('main.join.membership', compact(
+            'useful_links',
+        ));
+    }
+
+    // Donate
+    public function view_donate()
+    {
+        $useful_links = UsefulLink::all();
+
+        return view('main.join.donate', compact(
+            'useful_links',
+        ));
+    }
+
     // Contact
     public function view_contact()
     {
@@ -65,7 +152,10 @@ class HomeController extends Controller
         $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
         $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
+        $useful_links = UsefulLink::all();
+
         return view('main.contact', compact(
+            'useful_links',
             'address',
             'email',
             'phone',
@@ -118,7 +208,7 @@ class HomeController extends Controller
         ));
     }
 
-    public function update_hero(Request $request)
+    public function hero_update(Request $request)
     {
         // update title
         Settings::where('name', 'home.hero.title')
@@ -144,7 +234,7 @@ class HomeController extends Controller
         return back()->with('success', 'Hero title, subtitle and video URL successfully updated!');
     }
 
-    public function update_hero_bg(Request $request)
+    public function hero_bg_update(Request $request)
     {
         $settings = Settings::where('name', 'home.hero.bg')->first();
 
@@ -161,17 +251,13 @@ class HomeController extends Controller
         $fileName = time() .
             '_hero_' . $request->file('wallpaper')->getClientOriginalName();;
 
-        try {
-            $request->wallpaper->move(public_path('upload/home_bg'), $fileName);
+        $request->wallpaper->move(public_path('upload/home_bg'), $fileName);
 
-            // updating details in db
-            Settings::where('name', 'home.hero.bg')
-                ->update([
-                    'value' => 'upload/home_bg/' . $fileName,
-                ]);
-        } catch (\Throwable $th) {
-            return back()->with('error', $th);
-        }
+        // updating details in db
+        Settings::where('name', 'home.hero.bg')
+            ->update([
+                'value' => 'upload/home_bg/' . $fileName,
+            ]);
 
         // user activity log
         event(new UserActivityEvent(Auth::user(), $request, 'Update hero background wallpaper'));
@@ -179,7 +265,7 @@ class HomeController extends Controller
         return back()->with('success', 'Hero background wallpaper successfully updated!');
     }
 
-    public function update_news(Request $request)
+    public function news_update(Request $request)
     {
         // update title
         Settings::where('name', 'home.news.title')
@@ -199,7 +285,7 @@ class HomeController extends Controller
         return back()->with('success', 'News title and subtitle successfully updated!');
     }
 
-    public function update_gallery(Request $request)
+    public function gallery_update(Request $request)
     {
         // update title
         Settings::where('name', 'home.gallery.title')
@@ -219,7 +305,7 @@ class HomeController extends Controller
         return back()->with('success', 'Gallery title and subtitle successfully updated!');
     }
 
-    public function update_gallery_img(Request $request)
+    public function gallery_img_update(Request $request)
     {
         $request->validate([
             'images.*' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
@@ -234,8 +320,8 @@ class HomeController extends Controller
         $images = Uploads::where('name', 'home.gallery')->get();
 
         foreach ($images as $image) {
-            if (File::exists(public_path($image->url))) {
-                File::delete(public_path($image->url));
+            if (File::exists(public_path($image->path))) {
+                File::delete(public_path($image->path));
             }
 
             Uploads::where('name', 'home.gallery')
@@ -251,17 +337,13 @@ class HomeController extends Controller
             $fileName = time() .
                 '_gallery_' . $image->getClientOriginalName();
 
-            try {
-                $image->move(public_path('upload/home_gallery'), $fileName);
+            $image->move(public_path('upload/home_gallery'), $fileName);
 
-                // updating details in db
-                Uploads::create([
-                    'name' => 'home.gallery',
-                    'url' => 'upload/home_gallery/' . $fileName,
-                ]);
-            } catch (\Throwable $th) {
-                return back()->with('error', $th);
-            }
+            // updating details in db
+            Uploads::create([
+                'name' => 'home.gallery',
+                'path' => 'upload/home_gallery/' . $fileName,
+            ]);
         }
 
         // user activity log
@@ -298,10 +380,10 @@ class HomeController extends Controller
         // user activity log
         event(new UserActivityEvent(Auth::user(), $request, 'Delete a quote'));
 
-        return back()->with('success', 'Quote has been successfully deleted');
+        return back()->with('success', 'Quote successfully deleted');
     }
 
-    public function update_quote_bg(Request $request)
+    public function quote_bg_update(Request $request)
     {
         $settings = Settings::where('name', 'home.quote.bg')->first();
 
@@ -318,17 +400,13 @@ class HomeController extends Controller
         $fileName = time() .
             '_quote_' . $request->file('wallpaper')->getClientOriginalName();;
 
-        try {
-            $request->wallpaper->move(public_path('upload/home_bg'), $fileName);
+        $request->wallpaper->move(public_path('upload/home_bg'), $fileName);
 
-            // updating details in db
-            Settings::where('name', 'home.quote.bg')
-                ->update([
-                    'value' => 'upload/home_bg/' . $fileName,
-                ]);
-        } catch (\Throwable $th) {
-            return back()->with('error', $th);
-        }
+        // updating details in db
+        Settings::where('name', 'home.quote.bg')
+            ->update([
+                'value' => 'upload/home_bg/' . $fileName,
+            ]);
 
         // user activity log
         event(new UserActivityEvent(Auth::user(), $request, 'Update quote background wallpaper'));
@@ -336,7 +414,7 @@ class HomeController extends Controller
         return back()->with('success', 'Quote background wallpaper successfully updated!');
     }
 
-    public function update_donate(Request $request)
+    public function donate_update(Request $request)
     {
         // update title
         Settings::where('name', 'home.donate.title')
@@ -371,6 +449,21 @@ class HomeController extends Controller
         return view('main_settings.committee');
     }
 
+    public function committee_add(Request $request)
+    {
+        # code...
+    }
+
+    public function committee_update(Request $request)
+    {
+        # code...
+    }
+
+    public function committee_delete(Request $request)
+    {
+        # code...
+    }
+
     public function news()
     {
         return view('main_settings.news');
@@ -378,7 +471,55 @@ class HomeController extends Controller
 
     public function form()
     {
-        return view('main_settings.form');
+        $forms = Form::all();
+
+        return view('main_settings.form', compact('forms'));
+    }
+
+    public function form_add(Request $request)
+    {
+        $request->validate([
+            'file' => 'max:5120',
+        ]);
+
+        // creating name and path for the file
+        // time() is current unix timestamp
+        $fileName = time() . '_' . $request->file('file')->getClientOriginalName();;
+
+        $request->file->move(public_path('upload/form'), $fileName);
+
+        // add details in db
+        Form::create([
+            'name' => $request->name,
+            'path' => 'upload/form/' . $fileName,
+        ]);
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Add form'));
+
+        return back()->with('success', 'Form successfully added!');
+    }
+
+    public function form_delete(Request $request)
+    {
+        // delete from public folder
+        $form = Form::where('id', $request->id)
+            ->get();
+
+        $form = $form[0];
+
+        if (File::exists(public_path($form->path))) {
+            File::delete(public_path($form->path));
+        }
+
+        // delete form db
+        Form::where('id', $request->id)
+            ->delete();
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Delete a form'));
+
+        return back()->with('success', 'Form successfully deleted');
     }
 
     public function donate()
@@ -396,7 +537,10 @@ class HomeController extends Controller
         $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
         $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
+        $useful_links = UsefulLink::all();
+
         return view('main_settings.contact', compact(
+            'useful_links',
             'address',
             'email',
             'phone',
@@ -407,7 +551,7 @@ class HomeController extends Controller
         ));
     }
 
-    public function update_contact(Request $request)
+    public function contact_update(Request $request)
     {
         // update address
         Settings::where('name', 'contact.address')
@@ -453,5 +597,29 @@ class HomeController extends Controller
         event(new UserActivityEvent(Auth::user(), $request, 'Updating contact information'));
 
         return back()->with('success', 'Contact informations successfully updated!');
+    }
+
+    public function link_add(Request $request)
+    {
+        $add = $request->all();
+
+        // add item in db
+        UsefulLink::create($add);
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Add useful link'));
+
+        return back()->with('success', 'Useful link successfully added!');
+    }
+
+    public function link_delete(Request $request)
+    {
+        UsefulLink::where('id', $request->id)
+            ->delete();
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Delete a useful link '));
+
+        return back()->with('success', 'Useful link successfully deleted');
     }
 }

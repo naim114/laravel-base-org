@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UploadsTable extends Migration
+class CreateFormsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class UploadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('upload', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('forms', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
             $table->string('path');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->timestamps();
         });
     }
 
@@ -29,6 +28,6 @@ class UploadsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('upload');
+        Schema::dropIfExists('forms');
     }
 }

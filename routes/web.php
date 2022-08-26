@@ -43,41 +43,49 @@ Route::get(
 //     [HomeController::class, 'view_home']
 // )->name('main.home');
 
-Route::get('/en/about/organization', function () {
-    return view('main.about.organization');
-})->name('main.about.organization');
+Route::get(
+    '/en/about/organization',
+    [HomeController::class, 'view_org']
+)->name('main.about.organization');
 
-Route::get('/en/about/history', function () {
-    return view('main.about.history');
-})->name('main.about.history');
+Route::get(
+    '/en/about/history',
+    [HomeController::class, 'view_history'],
+)->name('main.about.history');
 
-Route::get('/en/about/committee', function () {
-    return view('main.about.committee');
-})->name('main.about.committee');
+Route::get(
+    '/en/about/committee',
+    [HomeController::class, 'view_committee'],
+)->name('main.about.committee');
 
-Route::get('/en/news', function () {
-    return view('main.news');
-})->name('main.news');
+Route::get(
+    '/en/news',
+    [HomeController::class, 'view_news'],
+)->name('main.news');
 
-Route::get('/en/article', function () {
-    return view('main.article');
-})->name('main.article');
+Route::get(
+    '/en/article',
+    [HomeController::class, 'view_article'],
+)->name('main.article');
 
-Route::get('/en/join/form', function () {
-    return view('main.join.form');
-})->name('main.join.form');
+Route::get(
+    '/en/join/form',
+    [HomeController::class, 'view_form'],
+)->name('main.join.form');
 
-Route::get('/en/join/membership', function () {
-    return view('main.join.membership');
-})->name('main.join.membership');
+Route::get(
+    '/en/join/membership',
+    [HomeController::class, 'view_membership'],
+)->name('main.join.membership');
 
-Route::get('/en/join/donate', function () {
-    return view('main.join.donate');
-})->name('main.join.donate');
+Route::get(
+    '/en/join/donate',
+    [HomeController::class, 'view_donate'],
+)->name('main.join.donate');
 
 Route::get(
     '/en/contact',
-    [HomeController::class, 'view_contact']
+    [HomeController::class, 'view_contact'],
 )->name('main.contact');
 
 // ======================================================================================== //
@@ -295,27 +303,27 @@ Route::group(['middleware' => ['auth', 'status']], function () {
 
     Route::post(
         '/main/home/hero/update',
-        [HomeController::class, 'update_hero']
+        [HomeController::class, 'hero_update']
     )->name('main.settings.home.update')->middleware('permissions:main.manage');
 
     Route::post(
         '/main/home/hero/bg',
-        [HomeController::class, 'update_hero_bg']
+        [HomeController::class, 'hero_bg_update']
     )->name('main.settings.home.bg')->middleware('permissions:main.manage');
 
     Route::post(
         '/main/home/news/update',
-        [HomeController::class, 'update_news']
+        [HomeController::class, 'news_update']
     )->name('main.settings.news.update')->middleware('permissions:main.manage');
 
     Route::post(
         '/main/home/gallery/update',
-        [HomeController::class, 'update_gallery']
+        [HomeController::class, 'gallery_update']
     )->name('main.settings.gallery.update')->middleware('permissions:main.manage');
 
     Route::post(
         '/main/home/gallery/images',
-        [HomeController::class, 'update_gallery_img']
+        [HomeController::class, 'gallery_img_update']
     )->name('main.settings.gallery.images')->middleware('permissions:main.manage');
 
     Route::post(
@@ -330,12 +338,12 @@ Route::group(['middleware' => ['auth', 'status']], function () {
 
     Route::post(
         '/main/home/quote/bg',
-        [HomeController::class, 'update_quote_bg']
+        [HomeController::class, 'quote_bg_update']
     )->name('main.settings.quote.bg')->middleware('permissions:main.manage');
 
     Route::post(
         '/main/home/donate/update',
-        [HomeController::class, 'update_donate']
+        [HomeController::class, 'donate_update']
     )->name('main.settings.donate.update')->middleware('permissions:main.manage');
 
     Route::get(
@@ -354,6 +362,21 @@ Route::group(['middleware' => ['auth', 'status']], function () {
     )->name('main.settings.comittee')->middleware('permissions:main.manage');
 
     Route::get(
+        '/main/about/committee/add',
+        [HomeController::class, 'committee_add']
+    )->name('main.settings.comittee.add')->middleware('permissions:main.manage');
+
+    Route::get(
+        '/main/about/committee/update',
+        [HomeController::class, 'committee_update']
+    )->name('main.settings.comittee.update')->middleware('permissions:main.manage');
+
+    Route::get(
+        '/main/about/committee/delete',
+        [HomeController::class, 'committee_delete']
+    )->name('main.settings.comittee.delete')->middleware('permissions:main.manage');
+
+    Route::get(
         '/main/news',
         [HomeController::class, 'news']
     )->name('main.settings.news')->middleware('permissions:main.manage');
@@ -362,6 +385,16 @@ Route::group(['middleware' => ['auth', 'status']], function () {
         '/main/join/form',
         [HomeController::class, 'form']
     )->name('main.settings.form')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/join/form/add',
+        [HomeController::class, 'form_add']
+    )->name('main.settings.form.add')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/join/form/delete',
+        [HomeController::class, 'form_delete']
+    )->name('main.settings.form.delete')->middleware('permissions:main.manage');
 
     Route::get(
         '/main/join/donate',
@@ -375,6 +408,16 @@ Route::group(['middleware' => ['auth', 'status']], function () {
 
     Route::post(
         '/main/contact/update',
-        [HomeController::class, 'update_contact']
+        [HomeController::class, 'contact_update']
     )->name('main.settings.contact.update')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/useful-link/add',
+        [HomeController::class, 'link_add']
+    )->name('main.settings.link.add')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/useful-link/delete',
+        [HomeController::class, 'link_delete']
+    )->name('main.settings.link.delete')->middleware('permissions:main.manage');
 });

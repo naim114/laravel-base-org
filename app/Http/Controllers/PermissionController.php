@@ -71,7 +71,7 @@ class PermissionController extends Controller
         // user activity log
         event(new UserActivityEvent(Auth::user(), $request, 'Delete permission ' . $permission->name . '(id: ' . $permission->id . ')'));
 
-        return back()->with('success', 'Permission ' .  $permission->name . ' has been successfully deleted');
+        return back()->with('success', 'Permission ' .  $permission->name . ' successfully deleted');
     }
 
     public function permission_role(Request $request)
@@ -108,7 +108,7 @@ class PermissionController extends Controller
 
         event(new UserActivityEvent(Auth::user(), $request, 'Add permission role (permission id: ' . $request->permission_id . ', role id:' . $request->role_id . ')'));
 
-        return back()->with('success', 'Role has been added to the permission list');
+        return back()->with('success', 'Role added to the permission list');
     }
 
     public function permission_role_delete(Request $request)
@@ -121,6 +121,6 @@ class PermissionController extends Controller
         // user activity log
         event(new UserActivityEvent(Auth::user(), $request, 'Delete permission role (permission id: ' . $request->permission_id . ', role id:' . $request->role_id . ')'));
 
-        return back()->with('success', 'Role has been successfully deleted from permission list');
+        return back()->with('success', 'Role successfully deleted from permission list');
     }
 }

@@ -230,17 +230,13 @@ class SettingsController extends Controller
         // time() is current unix timestamp
         $fileName = time() . '_auth_' . $request->file('wallpaper')->getClientOriginalName();
 
-        try {
-            $request->wallpaper->move(public_path('upload/wallpaper'), $fileName);
+        $request->wallpaper->move(public_path('upload/wallpaper'), $fileName);
 
-            // updating details in db
-            Settings::where('name', 'wallpaper.auth')
-                ->update([
-                    'value' => 'upload/wallpaper/' . $fileName,
-                ]);
-        } catch (\Throwable $th) {
-            return back()->with('error', $th);
-        }
+        // updating details in db
+        Settings::where('name', 'wallpaper.auth')
+            ->update([
+                'value' => 'upload/wallpaper/' . $fileName,
+            ]);
 
         // user activity log
         event(new UserActivityEvent(Auth::user(), $request, 'Update auth wallpaper'));
@@ -266,17 +262,13 @@ class SettingsController extends Controller
         // time() is current unix timestamp
         $fileName = time() . '_' . $request->file('logo')->getClientOriginalName();
 
-        try {
-            $request->logo->move(public_path('upload/logo'), $fileName);
+        $request->logo->move(public_path('upload/logo'), $fileName);
 
-            // updating details in db
-            Settings::where('name', 'logo')
-                ->update([
-                    'value' => 'upload/logo/' . $fileName,
-                ]);
-        } catch (\Throwable $th) {
-            return back()->with('error', $th);
-        }
+        // updating details in db
+        Settings::where('name', 'logo')
+            ->update([
+                'value' => 'upload/logo/' . $fileName,
+            ]);
 
         // user activity log
         event(new UserActivityEvent(Auth::user(), $request, 'Update application logo.'));

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Committee;
+use App\Models\Gallery;
 use Illuminate\Database\Seeder;
 use App\Models\Role;
 use App\Models\Settings;
@@ -200,30 +202,25 @@ class RolesSeeder extends Seeder
             'value' => 'Check out what we have been up to.',
         ]);
 
-        DB::table('upload')->insert(array(
-            'name' => 'home.gallery',
-            'path' => 'upload/home_gallery/1.jpg',
-        ));
+        Gallery::create([
+            'path' => 'upload/gallery/1.jpg',
+        ]);
 
-        DB::table('upload')->insert(array(
-            'name' => 'home.gallery',
-            'path' => 'upload/home_gallery/2.jpg',
-        ));
+        Gallery::create([
+            'path' => 'upload/gallery/2.jpg',
+        ]);
 
-        DB::table('upload')->insert(array(
-            'name' => 'home.gallery',
-            'path' => 'upload/home_gallery/3.jpg',
-        ));
+        Gallery::create([
+            'path' => 'upload/gallery/3.jpg',
+        ]);
 
-        DB::table('upload')->insert(array(
-            'name' => 'home.gallery',
-            'path' => 'upload/home_gallery/4.jpg',
-        ));
+        Gallery::create([
+            'path' => 'upload/gallery/4.jpg',
+        ]);
 
-        DB::table('upload')->insert(array(
-            'name' => 'home.gallery',
-            'path' => 'upload/home_gallery/5.jpg',
-        ));
+        Gallery::create([
+            'path' => 'upload/gallery/5.jpg',
+        ]);
 
         Settings::create([
             'name' => 'home.donate.title',
@@ -318,6 +315,18 @@ class RolesSeeder extends Seeder
         UsefulLink::create([
             'display_name' => 'Main Portal',
             'url' => 'https://github.com/naim114',
+        ]);
+
+        Committee::create([
+            'name' => 'Saul Goodman',
+            'title' => 'Law',
+            'path' => 'upload/committee/1.jpg',
+        ]);
+
+        Committee::create([
+            'name' => 'Walter White',
+            'title' => 'Chemistry',
+            'path' => 'upload/committee/2.jpg',
         ]);
     }
 }

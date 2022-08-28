@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Committee;
 use App\Models\Form;
 use App\Models\Quote;
 use Illuminate\Http\Request;
 use App\Models\Settings;
-use App\Models\Uploads;
+use App\Models\Gallery;
 use App\Models\UsefulLink;
 use App\Providers\UserActivityEvent;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,7 @@ class HomeController extends Controller
 
         $gallery_title = Settings::where('name', 'home.gallery.title')->pluck('value')[0];
         $gallery_subtitle = Settings::where('name', 'home.gallery.subtitle')->pluck('value')[0];
-        $gallery_images = Uploads::where('name', 'home.gallery')->get();
+        $gallery_images = Gallery::all();
 
         $quotes = Quote::all();
 
@@ -182,7 +183,6 @@ class HomeController extends Controller
 
         $gallery_title = Settings::where('name', 'home.gallery.title')->pluck('value')[0];
         $gallery_subtitle = Settings::where('name', 'home.gallery.subtitle')->pluck('value')[0];
-        // $gallery_images = Uploads::where('name', 'home.gallery')->get();
 
         $quotes = Quote::all();
 
@@ -317,14 +317,14 @@ class HomeController extends Controller
         }
 
         // clear gallery in db and public folder
-        $images = Uploads::where('name', 'home.gallery')->get();
+        $images = Gallery::all();
 
         foreach ($images as $image) {
             if (File::exists(public_path($image->path))) {
                 File::delete(public_path($image->path));
             }
 
-            Uploads::where('name', 'home.gallery')
+            Gallery::whereNotNull('id')
                 ->delete();
         }
 
@@ -337,12 +337,11 @@ class HomeController extends Controller
             $fileName = time() .
                 '_gallery_' . $image->getClientOriginalName();
 
-            $image->move(public_path('upload/home_gallery'), $fileName);
+            $image->move(public_path('upload/gallery'), $fileName);
 
             // updating details in db
-            Uploads::create([
-                'name' => 'home.gallery',
-                'path' => 'upload/home_gallery/' . $fileName,
+            Gallery::create([
+                'path' => 'upload/gallery/' . $fileName,
             ]);
         }
 
@@ -446,7 +445,9 @@ class HomeController extends Controller
 
     public function committee()
     {
-        return view('main_settings.committee');
+        $committees = Committee::all();
+
+        return view('main_settings.committee', compact('committees'));
     }
 
     public function committee_add(Request $request)

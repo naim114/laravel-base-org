@@ -31,29 +31,31 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Name #1</td>
-                    <td>ROle</td>
-                    <td>
-                        <a href="#"><i class="fas fa-image fa-fw"></i></a>
-                    </td>
-                    <td>
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="fas fa-ellipsis-h fa-fw"></i></a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <button data-item="" class="dropdown-item editButton">
-                                    Edit Committee
-                                </button>
-                            </li>
-                            <li>
-                                <button data-item="" class="dropdown-item text-danger deleteButton">
-                                    Delete Committee
-                                </button>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
+                @foreach ($committees as $committee)
+                    <tr>
+                        <td>{{ $committee->name }}</td>
+                        <td>{{ $committee->title }}</td>
+                        <td>
+                            <a target="_blank" href="{{ asset($committee->path) }}"><i class="fas fa-image fa-fw"></i></a>
+                        </td>
+                        <td>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"><i class="fas fa-ellipsis-h fa-fw"></i></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <button data-item="" class="dropdown-item editButton">
+                                        Edit Committee
+                                    </button>
+                                </li>
+                                <li>
+                                    <button data-item="" class="dropdown-item text-danger deleteButton">
+                                        Delete Committee
+                                    </button>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

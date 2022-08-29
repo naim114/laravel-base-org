@@ -23,62 +23,16 @@
                 <p>Get to know our organization committee.</p>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <img class="w-100 profile-photo" alt="..."
-                        src="https://naim114.github.io/portfolio/demo/BizLand/assets/img/team/team-1.jpg">
-                    <div class="name-title">
-                        <h3>Saul Goodman</h3>
-                        <p>Politics</p>
+                @foreach ($committees as $committee)
+                    <div class="col-md-4">
+                        <img class="w-100 profile-photo" alt="..."
+                            src="{{ $committee->path == null || $committee->path == '' ? asset('assets/img/default-image.jpg') : asset($committee->path) }}">
+                        <div class="name-title">
+                            <h3>{{ $committee->name }}</h3>
+                            <p>{{ $committee->title }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <img class="w-100 profile-photo" alt="..."
-                        src="https://naim114.github.io/portfolio/demo/BizLand/assets/img/team/team-3.jpg">
-                    <div class="name-title">
-                        <h3>Saul Goodman</h3>
-                        <p>Politics</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <img class="w-100 profile-photo" alt="..."
-                        src="https://naim114.github.io/portfolio/demo/BizLand/assets/img/team/team-1.jpg">
-                    <div class="name-title">
-                        <h3>Saul Goodman</h3>
-                        <p>Politics</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <img class="w-100 profile-photo" alt="..."
-                        src="https://naim114.github.io/portfolio/demo/BizLand/assets/img/team/team-1.jpg">
-                    <div class="name-title">
-                        <h3>Saul Goodman</h3>
-                        <p>Politics</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <img class="w-100 profile-photo" alt="..."
-                        src="https://naim114.github.io/portfolio/demo/BizLand/assets/img/team/team-1.jpg">
-                    <div class="name-title">
-                        <h3>Saul Goodman</h3>
-                        <p>Politics</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <img class="w-100 profile-photo" alt="..."
-                        src="https://naim114.github.io/portfolio/demo/BizLand/assets/img/team/team-1.jpg">
-                    <div class="name-title">
-                        <h3>Saul Goodman</h3>
-                        <p>Politics</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <img class="w-100 profile-photo" alt="..."
-                        src="https://naim114.github.io/portfolio/demo/BizLand/assets/img/team/team-1.jpg">
-                    <div class="name-title">
-                        <h3>Saul Goodman</h3>
-                        <p>Politics</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

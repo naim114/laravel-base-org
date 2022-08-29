@@ -25,7 +25,7 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Role/Position</th>
+                    <th scope="col">Title/Role/Position</th>
                     <th scope="col">Images</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -43,12 +43,12 @@
                                 aria-expanded="false"><i class="fas fa-ellipsis-h fa-fw"></i></a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <button data-item="" class="dropdown-item editButton">
+                                    <button data-item="{{ $committee }}" class="dropdown-item editButton">
                                         Edit Committee
                                     </button>
                                 </li>
                                 <li>
-                                    <button data-item="" class="dropdown-item text-danger deleteButton">
+                                    <button data-item="{{ $committee }}" class="dropdown-item text-danger deleteButton">
                                         Delete Committee
                                     </button>
                                 </li>
@@ -60,6 +60,109 @@
         </table>
     </div>
 @stop
+
+{{-- Modal --}}
+{{-- Add Modal --}}
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('main.settings.comittee.add') }}">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">
+                        Add Modal
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-2">
+                        <label>Name</label>
+                        <input name="name" type="text" class="form-control" placeholder="Enter name" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Title/Role/Position</label>
+                        <input name="title" type="text" class="form-control"
+                            placeholder="Enter title/role/position" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Upload Image</label>
+                        <input name="path" type="file" class="form-control" placeholder="Upload image"
+                            accept="image/*" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeAddModal" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- Edit Modal --}}
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" enctype="multipart/form-data" action="{{ route('main.settings.comittee.update') }}">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">
+                        Edit Modal
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group mb-2">
+                        <label>Name</label>
+                        <input id="editModalName" name="name" type="text" class="form-control"
+                            placeholder="Enter name" required>
+                        <input id="editModalId" name="id" type="text" hidden>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Title/Role/Position</label>
+                        <input id="editModalTitle" name="title" type="text" class="form-control"
+                            placeholder="Enter title/role/position" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label>Upload Image</label>
+                        <input name="path" type="file" class="form-control" placeholder="Upload image"
+                            accept="image/*" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeEditModal"
+                        data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- Delete Modal --}}
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form method="POST" action="{{ route('main.settings.comittee.delete') }}">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">
+                        Delete Committee
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <p id="textBanModal"></p>
+                    <input name="id" type="text" id="deleteModalId" hidden>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeDeleteModal"
+                        data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 @section('scripts')
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
@@ -81,12 +184,11 @@
         $(".editButton").click(function() {
             $('#editModal').modal('show');
 
-            var role = $(this).data('role');
+            var item = $(this).data('item');
 
-            $('#editModalName').val(role.name);
-            $('#editModalId').val(role.id);
-            $('#editModalDisplayName').val(role.display_name);
-            $('#editModalDescription').val(role.description);
+            $('#editModalId').val(item.id);
+            $('#editModalName').val(item.name);
+            $('#editModalTitle').val(item.title);
         });
 
         $(".closeEditModal").click(function() {
@@ -97,11 +199,11 @@
         $(".deleteButton").click(function() {
             $('#deleteModal').modal('show');
 
-            var role = $(this).data('role');
+            var item = $(this).data('item');
 
-            $('#deleteModalId').val(role.id);
-            $('#textBanModal').text('Are you sure you want to delete role ' + role.name +
-                ' ?');
+            $('#deleteModalId').val(item.id);
+            $('#textBanModal').text('Are you sure you want to delete committee ' + item.name +
+                '?');
         });
 
         $(".closeDeleteModal").click(function() {

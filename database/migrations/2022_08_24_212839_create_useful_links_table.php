@@ -13,12 +13,22 @@ class CreateUsefulLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('useful_links', function (Blueprint $table) {
-            $table->id();
-            $table->string('display_name');
-            $table->string('url');
-            $table->timestamps();
-        });
+        Schema::create(
+            'useful_links',
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
+            function (Blueprint $table) {
+                $table->id();
+                $table->string('display_name');
+                $table->string('url');
+                $table->timestamps();
+            }
+        );
     }
 
     /**

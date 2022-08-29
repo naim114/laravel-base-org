@@ -40,10 +40,25 @@ class HomeController extends Controller
         $donate_title = Settings::where('name', 'home.donate.title')->pluck('value')[0];
         $donate_subtitle = Settings::where('name', 'home.donate.subtitle')->pluck('value')[0];
 
+        // footer
         $useful_links = UsefulLink::all();
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
         return view('main.index', compact(
             'useful_links',
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
             'hero_title',
             'hero_subtitle',
             'hero_vid',
@@ -64,9 +79,23 @@ class HomeController extends Controller
     public function view_org()
     {
         $useful_links = UsefulLink::all();
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
         return view('main.about.organization', compact(
             'useful_links',
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
         ));
     }
 
@@ -74,9 +103,23 @@ class HomeController extends Controller
     public function view_history()
     {
         $useful_links = UsefulLink::all();
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
         return view('main.about.history', compact(
             'useful_links',
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
         ));
     }
 
@@ -84,9 +127,26 @@ class HomeController extends Controller
     public function view_committee()
     {
         $useful_links = UsefulLink::all();
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
+
+        $committees = Committee::all();
 
         return view('main.about.committee', compact(
             'useful_links',
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
+            'committees',
         ));
     }
 
@@ -94,9 +154,23 @@ class HomeController extends Controller
     public function view_news()
     {
         $useful_links = UsefulLink::all();
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
         return view('main.news', compact(
             'useful_links',
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
         ));
     }
 
@@ -104,9 +178,23 @@ class HomeController extends Controller
     public function view_article()
     {
         $useful_links = UsefulLink::all();
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
         return view('main.article', compact(
             'useful_links',
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
         ));
     }
 
@@ -114,10 +202,24 @@ class HomeController extends Controller
     public function view_form()
     {
         $useful_links = UsefulLink::all();
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
         $forms = Form::all();
 
         return view('main.join.form', compact(
             'useful_links',
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
             'forms',
         ));
     }
@@ -126,9 +228,23 @@ class HomeController extends Controller
     public function view_membership()
     {
         $useful_links = UsefulLink::all();
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
         return view('main.join.membership', compact(
             'useful_links',
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
         ));
     }
 
@@ -136,9 +252,23 @@ class HomeController extends Controller
     public function view_donate()
     {
         $useful_links = UsefulLink::all();
+        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
+        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
+        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
+        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
+        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
         return view('main.join.donate', compact(
             'useful_links',
+            'address',
+            'email',
+            'phone',
+            'twitter',
+            'facebook',
+            'instagram',
+            'linkedin',
         ));
     }
 
@@ -452,17 +582,81 @@ class HomeController extends Controller
 
     public function committee_add(Request $request)
     {
-        # code...
+        $request->validate([
+            'path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // creating name and path for the file
+        // time() is current unix timestamp
+        $fileName = time() . '_' . $request->file('path')->getClientOriginalName();;
+
+        $request->path->move(public_path('upload/committee'), $fileName);
+
+        // add details in db
+        Committee::create([
+            'name' => $request->name,
+            'title' => $request->title,
+            'path' => 'upload/committee/' . $fileName,
+        ]);
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Add committee'));
+
+        return back()->with('success', 'Committee successfully added!');
     }
 
     public function committee_update(Request $request)
     {
-        # code...
+        // get item that wanted to update
+        $committee = Committee::where('id', $request->id)->first();
+
+        $request->validate([
+            'path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // delete prev image
+        if (File::exists(public_path($committee->path))) {
+            File::delete(public_path($committee->path));
+        }
+
+        // creating name and path for the file
+        // time() is current unix timestamp
+        $fileName = time() . '_' . $request->file('path')->getClientOriginalName();;
+
+        $request->path->move(public_path('upload/committee'), $fileName);
+
+        // update detail in db
+        Committee::where('id', $request->id)
+            ->update([
+                'name' => $request->name,
+                'title' => $request->title,
+                'path' => 'upload/committee/' . $fileName,
+            ]);
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Update committee ' . $committee->name . ' (ID:' . $request->id . ')'));
+
+        return back()->with('success', 'Committee ' . $committee->name . ' successfully updated!');
     }
 
     public function committee_delete(Request $request)
     {
-        # code...
+        // get item that wanted to update
+        $committee = Committee::where('id', $request->id)->first();
+
+        // delete image
+        if (File::exists(public_path($committee->path))) {
+            File::delete(public_path($committee->path));
+        }
+
+        // delete form db
+        Committee::where('id', $request->id)
+            ->delete();
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Delete committee ' . $committee->name . ' (ID:' . $request->id . ')'));
+
+        return back()->with('success', 'Committee ' . $committee->name . ' successfully deleted!');
     }
 
     public function news()
@@ -548,7 +742,6 @@ class HomeController extends Controller
             'twitter',
             'facebook',
             'instagram',
-            'linkedin',
         ));
     }
 

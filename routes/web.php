@@ -361,17 +361,17 @@ Route::group(['middleware' => ['auth', 'status']], function () {
         [HomeController::class, 'committee']
     )->name('main.settings.comittee')->middleware('permissions:main.manage');
 
-    Route::get(
+    Route::post(
         '/main/about/committee/add',
         [HomeController::class, 'committee_add']
     )->name('main.settings.comittee.add')->middleware('permissions:main.manage');
 
-    Route::get(
+    Route::post(
         '/main/about/committee/update',
         [HomeController::class, 'committee_update']
     )->name('main.settings.comittee.update')->middleware('permissions:main.manage');
 
-    Route::get(
+    Route::post(
         '/main/about/committee/delete',
         [HomeController::class, 'committee_delete']
     )->name('main.settings.comittee.delete')->middleware('permissions:main.manage');

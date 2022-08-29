@@ -7,22 +7,21 @@
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <h3>{{ trans('app.app-name') }}</h3>
                     <p>
-                        A108 Adam Street <br>
-                        New York, NY 535022<br>
-                        United States <br><br>
-                        <strong>Phone:</strong> +1 5589 55488 55<br>
-                        <strong>Email:</strong> info@example.com<br>
+                        {{ $address }}<br><br>
+                        <strong>Phone:</strong> {{ $phone }}<br>
+                        <strong>Email:</strong> {{ $email }}<br>
                     </p>
                 </div>
 
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Navigations</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">News</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Join Us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Contact</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.home') }}">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.about.organization') }}">About
+                                us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.news') }}">News</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.join.form') }}">Join Us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.contact') }}">Contact</a></li>
                     </ul>
                 </div>
 
@@ -48,11 +47,18 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Our Social Networks</h4>
                     <div class="social-links mt-3">
-                        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        @isset($twitter)
+                            <a href="{{ $twitter }}" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        @endisset
+                        @isset($facebook)
+                            <a href="{{ $facebook }}" class="facebook"><i class="bx bxl-facebook"></i></a>
+                        @endisset
+                        @isset($instagram)
+                            <a href="{{ $instagram }}" class="instagram"><i class="bx bxl-instagram"></i></a>
+                        @endisset
+                        @isset($linkedin)
+                            <a href="{{ $linkedin }}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        @endisset
                     </div>
                 </div>
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\ArticleUpload;
 use App\Models\Committee;
 use App\Models\Form;
 use App\Models\Quote;
@@ -87,7 +89,14 @@ class HomeController extends Controller
         $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
         $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
+        $article = Article::where('id', 1)->first();
+        $images = ArticleUpload::where('article_id', 1)->where('type', 'image')->get();
+        $videos = ArticleUpload::where('article_id', 1)->where('type', 'video')->get();
+
         return view('main.about.organization', compact(
+            'article',
+            'images',
+            'videos',
             'useful_links',
             'address',
             'email',
@@ -565,7 +574,9 @@ class HomeController extends Controller
 
     public function organization()
     {
-        return view('main_settings.org');
+        $article = Article::where('id', 1)->first();
+
+        return view('main_settings.org', compact('article'));
     }
 
     public function history()
@@ -662,6 +673,26 @@ class HomeController extends Controller
     public function news()
     {
         return view('main_settings.news');
+    }
+
+    public function article_view(Request $request)
+    {
+        dd($request);
+    }
+
+    public function article_add(Request $request)
+    {
+        dd($request);
+    }
+
+    public function article_update(Request $request)
+    {
+        dd($request->text);
+    }
+
+    public function article_delete(Request $request)
+    {
+        dd($request);
     }
 
     public function form()

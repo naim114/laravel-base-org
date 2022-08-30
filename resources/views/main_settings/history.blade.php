@@ -53,7 +53,7 @@
 
                 <hr>
 
-                <h5>Main Image</h5>
+                <h5>Thumbnail</h5>
                 <input type="file" name="main" class="form-control mt-3 mb-3" accept="image/*" multiple>
 
                 <h5>Upload Images/Videos</h5>

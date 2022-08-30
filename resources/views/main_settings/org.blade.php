@@ -35,35 +35,32 @@
 
         <div class="card p-4 mb-3">
             <div class="form-group">
-                <h5>Title</h5>
-                <input type="text" name="title" class="form-control mt-3 mb-3" placeholder="Enter Title" value="">
+                <form method="POST" action="{{ route('main.settings.article.update') }}">
+                    @csrf
+                    <h5>Title</h5>
+                    <input type="text" name="title" class="form-control mt-3 mb-3" placeholder="Enter Title"
+                        value="{{ $article->title }}" required>
 
-                <h5>Subtitle</h5>
-                <input type="text" name="subtitle" class="form-control mt-3 mb-3" placeholder="Enter Subtitle"
-                    value="">
+                    <h5>Subtitle</h5>
+                    <input type="text" name="subtitle" class="form-control mt-3 mb-3" placeholder="Enter Subtitle"
+                        value="{{ $article->description }}" required>
 
-                <h5>Text</h5>
-                <textarea name="text"></textarea>
+                    <h5>Text</h5>
+                    <textarea name="text">{!! $article->text !!}</textarea>
 
-                <div class="d-flex flex-row-reverse mt-3">
-                    <button type="submit" class="btn btn-primary float-right">
-                        Save Changes
-                    </button>
-                </div>
+                    <h5 class="mt-3">Upload Images</h5>
+                    <input type="file" name="images[]" class="form-control mt-3 mb-3" accept="image/*" multiple>
 
-                <hr>
+                    <h5>Upload Video</h5>
+                    <input type="file" name="videos[]" class="form-control mt-3 mb-3" accept="video/*" multiple>
 
-                <h5>Main Image</h5>
-                <input type="file" name="main" class="form-control mt-3 mb-3" accept="image/*" multiple>
+                    <div class="d-flex flex-row-reverse mt-3">
+                        <button type="submit" class="btn btn-primary float-right">
+                            Save Changes
+                        </button>
+                    </div>
 
-                <h5>Upload Images/Videos</h5>
-                <input type="file" name="main" class="form-control mt-3 mb-3" accept="image/*,video/*" multiple>
-
-                <div class="d-flex flex-row-reverse mt-3">
-                    <button type="submit" class="btn btn-primary float-right">
-                        Save Changes
-                    </button>
-                </div>
+                </form>
             </div>
         </div>
 

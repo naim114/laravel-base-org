@@ -1,6 +1,6 @@
 @extends('layouts.main-master')
 
-@section('page-title', trans('app.about.history'))
+@section('page-title', trans('app.about.committee'))
 
 @section('custom-head')
     <style>

@@ -382,6 +382,26 @@ Route::group(['middleware' => ['auth', 'status']], function () {
     )->name('main.settings.news')->middleware('permissions:main.manage');
 
     Route::get(
+        '/main/article/view/{id}',
+        [HomeController::class, 'article_view']
+    )->name('main.settings.article.view')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/article/add',
+        [HomeController::class, 'article_add']
+    )->name('main.settings.article.add')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/article/update',
+        [HomeController::class, 'article_update']
+    )->name('main.settings.article.update')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/article/delete',
+        [HomeController::class, 'article_delete']
+    )->name('main.settings.article.delete')->middleware('permissions:main.manage');
+
+    Route::get(
         '/main/join/form',
         [HomeController::class, 'form']
     )->name('main.settings.form')->middleware('permissions:main.manage');

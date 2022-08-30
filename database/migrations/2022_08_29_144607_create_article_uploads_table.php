@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsefulLinksTable extends Migration
+class CreateArticleUploadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateUsefulLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create(
-            'useful_links',
-            function (Blueprint $table) {
-                $table->id();
-                $table->string('display_name');
-                $table->string('url');
-                $table->timestamps();
-            }
-        );
+        Schema::create('article_uploads', function (Blueprint $table) {
+            $table->id();
+            $table->integer('article_id');
+            $table->string('type');
+            $table->string('path');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -31,6 +29,6 @@ class CreateUsefulLinksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('useful_links');
+        Schema::dropIfExists('article_uploads');
     }
 }

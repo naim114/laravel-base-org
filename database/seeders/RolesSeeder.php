@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
+use App\Models\ArticleUpload;
 use App\Models\Committee;
 use App\Models\Gallery;
 use Illuminate\Database\Seeder;
@@ -327,6 +329,30 @@ class RolesSeeder extends Seeder
             'name' => 'Walter White',
             'title' => 'Chemistry',
             'path' => 'upload/committee/2.jpg',
+        ]);
+
+        Article::create([
+            'title' => 'Organization',
+            'description' => 'Get to know our organization aims and objectives.',
+            'text' => '<p style="text-align: center;"><strong>Republican Party</strong>, by name <em>Grand Old Party</em> (GOP), in the United States, one of the two <strong>major political parties</strong>, the other being the <strong>Democratic Party</strong>. During the 19th century the Republican Party stood against the extension of slavery to the country&rsquo;s new territories and, ultimately, for slavery&rsquo;s complete abolition. During the 20th and 21st centuries the party came to be <strong>associated with laissez-faire capitalism, low taxes, and conservative social policies</strong>. The party acquired the acronym GOP, widely understood as &ldquo;<em>Grand Old Party</em>,&rdquo; in the 1870s. The party&rsquo;s official logo, the elephant, is derived from a cartoon by Thomas Nast and also dates from the 1870s. <br /><br />The term <strong><em>Republican </em></strong>was adopted in 1792 by supporters of Thomas Jefferson, who favoured a decentralized government with limited powers. Although Jefferson&rsquo;s political philosophy is consistent with the outlook of the modern Republican Party, his faction, which soon became known as the Democratic-Republican Party, ironically evolved by the 1830s into the Democratic Party, the modern Republican Party&rsquo;s chief rival. <br /><br />The Republican Party traces its roots to the 1850s, when antislavery leaders (including former members of the Democratic, Whig, and Free-Soil parties) joined forces to oppose the extension of slavery into the Kansas and Nebraska territories by the proposed Kansas-Nebraska Act. At meetings in Ripon, Wisconsin (May 1854), and Jackson, Michigan (July 1854), they recommended forming a new party, which was duly established at the political convention in Jackson.</p>',
+        ]);
+
+        ArticleUpload::create([
+            'article_id' => 1,
+            'type' => 'image',
+            'path' => 'upload/article/1/1.jpg',
+        ]);
+
+        ArticleUpload::create([
+            'article_id' => 1,
+            'type' => 'image',
+            'path' => 'upload/article/1/2.jpg',
+        ]);
+
+        ArticleUpload::create([
+            'article_id' => 1,
+            'type' => 'video',
+            'path' => 'upload/article/1/mov_bbb.mp4',
         ]);
     }
 }

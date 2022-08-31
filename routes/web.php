@@ -397,6 +397,16 @@ Route::group(['middleware' => ['auth', 'status']], function () {
     )->name('main.settings.article.update')->middleware('permissions:main.manage');
 
     Route::post(
+        '/main/article/image-video',
+        [HomeController::class, 'article_image_video']
+    )->name('main.settings.article.image-video')->middleware('permissions:main.manage');
+
+    Route::post(
+        '/main/article/image-video/delete',
+        [HomeController::class, 'article_image_video_delete']
+    )->name('main.settings.article.image-video.delete')->middleware('permissions:main.manage');
+
+    Route::post(
         '/main/article/delete',
         [HomeController::class, 'article_delete']
     )->name('main.settings.article.delete')->middleware('permissions:main.manage');

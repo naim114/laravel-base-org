@@ -334,7 +334,7 @@ class RolesSeeder extends Seeder
         Article::create([
             'title' => 'Organization',
             'description' => 'Get to know our organization aims and objectives.',
-            'text' => '<p style="text-align: center;"><strong>Republican Party</strong>, by name <em>Grand Old Party</em> (GOP), in the United States, one of the two <strong>major political parties</strong>, the other being the <strong>Democratic Party</strong>. During the 19th century the Republican Party stood against the extension of slavery to the country&rsquo;s new territories and, ultimately, for slavery&rsquo;s complete abolition. During the 20th and 21st centuries the party came to be <strong>associated with laissez-faire capitalism, low taxes, and conservative social policies</strong>. The party acquired the acronym GOP, widely understood as &ldquo;<em>Grand Old Party</em>,&rdquo; in the 1870s. The party&rsquo;s official logo, the elephant, is derived from a cartoon by Thomas Nast and also dates from the 1870s. <br /><br />The term <strong><em>Republican </em></strong>was adopted in 1792 by supporters of Thomas Jefferson, who favoured a decentralized government with limited powers. Although Jefferson&rsquo;s political philosophy is consistent with the outlook of the modern Republican Party, his faction, which soon became known as the Democratic-Republican Party, ironically evolved by the 1830s into the Democratic Party, the modern Republican Party&rsquo;s chief rival. <br /><br />The Republican Party traces its roots to the 1850s, when antislavery leaders (including former members of the Democratic, Whig, and Free-Soil parties) joined forces to oppose the extension of slavery into the Kansas and Nebraska territories by the proposed Kansas-Nebraska Act. At meetings in Ripon, Wisconsin (May 1854), and Jackson, Michigan (July 1854), they recommended forming a new party, which was duly established at the political convention in Jackson.</p>',
+            'text' => "Capital A Berhad, (MYX: 5099) operating as AirAsia (stylized as airasia) is a Malaysian multinational low-cost airline headquartered near Kuala Lumpur, Malaysia. It is the largest airline in Malaysia by fleet size and destinations. AirAsia operates scheduled domestic and international flights to more than 165 destinations spanning 25 countries.[4] Its main base is klia2, the low-cost carrier terminal at Kuala Lumpur International Airport (KLIA) in Sepang, Selangor, Malaysia. Its affiliate airlines Thai AirAsia, Indonesia AirAsia, Philippines AirAsia, and AirAsia India have bases in Bangkok–Don Mueang, Jakarta–Soekarno-Hatta, Manila–Ninoy Aquino, and Bangalore–Kempegowda airports respectively, while its sister airline, AirAsia X, focuses on long-haul routes. AirAsia's registered office is in Petaling Jaya, Selangor while its head office is at Kuala Lumpur International Airport. ",
         ]);
 
         ArticleUpload::create([
@@ -353,6 +353,24 @@ class RolesSeeder extends Seeder
             'article_id' => 1,
             'type' => 'video',
             'path' => 'upload/article/1/mov_bbb.mp4',
+        ]);
+
+        Article::create([
+            'title' => 'History',
+            'description' => 'Read the history of our organization.',
+            'text' => "Malaysia Airlines Berhad (MAB; Malay: Penerbangan Malaysia Berhad), formerly known as Malaysian Airline System (MAS; Sistem Penerbangan Malaysia), and branded as Malaysia Airlines, is the flag carrier airline of Malaysia and a member of the Oneworld airline alliance. (The MAS initials are still being kept by subsidiaries MAS Kargo and MAS Wings.) The company headquarters are at Kuala Lumpur International Airport. In August 2014, the Malaysian government's sovereign wealth fund Khazanah Nasional—which then owned 69.37% of the airline—announced its intention to purchase the remaining ownership from minority shareholders and delist the airline from Malaysia's stock exchange, thereby renationalising the airline. It operates primarily from Kuala Lumpur International Airport and from secondary hubs in Kota Kinabalu and Kuching to destinations throughout Asia, Oceania, and Europe.",
+        ]);
+
+        ArticleUpload::create([
+            'article_id' => 2,
+            'type' => 'image',
+            'path' => 'upload/article/2/1.jpg',
+        ]);
+
+        ArticleUpload::create([
+            'article_id' => 2,
+            'type' => 'image',
+            'path' => 'upload/article/2/2.jpg',
         ]);
     }
 }

@@ -120,7 +120,14 @@ class HomeController extends Controller
         $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
         $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
+        $article = Article::where('id', 2)->first();
+        $images = ArticleUpload::where('article_id', 2)->where('type', 'image')->get();
+        $videos = ArticleUpload::where('article_id', 2)->where('type', 'video')->get();
+
         return view('main.about.history', compact(
+            'article',
+            'images',
+            'videos',
             'useful_links',
             'address',
             'email',
@@ -575,13 +582,19 @@ class HomeController extends Controller
     public function organization()
     {
         $article = Article::where('id', 1)->first();
+        $images = ArticleUpload::where('article_id', 1)->where('type', 'image')->get();
+        $videos = ArticleUpload::where('article_id', 1)->where('type', 'video')->get();
 
-        return view('main_settings.org', compact('article'));
+        return view('main_settings.org', compact('article', 'images', 'videos'));
     }
 
     public function history()
     {
-        return view('main_settings.history');
+        $article = Article::where('id', 2)->first();
+        $images = ArticleUpload::where('article_id', 2)->where('type', 'image')->get();
+        $videos = ArticleUpload::where('article_id', 2)->where('type', 'video')->get();
+
+        return view('main_settings.history', compact('article', 'images', 'videos'));
     }
 
     public function committee()
@@ -687,7 +700,94 @@ class HomeController extends Controller
 
     public function article_update(Request $request)
     {
-        dd($request->text);
+        // update in db
+        Article::where('id', $request->id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'text' => $request->text,
+        ]);
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Update article ' . $request->title . ' (ID: ' . $request->id . ')'));
+
+        return back()->with('success', 'Article ' . $request->title . ' successfully updated!');
+    }
+
+    public function article_image_video(Request $request)
+    {
+        if ($request->type == 'image') {
+            $request->validate([
+                'images.*' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+            ]);
+
+            // store images
+            $images = $request->file('images');
+
+            foreach ($images as $image) {
+                // creating name and path for the file
+                // time() is current unix timestamp
+                $fileName = time() .
+                    '_' . $request->id . '_' . $image->getClientOriginalName();
+
+                $image->move(public_path('upload/article/' . $request->id), $fileName);
+
+                // updating details in db
+                ArticleUpload::create([
+                    'article_id' => $request->id,
+                    'type' => 'image',
+                    'path' => 'upload/article/' . $request->id . '/' . $fileName,
+                ]);
+
+                // user activity log
+                event(new UserActivityEvent(Auth::user(), $request, 'Add image(s) to article ' . $request->title . ' (ID: ' . $request->id . ')'));
+
+                return back()->with('success', 'Image(s) successfully added!');
+            }
+        } else if ($request->type == 'video') {
+            $request->validate([
+                'videos.*' => 'mimes:mp4,mov,ogg,qt|max:20000',
+            ]);
+
+            // store videos
+            $videos = $request->file('videos');
+
+            foreach ($videos as $video) {
+                // creating name and path for the file
+                // time() is current unix timestamp
+                $fileName = time() .
+                    '_' . $request->id . '_' . $video->getClientOriginalName();
+
+                $video->move(public_path('upload/article/' . $request->id), $fileName);
+
+                // updating details in db
+                ArticleUpload::create([
+                    'article_id' => $request->id,
+                    'type' => 'video',
+                    'path' => 'upload/article/' . $request->id . '/' . $fileName,
+                ]);
+
+                // user activity log
+                event(new UserActivityEvent(Auth::user(), $request, 'Add video(s) to article ' . $request->title . ' (ID: ' . $request->id . ')'));
+
+                return back()->with('success', 'Video(s) successfully added!');
+            }
+        }
+    }
+
+    public function article_image_video_delete(Request $request)
+    {
+        $item = ArticleUpload::where('id', $request->id)->first();
+
+        if (File::exists(public_path($item->path))) {
+            File::delete(public_path($item->path));
+        }
+
+        ArticleUpload::where('id', $request->id)->delete();
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Delete image/video from article'));
+
+        return back()->with('success', 'Image/video successfully deleted!');
     }
 
     public function article_delete(Request $request)

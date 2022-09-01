@@ -195,13 +195,20 @@ class HomeController extends Controller
             ->paginate(16);
 
         if ($request->input('sort')) {
-            $articles = Article::where('id', '!=', 1)
-                ->where('id', '!=', 2)
-                ->orderBy('created_at', $sort)
-                ->where('title', 'LIKE', '%' . $keyword . '%')
+            $articles = Article::where('title', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('description', 'LIKE', '%' . $keyword . '%')
                 ->orWhere('text', 'LIKE', '%' . $keyword . '%')
+                ->orderBy('created_at', $sort)
                 ->paginate(16);
+
+            foreach ($articles as $key => $article) {
+                if ($article->id == '1') {
+                    unset($articles[$key]);
+                }
+                if ($article->id == '2') {
+                    unset($articles[$key]);
+                }
+            }
         }
 
         return view('main.news', compact(

@@ -48,7 +48,8 @@
                             style="min-width: 100%;" />
                     </div>
                     <h2>{{ $article->title }}</h2>
-                    <h6 class="text-muted">Author: {{ get_user_detail($article->author, 'full_name') }}<br>Published:
+                    <h6 class="text-muted">Author:
+                        {{ $article->author == null || $article->author == '' ? 'None' : get_user_detail($article->author, 'full_name') }}<br>Published:
                         {{ date_format($article->created_at, 'd M Y') }} | Updated:
                         {{ date_format($article->updated_at, 'd M Y') }}
                     </h6>

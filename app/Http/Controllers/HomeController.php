@@ -30,13 +30,13 @@ class HomeController extends Controller
 
         $news_title = Settings::where('name', 'home.news.title')->pluck('value')[0];
         $news_subtitle = Settings::where('name', 'home.news.subtitle')->pluck('value')[0];
+        $articles = Article::where('id', '!=', 1)->where('id', '!=', 2)->orderBy('created_at', 'DESC')->skip(0)->take(4)->get();
 
         $gallery_title = Settings::where('name', 'home.gallery.title')->pluck('value')[0];
         $gallery_subtitle = Settings::where('name', 'home.gallery.subtitle')->pluck('value')[0];
         $gallery_images = Gallery::all();
 
         $quotes = Quote::all();
-
         $quote_bg = Settings::where('name', 'home.quote.bg')->pluck('value')[0];
 
         $donate_title = Settings::where('name', 'home.donate.title')->pluck('value')[0];
@@ -53,6 +53,7 @@ class HomeController extends Controller
         $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
         return view('main.index', compact(
+            'articles',
             'useful_links',
             'address',
             'email',
@@ -211,10 +212,13 @@ class HomeController extends Controller
         $images = ArticleUpload::where('article_id', $id)->where('type', 'image')->get();
         $videos = ArticleUpload::where('article_id', $id)->where('type', 'video')->get();
 
+        $articles = Article::where('id', '!=', 1)->where('id', '!=', 2)->orderBy('created_at', 'DESC')->skip(0)->take(4)->get();
+
         return view('main.article', compact(
             'images',
             'videos',
             'article',
+            'articles',
             'useful_links',
             'address',
             'email',
@@ -704,18 +708,94 @@ class HomeController extends Controller
         return view('main_settings.news', compact('articles'));
     }
 
-    public function article_view($id)
-    {
-        if ($id == null) {
-            return 'hush';
-        } else {
-            dd($id);
-        }
-    }
-
     public function article_add(Request $request)
     {
-        dd($request);
+        // ADD TO DB
+        $article = Article::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'author' => $request->author,
+            'text' => $request->text,
+        ]);
+
+        // STORE THUMBNAIL
+        $request->validate([
+            'thumbnail' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+        ]);
+
+        // creating name and path for the file
+        // time() is current unix timestamp
+        $fileName = time() . '_' . $request->file('thumbnail')->getClientOriginalName();;
+
+        $request->thumbnail->move(public_path('upload/article/' . $article->id), $fileName);
+
+        // updating details in db
+        ArticleUpload::create([
+            'article_id' => $article->id,
+            'type' => 'thumbnail',
+            'path' => 'upload/article/' . $article->id . '/' . $fileName,
+        ]);
+
+        // STORE IMAGES
+        $request->validate([
+            'images.*' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+        ]);
+
+        $images = $request->file('images');
+
+        foreach ($images as $image) {
+            // creating name and path for the file
+            // time() is current unix timestamp
+            $fileName = time() .
+                '_' . $article->id . '_' . $image->getClientOriginalName();
+
+            $image->move(public_path('upload/article/' . $article->id), $fileName);
+
+            // updating details in db
+            ArticleUpload::create([
+                'article_id' => $article->id,
+                'type' => 'image',
+                'path' => 'upload/article/' . $article->id . '/' . $fileName,
+            ]);
+        }
+
+        // STORE VIDEOS
+        $request->validate([
+            'videos.*' => 'mimes:mp4,mov,ogg,qt|max:20000',
+        ]);
+
+        $videos = $request->file('videos');
+
+        foreach ($videos as $video) {
+            // creating name and path for the file
+            // time() is current unix timestamp
+            $fileName = time() .
+                '_' . $article->id . '_' . $video->getClientOriginalName();
+
+            $video->move(public_path('upload/article/' . $article->id), $fileName);
+
+            // updating details in db
+            ArticleUpload::create([
+                'article_id' => $article->id,
+                'type' => 'video',
+                'path' => 'upload/article/' . $article->id . '/' . $fileName,
+            ]);
+        }
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Add article ' . $request->title . ' (ID: ' . $article->id . ')'));
+
+        return redirect()->route('main.article', ['id' => $article->id]);
+    }
+
+    public function article_update_view($id)
+    {
+        $article = Article::where('id', $id)->first();
+        $thumbnails = ArticleUpload::where('article_id', $id)->where('type', 'thumbnail')->get();
+        $images = ArticleUpload::where('article_id', $id)->where('type', 'image')->get();
+        $videos = ArticleUpload::where('article_id', $id)->where('type', 'video')->get();
+
+        return view('main_settings.article.update', compact('article', 'thumbnails', 'images', 'videos'));
     }
 
     public function article_update(Request $request)
@@ -735,7 +815,44 @@ class HomeController extends Controller
 
     public function article_image_video(Request $request)
     {
-        if ($request->type == 'image') {
+        if ($request->type == 'thumbnail') {
+            $request->validate([
+                'thumbnail' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+            ]);
+
+            // delete prev thumbnail
+            $thumbnails = ArticleUpload::where('article_id', $request->id)->where('type', 'thumbnail')->get();
+
+            foreach ($thumbnails as $thumbnail) {
+                if (File::exists(public_path($thumbnail->path))) {
+                    File::delete(public_path($thumbnail->path));
+                }
+            }
+
+            ArticleUpload::where('article_id', $request->id)
+                ->where('type', 'thumbnail')
+                ->delete();
+
+            // add new thumbnail
+
+            // creating name and path for the file
+            // time() is current unix timestamp
+            $fileName = time() . '_' . $request->id .  $request->file('thumbnail')->getClientOriginalName();;
+
+            $request->thumbnail->move(public_path('upload/article/' . $request->id), $fileName);
+
+            // updating details in db
+            ArticleUpload::create([
+                'article_id' => $request->id,
+                'type' => 'thumbnail',
+                'path' => 'upload/article/' . $request->id . '/' . $fileName,
+            ]);
+
+            // user activity log
+            event(new UserActivityEvent(Auth::user(), $request, 'Add/Replace thumbnail to article ' . $request->title . ' (ID: ' . $request->id . ')'));
+
+            return back()->with('success', 'Thumbnail successfully added/replaced!');
+        } else if ($request->type == 'image') {
             $request->validate([
                 'images.*' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
             ]);

@@ -1,6 +1,6 @@
 @extends('layouts.main-master')
 
-@section('page-title', 'Article Name')
+@section('page-title', $article->title)
 
 @section('custom-head')
     <style>
@@ -91,24 +91,20 @@
                     </div> --}}
                 </div>
                 <div class="col-md-3">
-                    <h6>Read more like this</h6>
-                    <a href="#" class="text-body">
-                        <div class="card d-block w-100 shadow mb-2">
-                            <div class="card-body">
-                                <h6 class="card-title">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur venenatis
-                                    blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu facilisis lectus,
-                                    sed
-                                    feugiat tellus nulla eu dolor. Nulla porta bibendum lectus quis euismod. Aliquam
-                                    volutpat
-                                    ultricies porttitor. Cras risus nisi, accumsan vel cursus ut, sollicitudin vitae dolor.
-                                    Fusce scelerisque eleifend lectus in bibendum. Suspendisse lacinia egestas felis a
-                                    volutpat.
-                                </h6>
-                                <p class="card-time"><i class="bi bi-clock"></i> 4 August 2020</p>
+                    <h6>Latest News</h6>
+                    @foreach ($articles as $article)
+                        <a href="{{ route('main.article', ['id' => $article->id]) }}" class="text-body">
+                            <div class="card d-block w-100 shadow mb-2">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        {{ $article->title ?? 'None' }}
+                                    </h6>
+                                    <p class="card-time"><i class="bi bi-clock"></i>
+                                        {{ date_format($article->created_at, 'd M Y') }}</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    @endforeach
                 </div>
             </div>
 

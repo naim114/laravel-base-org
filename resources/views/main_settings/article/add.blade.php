@@ -34,10 +34,11 @@
 
         <div class="card p-4 mb-3">
             <div class="form-group">
-                <form method="POST" enctype="multipart/form-data" action="{{ route('main.settings.article.add') }}">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('main.settings.article.publish') }}">
                     @csrf
-                    <h5 class="mt-3">Title</h5>
+                    <h5>Title</h5>
                     <input type="text" name="title" class="form-control mt-3 mb-3" placeholder="Enter Title" required>
+                    <input type="text" name="author" value="{{ Auth::user()->id }}" hidden>
 
                     <h5>Description</h5>
                     <input type="text" name="description" class="form-control mt-3 mb-3" placeholder="Enter Description"

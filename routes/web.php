@@ -383,7 +383,7 @@ Route::group(['middleware' => ['auth', 'status']], function () {
 
     Route::get(
         '/main/article/view/{id}',
-        [HomeController::class, 'article_view']
+        [HomeController::class, 'article_update_view']
     )->name('main.settings.article.view')->middleware('permissions:main.manage');
 
     Route::get('/main/article/add', function () {

@@ -79,7 +79,27 @@
                 <p>{{ $news_subtitle }}</p>
             </div>
             <div class="row">
-                <div class="col-md-3 mb-2">
+                @foreach ($articles as $article)
+                    <div class="col-md-3 mb-2">
+                        <a href="{{ route('main.article', ['id' => $article->id]) }}" class="text-body">
+                            <div class="card d-block w-100 shadow h-100">
+                                <img src="{{ asset(get_article_thumbnail($article->id)) }}" class="card-img-top"
+                                    alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {{ $article->title ?? 'None' }}
+                                    </h5>
+                                    <p class="card-text">
+                                        {{ $article->description ?? 'None' }}
+                                    </p>
+                                    <p class="card-time"><i class="bi bi-clock"></i>
+                                        {{ date_format($article->created_at, 'd M Y') }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+                {{-- <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
                             <img src="{{ asset('assets/img/default-image.jpg') }}" class="card-img-top" alt="...">
@@ -156,7 +176,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> --}}
             </div>
             <div class="float-end mt-3">
                 <a href="{{ route('main.news') }}">View More <i class="bi bi-arrow-right-square-fill"></i></a>

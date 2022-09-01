@@ -53,9 +53,10 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <button data-item="" class="dropdown-item">
+                                    <a href="{{ route('main.settings.article.view', ['id' => $article->id]) }}"
+                                        class="dropdown-item">
                                         Edit Article
-                                    </button>
+                                    </a>
                                 </li>
                                 <li>
                                     <button data-item="" class="dropdown-item text-danger deleteButton">

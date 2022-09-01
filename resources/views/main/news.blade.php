@@ -56,22 +56,25 @@
                 <h1>News</h1>
                 <p>Get the latest news, events, announcement, public statements directly from us.</p>
             </div>
-            <div class="row mb-4">
-                <div class="col-lg-2 col-md-2">
-                    <select name="sort" class="form-control p-3">
-                        <option value="desc">Newest</option>
-                        <option value="asc">Oldest </option>
-                    </select>
+            <form method="GET" action="{{ route('main.news') }}">
+                <div class="row mb-4">
+                    <div class="col-lg-2 col-md-2">
+                        <select name="sort" class="form-control p-3">
+                            <option value="desc">Newest</option>
+                            <option value="asc">Oldest </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-8 col-md-8">
+                        <input name="keyword" placeholder="Find article using keyword" class="form-control p-3"
+                            type="text" value="{{ $keyword }}">
+                    </div>
+                    <div class="col-lg-2 col-md-2">
+                        <button type="submit" class="btn btn-primary p-3 w-100">
+                            Search <i class="bx bx-search"></i>
+                        </button>
+                    </div>
                 </div>
-                <div class="col-lg-8 col-md-8">
-                    <input name="keyword" placeholder="Find article using keyword" class="form-control p-3" type="text">
-                </div>
-                <div class="col-lg-2 col-md-2">
-                    <button type="submit" class="btn btn-primary p-3 w-100">
-                        Search <i class="bx bx-search"></i>
-                    </button>
-                </div>
-            </div>
+            </form>
             <div class="row">
                 @foreach ($articles as $article)
                     <div class="col-md-3 mb-4">
@@ -93,6 +96,9 @@
                         </a>
                     </div>
                 @endforeach
+                <div class="d-flex justify-content-center">
+                    {{ $articles->links() }}
+                </div>
             </div>
         </div>
     </section>

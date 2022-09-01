@@ -46,7 +46,7 @@
 
                     <h5 data-bs-toggle="tooltip" data-bs-placement="right"
                         title="Tips: You can paste image, iframe, etc on the text editor">Text</h5>
-                    <textarea name="text" required></textarea>
+                    <textarea name="text"></textarea>
 
                     <h5 class="mt-3">Upload Thumbnail</h5>
                     <input type="file" name="thumbnail" class="form-control mt-3 mb-3" accept="image/*">

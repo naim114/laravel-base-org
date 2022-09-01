@@ -168,8 +168,18 @@ class HomeController extends Controller
     }
 
     // News
-    public function view_news()
+    public function view_news(Request $request)
     {
+        $sort = 'desc';
+        if ($request->input('sort')) {
+            $sort = $request->input('sort');
+        }
+
+        $keyword = '';
+        if ($request->input('keyword')) {
+            $keyword = $request->input('keyword');
+        }
+
         $useful_links = UsefulLink::all();
         $address = Settings::where('name', 'contact.address')->pluck('value')[0];
         $email = Settings::where('name', 'contact.email')->pluck('value')[0];
@@ -181,9 +191,22 @@ class HomeController extends Controller
 
         $articles = Article::where('id', '!=', 1)
             ->where('id', '!=', 2)
-            ->get();
+            ->orderBy('created_at', $sort)
+            ->paginate(16);
+
+        if ($request->input('sort')) {
+            $articles = Article::where('id', '!=', 1)
+                ->where('id', '!=', 2)
+                ->orderBy('created_at', $sort)
+                ->where('title', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('description', 'LIKE', '%' . $keyword . '%')
+                ->orWhere('text', 'LIKE', '%' . $keyword . '%')
+                ->paginate(16);
+        }
 
         return view('main.news', compact(
+            'sort',
+            'keyword',
             'articles',
             'useful_links',
             'address',
@@ -718,68 +741,75 @@ class HomeController extends Controller
             'text' => $request->text,
         ]);
 
+
         // STORE THUMBNAIL
-        $request->validate([
-            'thumbnail' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
-        ]);
+        if (isset($request->thumbnail)) {
+            $request->validate([
+                'thumbnail' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
+            ]);
 
-        // creating name and path for the file
-        // time() is current unix timestamp
-        $fileName = time() . '_' . $request->file('thumbnail')->getClientOriginalName();;
-
-        $request->thumbnail->move(public_path('upload/article/' . $article->id), $fileName);
-
-        // updating details in db
-        ArticleUpload::create([
-            'article_id' => $article->id,
-            'type' => 'thumbnail',
-            'path' => 'upload/article/' . $article->id . '/' . $fileName,
-        ]);
-
-        // STORE IMAGES
-        $request->validate([
-            'images.*' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
-        ]);
-
-        $images = $request->file('images');
-
-        foreach ($images as $image) {
             // creating name and path for the file
             // time() is current unix timestamp
-            $fileName = time() .
-                '_' . $article->id . '_' . $image->getClientOriginalName();
+            $fileName = time() . '_' . $request->file('thumbnail')->getClientOriginalName();;
 
-            $image->move(public_path('upload/article/' . $article->id), $fileName);
+            $request->thumbnail->move(public_path('upload/article/' . $article->id), $fileName);
 
             // updating details in db
             ArticleUpload::create([
                 'article_id' => $article->id,
-                'type' => 'image',
+                'type' => 'thumbnail',
                 'path' => 'upload/article/' . $article->id . '/' . $fileName,
             ]);
         }
 
-        // STORE VIDEOS
-        $request->validate([
-            'videos.*' => 'mimes:mp4,mov,ogg,qt|max:20000',
-        ]);
-
-        $videos = $request->file('videos');
-
-        foreach ($videos as $video) {
-            // creating name and path for the file
-            // time() is current unix timestamp
-            $fileName = time() .
-                '_' . $article->id . '_' . $video->getClientOriginalName();
-
-            $video->move(public_path('upload/article/' . $article->id), $fileName);
-
-            // updating details in db
-            ArticleUpload::create([
-                'article_id' => $article->id,
-                'type' => 'video',
-                'path' => 'upload/article/' . $article->id . '/' . $fileName,
+        // STORE IMAGES
+        if (isset($request->images)) {
+            $request->validate([
+                'images.*' => 'image|mimes:png,jpg,jpeg,gif,svg|max:2048',
             ]);
+
+            $images = $request->file('images');
+
+            foreach ($images as $image) {
+                // creating name and path for the file
+                // time() is current unix timestamp
+                $fileName = time() .
+                    '_' . $article->id . '_' . $image->getClientOriginalName();
+
+                $image->move(public_path('upload/article/' . $article->id), $fileName);
+
+                // updating details in db
+                ArticleUpload::create([
+                    'article_id' => $article->id,
+                    'type' => 'image',
+                    'path' => 'upload/article/' . $article->id . '/' . $fileName,
+                ]);
+            }
+        }
+
+        // STORE VIDEOS
+        if (isset($request->images)) {
+            $request->validate([
+                'videos.*' => 'mimes:mp4,mov,ogg,qt|max:20000',
+            ]);
+
+            $videos = $request->file('videos');
+
+            foreach ($videos as $video) {
+                // creating name and path for the file
+                // time() is current unix timestamp
+                $fileName = time() .
+                    '_' . $article->id . '_' . $video->getClientOriginalName();
+
+                $video->move(public_path('upload/article/' . $article->id), $fileName);
+
+                // updating details in db
+                ArticleUpload::create([
+                    'article_id' => $article->id,
+                    'type' => 'video',
+                    'path' => 'upload/article/' . $article->id . '/' . $fileName,
+                ]);
+            }
         }
 
         // user activity log

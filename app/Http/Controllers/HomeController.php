@@ -178,7 +178,12 @@ class HomeController extends Controller
         $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
         $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
+        $articles = Article::where('id', '!=', 1)
+            ->where('id', '!=', 2)
+            ->get();
+
         return view('main.news', compact(
+            'articles',
             'useful_links',
             'address',
             'email',
@@ -191,7 +196,7 @@ class HomeController extends Controller
     }
 
     // Article
-    public function view_article()
+    public function view_article($id)
     {
         $useful_links = UsefulLink::all();
         $address = Settings::where('name', 'contact.address')->pluck('value')[0];
@@ -202,7 +207,14 @@ class HomeController extends Controller
         $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
         $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
 
+        $article = Article::where('id', $id)->first();
+        $images = ArticleUpload::where('article_id', $id)->where('type', 'image')->get();
+        $videos = ArticleUpload::where('article_id', $id)->where('type', 'video')->get();
+
         return view('main.article', compact(
+            'images',
+            'videos',
+            'article',
             'useful_links',
             'address',
             'email',
@@ -685,12 +697,20 @@ class HomeController extends Controller
 
     public function news()
     {
-        return view('main_settings.news');
+        $articles = Article::where('id', '!=', 1)
+            ->where('id', '!=', 2)
+            ->get();
+
+        return view('main_settings.news', compact('articles'));
     }
 
-    public function article_view(Request $request)
+    public function article_view($id)
     {
-        dd($request);
+        if ($id == null) {
+            return 'hush';
+        } else {
+            dd($id);
+        }
     }
 
     public function article_add(Request $request)
@@ -873,6 +893,7 @@ class HomeController extends Controller
             'twitter',
             'facebook',
             'instagram',
+            'linkedin',
         ));
     }
 

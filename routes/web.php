@@ -64,7 +64,7 @@ Route::get(
 )->name('main.news');
 
 Route::get(
-    '/en/article',
+    '/en/article/{id}',
     [HomeController::class, 'view_article'],
 )->name('main.article');
 
@@ -386,10 +386,14 @@ Route::group(['middleware' => ['auth', 'status']], function () {
         [HomeController::class, 'article_view']
     )->name('main.settings.article.view')->middleware('permissions:main.manage');
 
+    Route::get('/main/article/add', function () {
+        return view('main_settings.article.add');
+    })->name('main.settings.article.add')->middleware('permissions:main.manage');
+
     Route::post(
-        '/main/article/add',
+        '/main/article/publish',
         [HomeController::class, 'article_add']
-    )->name('main.settings.article.add')->middleware('permissions:main.manage');
+    )->name('main.settings.article.publish')->middleware('permissions:main.manage');
 
     Route::post(
         '/main/article/update',

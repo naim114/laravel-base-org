@@ -73,84 +73,26 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                    <a href="{{ route('main.article') }}" class="text-body">
-                        <div class="card d-block w-100 shadow h-100">
-                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur venenatis
-                                    blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu facilisis lectus,
-                                    sed
-                                    feugiat tellus nulla eu dolor. Nulla porta bibendum lectus quis euismod. Aliquam
-                                    volutpat
-                                    ultricies porttitor. Cras risus nisi, accumsan vel cursus ut, sollicitudin vitae dolor.
-                                    Fusce scelerisque eleifend lectus in bibendum. Suspendisse lacinia egestas felis a
-                                    volutpat.
-                                </h5>
-                                <p class="card-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur venenatis
-                                    blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu facilisis lectus,
-                                    sed
-                                    feugiat tellus nulla eu dolor. Nulla porta bibendum lectus quis euismod. Aliquam
-                                    volutpat
-                                    ultricies porttitor. Cras risus nisi, accumsan vel cursus ut, sollicitudin vitae dolor.
-                                    Fusce scelerisque eleifend lectus in bibendum. Suspendisse lacinia egestas felis a
-                                    volutpat.
-                                </p>
-                                <p class="card-time"><i class="bi bi-clock"></i> 4 August 2020</p>
+                @foreach ($articles as $article)
+                    <div class="col-md-3 mb-4">
+                        <a href="{{ route('main.article', ['id' => $article->id]) }}" class="text-body">
+                            <div class="card d-block w-100 shadow h-100">
+                                <img src="{{ asset(get_article_thumbnail($article->id)) }}" class="card-img-top"
+                                    alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {{ $article->title }}
+                                    </h5>
+                                    <p class="card-text">
+                                        {{ $article->description }}
+                                    </p>
+                                    <p class="card-time"><i class="bi bi-clock"></i>
+                                        {{ date_format($article->created_at, 'd M Y') }}</p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="#" class="text-body">
-                        <div class="card d-block w-100 shadow h-100">
-                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Thriving in an AI-enabled Digital Economy
-                                </h5>
-                                <p class="card-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p>
-                                <p class="card-time"><i class="bi bi-clock"></i> 4 August 2020</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="#" class="text-body">
-                        <div class="card d-block w-100 shadow h-100">
-                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Thriving in an AI-enabled Digital Economy
-                                </h5>
-                                <p class="card-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p>
-                                <p class="card-time"><i class="bi bi-clock"></i> 4 August 2020</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="#" class="text-body">
-                        <div class="card d-block w-100 shadow h-100">
-                            <img src="http://localhost:8000/home/img/hero-bg.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    Thriving in an AI-enabled Digital Economy
-                                </h5>
-                                <p class="card-text">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                </p>
-                                <p class="card-time"><i class="bi bi-clock"></i> 4 August 2020</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

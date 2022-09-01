@@ -17,13 +17,14 @@
             </div>
         @enderror
 
-        <button class="btn btn-primary mb-2 addButton">
+        <a href="{{ route('main.settings.article.add') }}" class="btn btn-primary mb-2">
             + Add Article
-        </button>
+        </a>
         <table id="rolesTable" class="table table-striped table-hover table-responsive">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Title</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Author</th>
                     <th scope="col">Published at</th>
                     <th scope="col">Updated at</th>
@@ -31,28 +32,40 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Title #1</td>
-                    <td>Name #1</td>
-                    <td>Aug 16, 2022</td>
-                    <td>Aug 16, 2022</td>
-                    <td>
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false"><i class="fas fa-ellipsis-h fa-fw"></i></a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li>
-                                <button data-item="" class="dropdown-item editButton">
-                                    Edit Article
-                                </button>
-                            </li>
-                            <li>
-                                <button data-item="" class="dropdown-item text-danger deleteButton">
-                                    Delete Article
-                                </button>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
+
+                @foreach ($articles as $article)
+                    <tr>
+                        <td>{{ $article->title }}</td>
+                        <td>{{ $article->description ?? 'None' }}</td>
+                        <td><a
+                                href="{{ route('users.view', ['action' => 'profile', 'id' => $article->author]) }}">{{ get_user_detail($article->author, 'full_name') }}</a>
+                        </td>
+                        <td>{{ $article->created_at ?? 'None' }}</td>
+                        <td>{{ $article->updated_at ?? 'None' }}</td>
+                        <td>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"><i class="fas fa-ellipsis-h fa-fw"></i></a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a target="_blank" href="{{ route('main.article', ['id' => $article->id]) }}"
+                                        class="dropdown-item">
+                                        View Article
+                                    </a>
+                                </li>
+                                <li>
+                                    <button data-item="" class="dropdown-item">
+                                        Edit Article
+                                    </button>
+                                </li>
+                                <li>
+                                    <button data-item="" class="dropdown-item text-danger deleteButton">
+                                        Delete Article
+                                    </button>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -65,39 +78,14 @@
             $('.table').DataTable();
         });
 
-        // add modal
-        $(".addButton").click(function() {
-            $('#addModal').modal('show');
-        });
-
-        $(".closeAddModal").click(function() {
-            $('#addModal').modal('hide');
-        });
-
-        // edit modal
-        $(".editButton").click(function() {
-            $('#editModal').modal('show');
-
-            var role = $(this).data('role');
-
-            $('#editModalName').val(role.name);
-            $('#editModalId').val(role.id);
-            $('#editModalDisplayName').val(role.display_name);
-            $('#editModalDescription').val(role.description);
-        });
-
-        $(".closeEditModal").click(function() {
-            $('#editModal').modal('hide');
-        });
-
         // delete modal
         $(".deleteButton").click(function() {
             $('#deleteModal').modal('show');
 
-            var role = $(this).data('role');
+            var item = $(this).data('item');
 
-            $('#deleteModalId').val(role.id);
-            $('#textBanModal').text('Are you sure you want to delete role ' + role.name +
+            $('#deleteModalId').val(item.id);
+            $('#textBanModal').text('Are you sure you want to delete article ' + item.title +
                 ' ?');
         });
 

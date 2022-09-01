@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Article;
+use App\Models\ArticleUpload;
 use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -81,5 +83,20 @@ if (!function_exists('current_route')) {
         $current_route_name = Route::currentRouteName();
 
         return $route_name  == $current_route_name;
+    }
+}
+
+if (!function_exists('get_article_thumbnail')) {
+    function get_article_thumbnail($id)
+    {
+        $item = ArticleUpload::where('article_id', $id)
+            ->where('type', 'thumbnail')
+            ->first();
+
+        if ($item == '' || $item == null) {
+            return 'assets/img/default-image.jpg';
+        }
+
+        return $item->path;
     }
 }

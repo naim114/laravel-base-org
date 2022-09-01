@@ -48,7 +48,8 @@
                     <input type="text" name="description" class="form-control mt-3 mb-3" placeholder="Enter Subtitle"
                         value="{{ $article->description }}" required>
 
-                    <h5>Text</h5>
+                    <h5 data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="Tips: You can paste image, iframe, etc on the text editor">Text</h5>
                     <textarea name="text">{!! $article->text !!}</textarea>
 
                     <div class="d-flex flex-row-reverse mt-3">
@@ -122,8 +123,8 @@
                             action="{{ route('main.settings.article.image-video') }}">
                             @csrf
                             <h5 class="mt-3">Upload Videos (Max 20MB)</h5>
-                            <input type="file" name="videos[]" class="form-control mt-3 mb-3" accept="video/*" multiple
-                                required>
+                            <input type="file" name="videos[]" class="form-control mt-3 mb-3" accept="video/*"
+                                multiple required>
                             <input type="text" name="id" value="{{ $article->id }}" hidden>
                             <input type="text" name="type" value="video" hidden>
                             <div class="d-flex flex-row-reverse mt-3">

@@ -40,23 +40,14 @@
 
             <div class="row" data-aos="fade-up" data-aos-delay="100">
                 <div class="col-lg-6">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                        <div class="row">
-                            <div class="col form-group">
-                                <input type="text" name="name" class="form-control" id="name"
-                                    placeholder="Your Name" required>
-                            </div>
-                            <div class="col form-group">
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Your Email" required>
-                            </div>
+                    <form id="contact_form" action="mailto:{{ $email }}" method="POST" role="form"
+                        class="php-email-form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="subject" id="input_subject"
+                                placeholder="Subject" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                            <textarea class="form-control" name="message" rows="5" placeholder="Message" id="input_msg" required></textarea>
                         </div>
                         <div class="my-3">
                             <div class="loading">Loading</div>
@@ -123,4 +114,28 @@
             </div>
         </div>
     </section>
+@stop
+
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script>
+        $("#contact_form").change(function() {
+            var email = {!! json_encode($email) !!};;
+            var input_subject = $('#input_subject').val();
+            var input_msg = $('#input_msg').val();
+
+            var action = `mailto:${email}?subject=${input_subject}&body=${input_msg}`;
+
+            console.log(input_msg);
+            $('#contact_form').attr('action', action);
+        });
+    </script>
 @stop

@@ -50,7 +50,6 @@
     <script src={{ asset('home/vendor/isotope-layout/isotope.pkgd.min.js') }}></script>
     <script src={{ asset('home/vendor/swiper/swiper-bundle.min.js') }}></script>
     <script src={{ asset('home/vendor/waypoints/noframework.waypoints.js') }}></script>
-    <script src={{ asset('home/vendor/php-email-form/validate.js') }}></script>
 
     <!-- Template Main JS File -->
     <script src={{ asset('home/js/main.js') }}></script>

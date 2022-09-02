@@ -88,6 +88,11 @@ Route::get(
     [HomeController::class, 'view_contact'],
 )->name('main.contact');
 
+Route::post(
+    '/en/contact/msg',
+    [HomeController::class, 'send_msg'],
+)->name('main.msg');
+
 // ======================================================================================== //
 // Auth Routes
 // generated from laravel/ui package

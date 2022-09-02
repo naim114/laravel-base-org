@@ -359,6 +359,16 @@ class HomeController extends Controller
         ));
     }
 
+    // Send Message
+    public function send_msg(Request $request)
+    {
+        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
+
+        mail($email, $request->subject, $request->message);
+
+        return back();
+    }
+
     /**
      * Main/Home Settings Functions
      */

@@ -21,7 +21,8 @@
 
 @section('breadcrumb')
     <a href="{{ route('main.settings.home') }}">Main Pages</a> /
-    <a>{{ trans('app.news') }}</a>
+    <a href="{{ route('main.settings.news') }}">{{ trans('app.news') }}</a> /
+    <a>Publish</a>
 @stop
 
 @section('content')

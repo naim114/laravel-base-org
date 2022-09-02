@@ -966,7 +966,23 @@ class HomeController extends Controller
 
     public function article_delete(Request $request)
     {
-        dd($request);
+        $article = Article::where('id', $request->id)->first();
+        $uploads = ArticleUpload::where('article_id', $request->id)->get();
+
+        foreach ($uploads as $upload) {
+            if (File::exists(public_path($upload->path))) {
+                File::delete(public_path($upload->path));
+            }
+        }
+
+        ArticleUpload::where('article_id', $request->id)->delete();
+
+        Article::where('id', $request->id)->delete();
+
+        // user activity log
+        event(new UserActivityEvent(Auth::user(), $request, 'Delete article ' . $article->title . ' (ID: ' . $request->id . ')'));
+
+        return back()->with('success', 'Article ' . $article->title . ' successfully deleted!');
     }
 
     public function form()

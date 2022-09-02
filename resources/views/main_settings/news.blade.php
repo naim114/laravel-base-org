@@ -59,7 +59,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <button data-item="" class="dropdown-item text-danger deleteButton">
+                                    <button data-item="{{ $article }}" class="dropdown-item text-danger deleteButton">
                                         Delete Article
                                     </button>
                                 </li>
@@ -69,6 +69,32 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
+
+    {{-- Delete Modal --}}
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form method="POST" action="{{ route('main.settings.article.delete') }}">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">
+                            Delete Article
+                        </h5>
+                    </div>
+                    <div class="modal-body">
+                        <p id="textBanModal"></p>
+                        <input name="id" type="text" id="deleteModalId" hidden>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary closeDeleteModal"
+                            data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 @stop
 

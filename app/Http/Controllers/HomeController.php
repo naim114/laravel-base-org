@@ -286,30 +286,6 @@ class HomeController extends Controller
         ));
     }
 
-    // Membership
-    public function view_membership()
-    {
-        $useful_links = UsefulLink::all();
-        $address = Settings::where('name', 'contact.address')->pluck('value')[0];
-        $email = Settings::where('name', 'contact.email')->pluck('value')[0];
-        $phone = Settings::where('name', 'contact.phone')->pluck('value')[0];
-        $twitter = Settings::where('name', 'contact.twitter')->pluck('value')[0];
-        $facebook = Settings::where('name', 'contact.facebook')->pluck('value')[0];
-        $instagram = Settings::where('name', 'contact.instagram')->pluck('value')[0];
-        $linkedin = Settings::where('name', 'contact.linkedin')->pluck('value')[0];
-
-        return view('main.join.membership', compact(
-            'useful_links',
-            'address',
-            'email',
-            'phone',
-            'twitter',
-            'facebook',
-            'instagram',
-            'linkedin',
-        ));
-    }
-
     // Donate
     public function view_donate()
     {

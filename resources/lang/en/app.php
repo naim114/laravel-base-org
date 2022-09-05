@@ -78,7 +78,6 @@ return [
     'news' => 'News',
 
     'join.forms' => 'Forms',
-    'join.membership' => 'Online Membership',
     'join.donate' => 'Donate',
 
     'shop' => 'Shop',

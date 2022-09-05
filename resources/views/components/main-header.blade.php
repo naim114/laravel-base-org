@@ -20,12 +20,12 @@
                 <li><a class="nav-link scrollto {{ current_route('main.news') ? 'active' : '' }}"
                         href="{{ route('main.news') }}">News</a></li>
                 <li class="dropdown"><a
-                        class="{{ current_route('main.join.form') || current_route('main.join.membership') || current_route('main.join.donate') ? 'active' : '' }}"
+                        class="{{ current_route('main.join.form') || current_route('main.join.donate') ? 'active' : '' }}"
                         href="#"><span>Join Us</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('main.join.form') }}">Forms</a></li>
-                        <li><a href="{{ route('main.join.membership') }}">Online Membership</a></li>
-                        <li><a href="{{ route('main.join.donate') }}">Donate</a></li>
+                        <li><a href="{{ route('register') }}">Online Membership</a></li>
+                        {{-- <li><a href="{{ route('main.join.donate') }}">Donate</a></li> --}}
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto {{ current_route('main.contact') ? 'active' : '' }}"

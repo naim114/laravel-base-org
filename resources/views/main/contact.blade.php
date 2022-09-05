@@ -134,7 +134,6 @@
 
             var action = `mailto:${email}?subject=${input_subject}&body=${input_msg}`;
 
-            console.log(input_msg);
             $('#contact_form').attr('action', action);
         });
     </script>

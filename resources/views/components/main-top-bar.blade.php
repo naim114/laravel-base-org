@@ -3,7 +3,7 @@
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="contact-info d-flex align-items-center">
                 <i class="bi bi-person d-flex align-items-center"><a
-                        href="mailto:contact@example.com">{{ Auth::user()->username }}</a></i>
+                        href="{{ route('profile') }}">{{ Auth::user()->username }}</a></i>
             </div>
             <div class="social-links d-none d-md-flex align-items-center">
                 <a href="{{ route('dashboard') }}">Dashboard</a>
@@ -23,6 +23,7 @@
                 <a>Welcome to <span>{{ trans('app.app-name') }}</span></a>
             </div>
             <div class="social-links d-none d-md-flex align-items-center">
+                <a href="{{ route('register') }}">Sign Up</a>
                 <a href="{{ route('login') }}">Login</a>
             </div>
         </div>

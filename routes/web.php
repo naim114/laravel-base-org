@@ -74,11 +74,6 @@ Route::get(
 )->name('main.join.form');
 
 Route::get(
-    '/en/join/membership',
-    [HomeController::class, 'view_membership'],
-)->name('main.join.membership');
-
-Route::get(
     '/en/join/donate',
     [HomeController::class, 'view_donate'],
 )->name('main.join.donate');

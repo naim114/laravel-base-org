@@ -28,6 +28,11 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
+                        @if (null !== Auth::user())
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('logout') }}">Logout</a></li>
+                        @else
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('login') }}">Login</a></li>
+                        @endif
                         @if (trans('app.privacy-policy') != null)
                             <li><i class="bx bx-chevron-right"></i> <a href="{{ trans('app.privacy-policy') }}">Privacy
                                     & Policy</a></li>

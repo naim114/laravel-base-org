@@ -27,7 +27,6 @@ class UserSeeder extends Seeder
             'username' => 'superadmin',
             'password' => Hash::make('liveforever'),
             'avatar' => null,
-            'country_id' => null,
             'role_id' => $super_admin->id,
             'status' => UserStatus::ACTIVE
         ]);
@@ -38,7 +37,6 @@ class UserSeeder extends Seeder
             'username' => 'admin1',
             'password' => Hash::make('admin1@gmailya.com'),
             'avatar' => null,
-            'country_id' => null,
             'role_id' => $admin->id,
             'status' => UserStatus::ACTIVE
         ]);
@@ -49,7 +47,6 @@ class UserSeeder extends Seeder
             'username' => 'dude1',
             'password' => Hash::make('dude1@gmailya.com'),
             'avatar' => null,
-            'country_id' => null,
             'role_id' => $user->id,
             'status' => UserStatus::ACTIVE
         ]);

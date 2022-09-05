@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Country;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -34,9 +33,6 @@ class UserFactory extends Factory
             'phone' => $this->faker->phoneNumber,
             'avatar' => null,
             'address' => $this->faker->address,
-            'country_id' => function () {
-                return $this->faker->randomElement(Country::pluck('id')->toArray());
-            },
             'role_id' => function () {
                 return \App\Models\Role::factory()->create()->id;
             },

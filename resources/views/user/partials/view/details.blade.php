@@ -12,10 +12,6 @@
             <label for="phone">Phone Number</label>
             <input type="text" name="phone" value="{{ $user->phone }}" class="form-control" disabled>
         </div>
-        <div class="form-group mb-3">
-            <label for="country">Country</label>
-            <input type="text" name="country" value="{{ $country->name ?? null }}" class="form-control" disabled>
-        </div>
     </div>
     <div class="col-md-6">
         <div class="form-group mb-3">

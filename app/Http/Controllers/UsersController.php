@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\UserActivity;
-use App\Models\Country;
 use App\Models\Role;
 use App\Providers\UserActivityEvent;
 use Illuminate\Http\Request;
@@ -68,27 +67,19 @@ class UsersController extends Controller
         if ($request->action == "profile") {
             $user = User::where('id', $request->id)->first();
 
-            $countries = Country::all();
-
-            $country = Country::where('id', $user->country_id)->first();
-
             $birthday = $user->birthday == null ? null : $user->birthday->format('Y-m-d');
 
             $roles = Role::where('id', '!=', 1)->get();
 
-            return view('user.user_profile', compact('user', 'birthday', 'country'));
+            return view('user.user_profile', compact('user', 'birthday'));
         } elseif ($request->action == "edit") {
             $user = User::where('id', $request->id)->first();
 
-            $countries = Country::all();
-
-            $country = Country::where('id', $user->country_id)->first();
-
             $birthday = $user->birthday == null ? null : $user->birthday->format('Y-m-d');
 
             $roles = Role::where('id', '!=', 1)->get();
 
-            return view('user.user_edit', compact('user', 'birthday', 'countries', 'roles'));
+            return view('user.user_edit', compact('user', 'birthday',  'roles'));
         } elseif ($request->action == "activity") {
             $activities = UserActivity::where('user_id', $request->id)->orderBy('created_at', 'desc')->get();
 

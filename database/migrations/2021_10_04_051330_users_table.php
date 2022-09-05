@@ -23,7 +23,6 @@ class UsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('avatar')->nullable();
             $table->string('address')->nullable();
-            $table->unsignedInteger('country_id')->nullable();
             $table->unsignedInteger('role_id')->default('3');
             $table->date('birthday')->nullable();
             $table->string('device_id', 255)->nullable();

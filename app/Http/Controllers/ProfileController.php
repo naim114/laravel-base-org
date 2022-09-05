@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
 use App\Models\User;
 use App\Providers\UserActivityEvent;
 use Illuminate\Http\Request;
@@ -16,11 +15,9 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
 
-        $countries = Country::all();
-
         $birthday = $user->birthday == null ? null : $user->birthday->format('Y-m-d');
 
-        return view('profile.index', compact('user', 'countries', 'birthday'));
+        return view('profile.index', compact('user', 'birthday'));
     }
 
     /**

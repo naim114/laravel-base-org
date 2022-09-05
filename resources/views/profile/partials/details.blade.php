@@ -12,15 +12,6 @@
                 <input type="text" name="phone" value="{{ $user->phone }}" class="form-control"
                     placeholder="Enter Phone Number">
             </div>
-            <div class="form-group mb-3">
-                <label for="country_id">Country</label>
-                <select name="country_id" class="form-control">
-                    <option value="{{ null }}">Please select a country</option>
-                    @foreach ($countries as $country)
-                        <option value="{{ $country->id }}">{{ $country->name }}</option>
-                    @endforeach
-                </select>
-            </div>
         </div>
         <div class="col-md-6">
             <div class="form-group mb-3">

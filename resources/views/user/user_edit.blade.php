@@ -14,7 +14,6 @@
             clip: rect(0, 0, 0, 0);
             border: 0;
         }
-
     </style>
 @stop
 
@@ -56,10 +55,6 @@
         $(document).ready(function() {
             // reset fileInput value onready
             $('#fileInput').val(null);
-
-            // set initial value for select country
-            var country_id = {!! json_encode($user->country_id) !!};
-            $('select[name=country_id]').val(country_id);
 
             // set initial value for select role
             var role_id = {!! json_encode($user->role_id) !!};

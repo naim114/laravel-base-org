@@ -93,7 +93,8 @@
                                 @foreach ($thumbnails as $thumbnail)
                                     <tr>
                                         <td>
-                                            <img src="{{ asset($thumbnail->path) }}" alt="..." style="width: 30vw">
+                                            <img src="{{ secure_asset($thumbnail->path) }}" alt="..."
+                                                style="width: 30vw">
                                         </td>
                                         <td>
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
@@ -101,7 +102,7 @@
                                                     class="fas fa-ellipsis-h fa-fw"></i></a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <li>
-                                                    <a target="_blank" href="{{ asset($thumbnail->path) }}"
+                                                    <a target="_blank" href="{{ secure_asset($thumbnail->path) }}"
                                                         class="dropdown-item">
                                                         View Thumbnail
                                                     </a>
@@ -140,7 +141,8 @@
                                 @foreach ($images as $image)
                                     <tr>
                                         <td>
-                                            <img src="{{ asset($image->path) }}" alt="..." style="width: 30vw">
+                                            <img src="{{ secure_asset($image->path) }}" alt="..."
+                                                style="width: 30vw">
                                         </td>
                                         <td>
                                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
@@ -148,7 +150,7 @@
                                                     class="fas fa-ellipsis-h fa-fw"></i></a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <li>
-                                                    <a target="_blank" href="{{ asset($image->path) }}"
+                                                    <a target="_blank" href="{{ secure_asset($image->path) }}"
                                                         class="dropdown-item">
                                                         View Image
                                                     </a>
@@ -188,7 +190,7 @@
                                     <tr>
                                         <td>
                                             <video controls class="mb-2" style="width: 30vw">
-                                                <source src="{{ asset($video->path) }}" type="video/mp4">
+                                                <source src="{{ secure_asset($video->path) }}" type="video/mp4">
                                             </video>
                                         </td>
                                         <td>
@@ -197,7 +199,7 @@
                                                     class="fas fa-ellipsis-h fa-fw"></i></a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <li>
-                                                    <a target="_blank" href="{{ asset($video->path) }}"
+                                                    <a target="_blank" href="{{ secure_asset($video->path) }}"
                                                         class="dropdown-item">
                                                         View Video
                                                     </a>

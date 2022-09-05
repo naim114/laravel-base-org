@@ -35,7 +35,8 @@
                     <tr>
                         <td>{{ $form->name }}</td>
                         <td>
-                            <a target="_blank" href="{{ asset($form->path) }}"><i class="fa fa-download fa-fw"></i></a>
+                            <a target="_blank" href="{{ secure_asset($form->path) }}"><i
+                                    class="fa fa-download fa-fw"></i></a>
                         </td>
                         <td>{{ date_format($form->created_at, 'd/m/Y') }}</td>
                         <td>

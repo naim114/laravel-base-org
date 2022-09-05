@@ -2,7 +2,7 @@
     @csrf
     <h5>Auth Wallpaper</h5>
     <div class="text-center">
-        <img id="previewWallpaper" class="img-thumbnail mt-3 mb-3" src="{{ asset(trans('app.wallpaper.auth')) }}"
+        <img id="previewWallpaper" class="img-thumbnail mt-3 mb-3" src="{{ secure_asset(trans('app.wallpaper.auth')) }}"
             style="height: 200px">
         <button type="button" id="changeWallpaperButton" class="btn btn-secondary btn-block mt-3 w-100">
             <i class="fa fa-camera pr-2 pl-2"></i>
@@ -13,7 +13,8 @@
             * Upload image and update wallpaper.
         </p>
 
-        <input type="file" id="fileInputWallpaper" name="wallpaper" class="fileWallpaper hide" accept="image/*" required>
+        <input type="file" id="fileInputWallpaper" name="wallpaper" class="fileWallpaper hide" accept="image/*"
+            required>
         <input type="text" class="form-control hide" disabled placeholder="Upload File" id="fileWallpaper">
         <button type="button" id="inputFileButtonWallpaper"
             class="browseWallpaper btn btn-secondary btn-block mt-3 w-100 hide">

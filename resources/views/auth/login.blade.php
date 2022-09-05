@@ -7,7 +7,7 @@
         <div class="card shadow-lg border-0 rounded-lg mt-5">
             <div class="card-header">
                 <div class="text-center" style="padding-top: 15px">
-                    <img src="{{ asset(trans('app.logo')) }}" style="height: 60px;">
+                    <img src="{{ secure_asset(trans('app.logo')) }}" style="height: 60px;">
                 </div>
                 <h3 class="text-center font-weight-light my-4">Login</h3>
             </div>

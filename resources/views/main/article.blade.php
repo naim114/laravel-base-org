@@ -44,7 +44,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <div class="text-center mb-4">
-                        <img src="{{ asset(get_article_thumbnail($article->id)) }}" class="img-fluid" alt="..."
+                        <img src="{{ secure_asset(get_article_thumbnail($article->id)) }}" class="img-fluid" alt="..."
                             style="min-width: 100%;" />
                     </div>
                     <h2>{{ $article->title }}</h2>
@@ -58,13 +58,13 @@
                     </p>
                     <div id="image-gallery">
                         @foreach ($images as $image)
-                            <img src="{{ asset($image->path) }}" class="img-fluid mb-2" alt="..." />
+                            <img src="{{ secure_asset($image->path) }}" class="img-fluid mb-2" alt="..." />
                         @endforeach
                     </div>
                     <div id="video-gallery">
                         @foreach ($videos as $video)
                             <video controls class="mb-2">
-                                <source src="{{ asset($video->path) }}" type="video/mp4">
+                                <source src="{{ secure_asset($video->path) }}" type="video/mp4">
                             </video>
                         @endforeach
                     </div>

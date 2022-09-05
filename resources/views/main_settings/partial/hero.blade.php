@@ -23,7 +23,8 @@
     @csrf
     <h5>Hero Background Wallpaper</h5>
     <div class="text-center">
-        <img id="previewHeroBg" class="img-thumbnail mt-3 mb-3" src="{{ asset($hero_bg) }}" style="height: 200px">
+        <img id="previewHeroBg" class="img-thumbnail mt-3 mb-3" src="{{ secure_asset($hero_bg) }}"
+            style="height: 200px">
         <button type="button" id="changeHeroBgButton" class="btn btn-secondary btn-block mt-3 w-100">
             <i class="fa fa-camera pr-2 pl-2"></i>
             Change Background

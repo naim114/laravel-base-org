@@ -29,7 +29,7 @@
                     <tr>
                         <th scope="row" class="text-center">
                             <img id="preview" class="rounded-circle img-thumbnail" style="height: 50px; width: 50px"
-                                src="{{ $user->avatar ?? asset(url('assets/img/default-profile-picture.png')) }}">
+                                src="{{ $user->avatar ?? secure_asset(url('assets/img/default-profile-picture.png')) }}">
                         </th>
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->full_name }}</td>

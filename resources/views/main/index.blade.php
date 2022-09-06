@@ -280,7 +280,7 @@
         </div>
     </section><!-- End Quptes Section -->
 
-    <!-- ======= Donate Section ======= -->
+    {{-- <!-- ======= Donate Section ======= -->
     <footer id="footer" data-aos="fade-up">
         <div class="footer-newsletter">
             <div class="container">
@@ -293,5 +293,5 @@
                 </div>
             </div>
         </div>
-    </footer><!-- End Donate Section -->
+    </footer><!-- End Donate Section --> --}}
 @stop

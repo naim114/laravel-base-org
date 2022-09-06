@@ -16,12 +16,17 @@
                 <div class="col-lg-3 col-md-6 footer-links">
                     <h4>Navigations</h4>
                     <ul>
+                        @if (null !== Auth::user())
+                            <li><i class="bx bx-chevron-right"></i> <a href="{{ route('dashboard') }}">Home</a></li>
+                        @endif
                         <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.home') }}">Home</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.about.organization') }}">About
                                 us</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.news') }}">News</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.join.form') }}">Join Us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.contact') }}">Contact</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.join.form') }}">Join Us</a>
+                        </li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="{{ route('main.contact') }}">Contact</a>
+                        </li>
                     </ul>
                 </div>
 

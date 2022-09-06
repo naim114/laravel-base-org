@@ -56,11 +56,11 @@
             </div>
         </div>
 
-        <div class="card p-4 mb-3">
+        {{-- <div class="card p-4 mb-3">
             <div class="form-group">
                 @include('main_settings.partial.donate')
             </div>
-        </div>
+        </div> --}}
     </div>
 @stop
 

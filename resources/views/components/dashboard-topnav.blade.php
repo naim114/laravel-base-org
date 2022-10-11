@@ -4,7 +4,7 @@
         style="margin-left: 20px"><i class="fas fa-bars"></i></button>
     <!-- Navbar Brand-->
     {{-- <a class="navbar-brand ps-3 text-wrap" href="{{ route('dashboard') }}"><b>{{ trans('app.app-name') }}</b></a> --}}
-    <a href="{{ route('dashboard') }}"><img src="{{ secure_asset(trans('app.logo')) }}"
+    <a href="{{ route('dashboard') }}"><img src="{{ asset(trans('app.logo')) }}"
             style="height: 30px; margin-left: 10px; margin-bottom: 20px; margin-top: 20px"></a>
     <!-- Navbar Search-->
     {{-- <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">

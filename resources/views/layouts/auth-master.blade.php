@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>@yield('page-title') | {{ trans('app.app-name') }}</title>
-    <link rel="icon" type="image/png" href="{{ secure_asset(trans('app.favicon')) }}">
+    <link rel="icon" type="image/png" href="{{ asset(trans('app.favicon')) }}">
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     <style>

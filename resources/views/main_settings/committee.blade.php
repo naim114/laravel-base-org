@@ -36,7 +36,7 @@
                         <td>{{ $committee->name }}</td>
                         <td>{{ $committee->title }}</td>
                         <td>
-                            <a target="_blank" href="{{ secure_asset($committee->path) }}"><i
+                            <a target="_blank" href="{{ asset($committee->path) }}"><i
                                     class="fas fa-image fa-fw"></i></a>
                         </td>
                         <td>

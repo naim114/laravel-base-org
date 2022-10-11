@@ -83,7 +83,7 @@
                     <div class="col-md-3 mb-2">
                         <a href="{{ route('main.article', ['id' => $article->id]) }}" class="text-body">
                             <div class="card d-block w-100 shadow h-100">
-                                <img src="{{ secure_asset(get_article_thumbnail($article->id)) }}" class="card-img-top"
+                                <img src="{{ asset(get_article_thumbnail($article->id)) }}" class="card-img-top"
                                     alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">
@@ -102,7 +102,7 @@
                 {{-- <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
-                            <img src="{{ secure_asset('assets/img/default-image.jpg') }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('assets/img/default-image.jpg') }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur venenatis
@@ -132,7 +132,7 @@
                 <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
-                            <img src="{{ secure_asset('assets/img/default-image.jpg') }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('assets/img/default-image.jpg') }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     Thriving in an AI-enabled Digital Economy
@@ -148,7 +148,7 @@
                 <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
-                            <img src="{{ secure_asset('assets/img/default-image.jpg') }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('assets/img/default-image.jpg') }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     Thriving in an AI-enabled Digital Economy
@@ -164,7 +164,7 @@
                 <div class="col-md-3 mb-2">
                     <a href="#" class="text-body">
                         <div class="card d-block w-100 shadow h-100">
-                            <img src="{{ secure_asset('assets/img/default-image.jpg') }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('assets/img/default-image.jpg') }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     Thriving in an AI-enabled Digital Economy

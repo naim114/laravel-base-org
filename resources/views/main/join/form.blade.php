@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{ $form->name }}</td>
                             <td>
-                                <a target="_blank" href="{{ secure_asset($form->path) }}">
+                                <a target="_blank" href="{{ asset($form->path) }}">
                                     Click Here To Download <i class="bi bi-download"></i>
                                 </a>
                             </td>

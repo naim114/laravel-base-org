@@ -10,7 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="{{ secure_asset(trans('app.favicon')) }}">
+    <link rel="icon" type="image/png" href="{{ asset(trans('app.favicon')) }}">
 
     <!-- Google Fonts -->
     <link
@@ -18,15 +18,15 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href={{ secure_asset('home/vendor/aos/aos.css') }} rel="stylesheet">
-    <link href={{ secure_asset('home/vendor/bootstrap/css/bootstrap.min.css') }} rel="stylesheet">
-    <link href={{ secure_asset('home/vendor/bootstrap-icons/bootstrap-icons.css') }} rel="stylesheet">
-    <link href={{ secure_asset('home/vendor/boxicons/css/boxicons.min.css') }} rel="stylesheet">
-    <link href={{ secure_asset('home/vendor/glightbox/css/glightbox.min.css') }} rel="stylesheet">
-    <link href={{ secure_asset('home/vendor/swiper/swiper-bundle.min.css') }} rel="stylesheet">
+    <link href={{ asset('home/vendor/aos/aos.css') }} rel="stylesheet">
+    <link href={{ asset('home/vendor/bootstrap/css/bootstrap.min.css') }} rel="stylesheet">
+    <link href={{ asset('home/vendor/bootstrap-icons/bootstrap-icons.css') }} rel="stylesheet">
+    <link href={{ asset('home/vendor/boxicons/css/boxicons.min.css') }} rel="stylesheet">
+    <link href={{ asset('home/vendor/glightbox/css/glightbox.min.css') }} rel="stylesheet">
+    <link href={{ asset('home/vendor/swiper/swiper-bundle.min.css') }} rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href={{ secure_asset('home/css/style.css') }} rel="stylesheet">
+    <link href={{ asset('home/css/style.css') }} rel="stylesheet">
 
     @yield('custom-head')
 </head>
@@ -43,16 +43,16 @@
             class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src={{ secure_asset('home/vendor/purecounter/purecounter_vanilla.js') }}></script>
-    <script src={{ secure_asset('home/vendor/aos/aos.js') }}></script>
-    <script src={{ secure_asset('home/vendor/bootstrap/js/bootstrap.bundle.min.js') }}></script>
-    <script src={{ secure_asset('home/vendor/glightbox/js/glightbox.min.js') }}></script>
-    <script src={{ secure_asset('home/vendor/isotope-layout/isotope.pkgd.min.js') }}></script>
-    <script src={{ secure_asset('home/vendor/swiper/swiper-bundle.min.js') }}></script>
-    <script src={{ secure_asset('home/vendor/waypoints/noframework.waypoints.js') }}></script>
+    <script src={{ asset('home/vendor/purecounter/purecounter_vanilla.js') }}></script>
+    <script src={{ asset('home/vendor/aos/aos.js') }}></script>
+    <script src={{ asset('home/vendor/bootstrap/js/bootstrap.bundle.min.js') }}></script>
+    <script src={{ asset('home/vendor/glightbox/js/glightbox.min.js') }}></script>
+    <script src={{ asset('home/vendor/isotope-layout/isotope.pkgd.min.js') }}></script>
+    <script src={{ asset('home/vendor/swiper/swiper-bundle.min.js') }}></script>
+    <script src={{ asset('home/vendor/waypoints/noframework.waypoints.js') }}></script>
 
     <!-- Template Main JS File -->
-    <script src={{ secure_asset('home/js/main.js') }}></script>
+    <script src={{ asset('home/js/main.js') }}></script>
 
     @yield('scripts')
 

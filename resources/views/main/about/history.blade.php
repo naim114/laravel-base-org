@@ -49,13 +49,13 @@
             <div class="text-center mt-4">
                 <div id="image-gallery" class="row">
                     @foreach ($images as $image)
-                        <img src="{{ secure_asset($image->path) }}" class="img-fluid mb-2" alt="..." />
+                        <img src="{{ asset($image->path) }}" class="img-fluid mb-2" alt="..." />
                     @endforeach
                 </div>
                 <div id="video-gallery" class="row">
                     @foreach ($videos as $video)
                         <video controls class="mb-2">
-                            <source src="{{ secure_asset($video->path) }}" type="video/mp4">
+                            <source src="{{ asset($video->path) }}" type="video/mp4">
                         </video>
                     @endforeach
                 </div>
